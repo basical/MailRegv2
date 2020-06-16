@@ -1,0 +1,90 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Form_Display_Data_Import.ascx.cs" Inherits="RTAFMailManagement.Form_ComparePersonData.Form_Display_Data_Import" %>
+
+<%@ Import Namespace="RTAFMailManagement.Class" %>
+<%@ Import Namespace="RTAFMailManagement.Global_Class" %>
+
+<%
+    if (Session["nfound_data"] != null)
+    {
+
+%>
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">:: ข้อมูลกำลังพลจาก WEB SERVICE ไม่มีใน RTAFDB :: </h3>
+
+        <div class="card-tools">
+            <ul class="pagination pagination-sm float-right">
+                <li class="page-item">
+                    <asp:LinkButton ID="Import_Data_Btn" runat="server" CssClass="btn btn-block btn-warning" OnClick="Import_Data_Btn_Click"><i class="fa fa-download fa-fw"></i> นำข้อมูลเข้าระบบ </asp:LinkButton>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="service_table" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 5%; text-align: center;">#</th>
+                    <th style="width: 15%; text-align: center;">รหัสบัตรประชาชน</th>
+                    <th style="width: 10%; text-align: center;">เลข 10 หลัก</th>
+                    <th style="width: 5%; text-align: center;">ยศ</th>
+                    <th style="width: 10%; text-align: center;">ชื่อ</th>
+                    <th style="width: 10%; text-align: center;">นามสกุล</th>
+                    <th style="width: 5%; text-align: center;">วันเกิด</th>
+                    <th style="width: 5%; text-align: center;">สังกัด</th>
+                    <th style="width: 25%; text-align: center;">ตำแหน่ง</th>
+                    <th style="width: 20%; text-align: center;">สถานะ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% 
+                    List<RTAF_DATA> list_data = (List<RTAF_DATA>)Session["nfound_data"];
+
+                    for (int i = 0; i < list_data.Count(); i++)
+                    {
+                        RTAF_DATA data = list_data[i];
+                %>
+                <tr>
+                    <td style="text-align: center;"><%= i+1 %></td>
+                    <td><%= data.rtaf_person_IdCard %></td>
+                    <td><%= General_Functions.subStringIdGvm(data.rtaf_person_IdGvm) %></td>
+                    <td><%= data.Rank.rank_Name %></td>
+                    <td><%= data.rtaf_person_FirstName %></td>
+                    <td><%= data.rtaf_person_LastName %></td>
+                    <td><%= DateTimeUtility.convertDateToPageRealServer(data.rtaf_person_BirthDate) %></td>
+                    <td><%= data.Unit.unit_Name %></td>
+                    <td><%= data.rtaf_person_Position %></td>
+                    <td><%= data.status %></td>
+                </tr>
+                <%
+                    }
+                %>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- /.card-body -->
+    <div class="card-footer clearfix">
+        <ul class="pagination pagination-sm m-0 float-right">
+            <% 
+                int page = 1;
+                for (int i = 0; i < list_data.Count(); i++)
+                {
+                    if (i % 20 == 0)
+                    {
+            %>
+            <li class="page-item"><a class="page-link" href="#"><%= page %></a></li>
+            <% 
+                        page++;
+                    }
+                }
+            %>
+        </ul>
+    </div>
+</div>
+<!-- /.card -->
+<%  
+    }
+%>
