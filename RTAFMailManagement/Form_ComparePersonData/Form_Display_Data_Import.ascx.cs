@@ -23,7 +23,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
 
                 RTAFData_Managers rtaf_mng = new RTAFData_Managers();
 
-                rtaf_mng.addPersonalData(data);
+                rtaf_mng.AddPersonalData(data);
             }
         }
     }

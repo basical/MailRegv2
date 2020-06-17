@@ -242,11 +242,11 @@
                     </ul>
                 </li>
 
-                <li class="nav-header">UPDATE PERSONNEL DATA</li>
+                <li class="nav-header"> ข้อมูลกำลังพล </li>
                 <li class="nav-item has-treeview <%= act > 20 ? "menu-open" : "" %>">
                     <a href="#" class="nav-link <%= act > 20 ? "active" : "" %>">
                         <i class="nav-icon fas fa-edit"></i>
-                        <p>UPDATE PERSONNEL DATA<i class="fas fa-angle-left right"></i></p>
+                        <p> ปรับปรุงข้อมูลกำลังพล <i class="fas fa-angle-left right"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
@@ -258,7 +258,7 @@
                         <li class="nav-item">
                             <a href="/Form_ComparePersonData/Form_Search_PersonData" class="nav-link <%= act == 22 ? "active" : "" %>">
                                 <i class="fa fa-random nav-icon"></i>
-                                <p>:: WebService เปรียบเทียบข้อมูลกำลังพล ::</p>
+                                <p>:: ข้อมูลกำลังพลจาก WebService ::</p>
                             </a>
                         </li>
                     </ul>

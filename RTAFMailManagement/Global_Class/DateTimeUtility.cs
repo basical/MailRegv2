@@ -130,7 +130,7 @@ namespace RTAFMailManagement.Global_Class
                     date[1] = "0" + int.Parse(date[1]);
                 }
 
-                return date[2] + "-" + date[1] + "-" + date[0] + " " + dt[1];
+                return date[2] + "-" + date[0] + "-" + date[1] + " " + dt[1];
             }
             else
             {
@@ -238,7 +238,7 @@ namespace RTAFMailManagement.Global_Class
                     {
                         date[1] = "0" + int.Parse(date[1]);
                     }
-                    datetime = date[0] + "/" + date[1] + "/" + (int.Parse(date[2]) + 543);
+                    datetime = date[1] + "/" + date[0] + "/" + (int.Parse(date[2]) + 543);
                 }
                 else if (datetime.IndexOf("-") > 0)
                 {
@@ -252,7 +252,7 @@ namespace RTAFMailManagement.Global_Class
                     {
                         date[1] = "0" + int.Parse(date[1]);
                     }
-                    datetime = date[0] + "/" + date[1] + "/" + (int.Parse(date[2]) + 543);
+                    datetime = date[1] + "/" + date[0] + "/" + (int.Parse(date[2]) + 543);
                 }
                 return datetime;
             }

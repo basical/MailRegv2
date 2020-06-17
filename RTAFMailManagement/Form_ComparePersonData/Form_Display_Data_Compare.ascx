@@ -23,7 +23,7 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-        <table id="service_table" class="table table-bordered table-striped" style="font-size: 7pt;">
+        <table id="service_table" class="table table-bordered table-striped" style="font-size: 9pt;">
             <thead>
                 <tr>
                     <th style="text-align: center; background-color: dodgerblue; border-right: 2px solid #000000;" colspan="10">ข้อมูลใหม่ [ WEB Service ] </th>

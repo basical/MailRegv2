@@ -52,7 +52,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
 
             List<RTAF_DATA> service_data = ConnectRTAFPersonService.getRTAFPersonData(Unit_id);
 
-            List<RTAF_DATA> data_by_unit = new RTAFData_Managers().getRTAFDataByUnit(int.Parse(Unit_id));
+            List<RTAF_DATA> data_by_unit = new RTAFData_Managers().GetRTAFDataByUnit(int.Parse(Unit_id));
 
             List<Compare_Data> found_data = new List<Compare_Data>();
 
@@ -60,7 +60,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
 
             for (int i = 0; i < service_data.Count; i++)
             {
-                RTAF_DATA data = new RTAFData_Managers().getCheckPersonalData(service_data[i].rtaf_person_IdCard,
+                RTAF_DATA data = new RTAFData_Managers().GetCheckPersonalData(service_data[i].rtaf_person_IdCard,
                                                                         General_Functions.subStringIdGvm(service_data[i].rtaf_person_IdGvm),
                                                                         DateTimeUtility.CDateTime4Service2MSSQL(service_data[i].rtaf_person_BirthDate),
                                                                         service_data[i].rtaf_person_FirstName + " " + service_data[i].rtaf_person_LastName,

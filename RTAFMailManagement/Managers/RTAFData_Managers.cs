@@ -17,7 +17,7 @@ namespace RTAFMailManagement.Managers
         readonly string defaultString = "";
         string id_error = string.Empty;
 
-        public RTAF_DATA getCheckPersonalData(string i_IdCard, string i_IdGvm, string i_BirthDate, string i_Name, int i_Rank, int i_Unit, string i_Position, string i_status)
+        public RTAF_DATA GetCheckPersonalData(string i_IdCard, string i_IdGvm, string i_BirthDate, string i_Name, int i_Rank, int i_Unit, string i_Position, string i_status)
         {
             SqlConnection con = MSSQLConnection.connectionMSSQL();
             try
@@ -91,7 +91,7 @@ namespace RTAFMailManagement.Managers
             }
         }
 
-        public RTAF_DATA getRTAFData(string i_IdCard, string i_IdGvm)
+        public RTAF_DATA GetRTAFData(string i_IdCard, string i_IdGvm)
         {
             SqlConnection con = MSSQLConnection.connectionMSSQL();
             try
@@ -159,7 +159,7 @@ namespace RTAFMailManagement.Managers
             }
         }
 
-        public List<RTAF_DATA> getRTAFDataByUnit(int i_Unit)
+        public List<RTAF_DATA> GetRTAFDataByUnit(int i_Unit)
         {
             SqlConnection con = MSSQLConnection.connectionMSSQL();
             try
@@ -228,7 +228,7 @@ namespace RTAFMailManagement.Managers
             }
         }
 
-        public bool addPersonalData(RTAF_DATA data)
+        public bool AddPersonalData(RTAF_DATA data)
         {
             SqlConnection con = MSSQLConnection.connectionMSSQL();
             try
@@ -237,7 +237,7 @@ namespace RTAFMailManagement.Managers
                 SqlCommand cmd = new SqlCommand("[dbo].[new_i_RTAFData]", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@i_IdCard", data.rtaf_person_IdCard);
-                cmd.Parameters.AddWithValue("@i_IdGvm", data.rtaf_person_IdGvm);
+                cmd.Parameters.AddWithValue("@i_IdGvm", General_Functions.subStringIdGvm(data.rtaf_person_IdGvm));
                 cmd.Parameters.AddWithValue("@i_BirthDate", DateTimeUtility.CDateTime4Service2MSSQL(data.rtaf_person_BirthDate));
                 cmd.Parameters.AddWithValue("@i_Name", data.rtaf_person_FirstName + " " + data.rtaf_person_LastName);
                 cmd.Parameters.AddWithValue("@i_Rank", data.Rank.rank_Code);
@@ -267,7 +267,7 @@ namespace RTAFMailManagement.Managers
             }
         }
 
-        public bool editPersonalData(RTAF_DATA data)
+        public bool EditPersonalData(RTAF_DATA data)
         {
             SqlConnection con = MSSQLConnection.connectionMSSQL();
             try
@@ -276,7 +276,7 @@ namespace RTAFMailManagement.Managers
                 SqlCommand cmd = new SqlCommand("[dbo].[new_u_RTAFData]", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@i_IdCard", data.rtaf_person_IdCard);
-                cmd.Parameters.AddWithValue("@i_IdGvm", data.rtaf_person_IdGvm);
+                cmd.Parameters.AddWithValue("@i_IdGvm", General_Functions.subStringIdGvm(data.rtaf_person_IdGvm));
                 cmd.Parameters.AddWithValue("@i_BirthDate", DateTimeUtility.CDateTime4Service2MSSQL(data.rtaf_person_BirthDate));
                 cmd.Parameters.AddWithValue("@i_Name", data.rtaf_person_FirstName + " " + data.rtaf_person_LastName);
                 cmd.Parameters.AddWithValue("@i_Rank", data.Rank.rank_Code);
