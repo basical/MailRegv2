@@ -50,7 +50,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
             Session.Remove("found_data");
             Session.Remove("nfound_data");
 
-            List<RTAF_DATA> service_data = ConnectRTAFPersonService.getRTAFPersonData(Unit_id);
+            List<RTAF_DATA> service_data = ConnectRTAFService.getRTAFPersonData(Unit_id);
 
             List<RTAF_DATA> data_by_unit = new RTAFData_Managers().GetRTAFDataByUnit(int.Parse(Unit_id));
 

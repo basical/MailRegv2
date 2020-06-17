@@ -32,5 +32,15 @@ namespace RTAFMailManagement.Properties {
                 return ((string)(this["RTAFMailManagement_RTAFService_RTAFMail"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://10.107.1.200/ADService.asmx")]
+        public string RTAFMailManagement_ADService_ADService {
+            get {
+                return ((string)(this["RTAFMailManagement_ADService_ADService"]));
+            }
+        }
     }
 }

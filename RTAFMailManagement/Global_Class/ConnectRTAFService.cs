@@ -3,12 +3,13 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.DirectoryServices;
 using System.Linq;
 using System.Web;
 
 namespace RTAFMailManagement.Global_Class
 {
-    public class ConnectRTAFPersonService
+    public class ConnectRTAFService
     {
         public static List<RTAF_DATA> getRTAFPersonData(string unit_code)
         {
@@ -72,6 +73,33 @@ namespace RTAFMailManagement.Global_Class
             }
 
             return unit_code;
+        }
+
+        public static bool AuthenUserWithADServer(string userName, string password)
+        {
+            string ADPAth = ConfigurationManager.AppSettings["ADPAth"];
+            bool found_user = false;
+            try
+            {
+                DirectoryEntry de = new DirectoryEntry(ADPAth, userName, password);
+                DirectorySearcher ds = new DirectorySearcher(de);
+                SearchResult res = ds.FindOne();
+
+                if(res != null)
+                {
+                    found_user = true;
+                }
+                else
+                {
+                    found_user = false;
+                }
+
+                return found_user;
+            }
+            catch
+            {
+                return found_user;
+            }
         }
     }
 }

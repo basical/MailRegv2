@@ -1,4 +1,8 @@
-﻿using System;
+﻿using RTAFMailManagement.Class;
+using RTAFMailManagement.Global_Class;
+using RTAFMailManagement.Managers;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,7 +20,13 @@ namespace RTAFMailManagement.Authentication
 
         protected void Login_btn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/Form_Main/Form_MainPage");
+            string username = Username_TBx.Text;
+            string password = Password_TBx.Text;
+
+            if(ConnectRTAFService.AuthenUserWithADServer(username, password))
+            {
+                Response.Redirect("/Form_Main/Form_MainPage");
+            }
         }
     }
 }
