@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.DirectoryServices;
 using System.Linq;
+using System.Net;
 using System.Web;
 
 namespace RTAFMailManagement.Global_Class
@@ -77,12 +78,19 @@ namespace RTAFMailManagement.Global_Class
 
         public static bool AuthenUserWithADServer(string userName, string password)
         {
-            string ADPAth = ConfigurationManager.AppSettings["ADPAth"];
+            string error = string.Empty;
             bool found_user = false;
+
+            string ADPAth = ConfigurationManager.AppSettings["ADPAth"];
+            
+
+            DirectoryEntry de = null;
+            DirectorySearcher ds = null;
+
             try
             {
-                DirectoryEntry de = new DirectoryEntry(ADPAth, userName, password);
-                DirectorySearcher ds = new DirectorySearcher(de);
+                de = new DirectoryEntry(ADPAth, userName, password);
+                ds = new DirectorySearcher(de);
                 SearchResult res = ds.FindOne();
 
                 if(res != null)
@@ -96,9 +104,24 @@ namespace RTAFMailManagement.Global_Class
 
                 return found_user;
             }
-            catch
+            catch(WebException ex)
             {
+                error = "WebException ==> Global_Class --> ConnectRTAFService --> AuthenUserWithADServer()";
+                Log_Error._writeErrorFile(error, ex);
                 return found_user;
+                
+            }
+            catch (Exception ex)
+            {
+                error = "Exception ==> Global_Class --> ConnectRTAFService --> AuthenUserWithADServer()";
+                Log_Error._writeErrorFile(error, ex);
+                return found_user;
+
+            }
+            finally
+            {
+                ds.Dispose();
+                de.Close();
             }
         }
     }

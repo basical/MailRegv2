@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RTAFMailManagement.Managers_Persons
 {
-    public class Persons_Mananer
+    public class Users_Mananer
     {
     }
 }

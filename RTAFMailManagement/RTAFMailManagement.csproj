@@ -2168,7 +2168,7 @@
     <Compile Include="Global_Class\Log_Error.cs" />
     <Compile Include="Global_Class\Messages_Logs.cs" />
     <Compile Include="Global_Class\MSSQLConnection.cs" />
-    <Compile Include="Managers\Persons_Mananer.cs" />
+    <Compile Include="Managers\Users_Mananer.cs" />
     <Compile Include="Managers\Ranks_Manager.cs" />
     <Compile Include="Managers\RTAFData_Managers.cs" />
     <Compile Include="Managers\Status_Manager.cs" />
@@ -2213,6 +2213,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Form_Mail_Register\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

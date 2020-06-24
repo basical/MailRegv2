@@ -1,6 +1,7 @@
 ﻿using RTAFMailManagement.Class;
 using RTAFMailManagement.Global_Class;
 using RTAFMailManagement.Managers;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +40,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
             for (int i = 0; i < list_data.Count; i++)
             {
                 Units data = list_data[i];
-                Units_DDL.Items.Add(new ListItem(data.unit_Name + " ( " + data.unit_FullName + " ) ", data.unit_Code.ToString()));
+                Units_DDL.Items.Add(new ListItem(data.unit_FullName + " ( " + data.unit_Name + " ) ", data.unit_Code.ToString()));
             }
         }
 

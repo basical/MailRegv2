@@ -1,4 +1,4 @@
-﻿<%@ Page Title=":: WebService เปรียบเทียบข้อมูลกำลังพล ::" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Form_Search_PersonData.aspx.cs" Inherits="RTAFMailManagement.Form_ComparePersonData.Form_Search_PersonData" %>
+﻿<%@ Page Title=":: ข้อมูลกำลังพลจาก WebService ::" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Form_Search_PersonData.aspx.cs" Inherits="RTAFMailManagement.Form_ComparePersonData.Form_Search_PersonData" %>
 
 <%@ Register TagPrefix="service_page" TagName="Tab_service_page" Src="Form_Display_Data_Service.ascx" %>
 <%@ Register TagPrefix="db_page" TagName="Tab_db_page" Src="Form_Display_Data_DB.ascx" %>
@@ -16,7 +16,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">:: WebService เปรียบเทียบข้อมูลกำลังพล ::</h1>
+                        <h1 class="m-0 text-dark">:: ข้อมูลกำลังพลจาก WebService ::</h1>
                     </div>
                 </div>
                 <!-- /.row -->
