@@ -13,6 +13,8 @@ namespace RTAFMailManagement.Class
         public string rtaf_person_BirthDate { get; set; }
         public string rtaf_person_FirstName { get; set; }
         public string rtaf_person_LastName { get; set; }
+        public string rtaf_person_FirstName_Eng { get; set; }
+        public string rtaf_person_LastName_Eng { get; set; }
         public Ranks Rank { get; set; }
         public Units Unit { get; set; }
         public int rtaf_person_Type { get; set; } // 1 น.สัญญาบัตร, 2. น.ประทวน
@@ -20,6 +22,6 @@ namespace RTAFMailManagement.Class
         public string rtaf_person_UpdateDate { get; set; }
         public string rtaf_person_CreateDate { get; set; }
         public string rtaf_person_Position { get; set; }
-        public string status { get; set; }
+        public string rtaf_person_status { get; set; }
     }
 }

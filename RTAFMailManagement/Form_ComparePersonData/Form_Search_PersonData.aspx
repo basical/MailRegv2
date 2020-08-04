@@ -1,4 +1,4 @@
-﻿<%@ Page Title=":: ข้อมูลกำลังพลจาก WebService ::" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Form_Search_PersonData.aspx.cs" Inherits="RTAFMailManagement.Form_ComparePersonData.Form_Search_PersonData" %>
+﻿<%@ Page Title=" RTAF E-Mail Registration Management System " Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Form_Search_PersonData.aspx.cs" Inherits="RTAFMailManagement.Form_ComparePersonData.Form_Search_PersonData" %>
 
 <%@ Register TagPrefix="service_page" TagName="Tab_service_page" Src="Form_Display_Data_Service.ascx" %>
 <%@ Register TagPrefix="db_page" TagName="Tab_db_page" Src="Form_Display_Data_DB.ascx" %>
@@ -30,7 +30,7 @@
             <div class="container-fluid">
 
                 <!-- Horizontal Form -->
-                <div class="card card-info">
+                <div class="card card-primary">
                     <div class="card-header">
                         <h3 class="card-title">:: ค้นหา ::</h3>
                     </div>
@@ -47,7 +47,7 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <asp:LinkButton ID="Search_rtaf_data_Btn" runat="server" CssClass="btn btn-info" OnClick="Search_rtaf_data_Btn_Click"> <i class="fa fa-search fa-fw"></i> ค้นหา </asp:LinkButton>
+                            <asp:LinkButton ID="Search_rtaf_data_Btn" runat="server" CssClass="btn bg-gradient-primary" OnClick="Search_rtaf_data_Btn_Click"> <i class="fa fa-search fa-fw"></i> ค้นหาข้อมูล </asp:LinkButton>
                         </div>
                         <!-- /.card-footer -->
                     </div>

@@ -11,7 +11,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
 {
 
 
-    public partial class Form_Add_PersonData
+    public partial class Form_Edit_PersonData
     {
 
         /// <summary>

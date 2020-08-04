@@ -1,5 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Navbar_Control.ascx.cs" Inherits="RTAFMailManagement.Form_Main.Navbar_Control" %>
 
+<%@ Import Namespace="RTAFMailManagement.Class" %>
+
 <%
     int act = 1;
     if (Session["Class_Active"] != null)
@@ -156,6 +158,14 @@
                     </a>
                 </li>
 
+                <% 
+                    if (Session["admin_user"] != null)
+                    {
+                        Admin_Users au = (Admin_Users)Session["admin_user"];
+
+                        if (au.Admintype.admin_type_id == 3)
+                        {
+                %>
                 <li class="nav-header">CONFIGURATION</li>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
@@ -213,57 +223,90 @@
                         </li>
                     </ul>
                 </li>
-
-                <li class="nav-header">USER ACCOUNT/PROFILE</li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-chart-pie"></i>
-                        <p>USER ACCOUNT/PROFILE<i class="right fas fa-angle-left"></i></p>
+                <% 
+                    }
+                %>
+                <li class="nav-header">บัญชีผู้ใช้งาน </li>
+                <li class="nav-item has-treeview <%= act > 10 && act < 20 ? "menu-open" : "" %>">
+                    <a href="#" class="nav-link <%= act > 10 && act < 20 ? "active" : "" %>">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>บัญชีผู้ใช้งาน<i class="right fas fa-angle-left"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>ChartJS</p>
+                            <a href="/Form_Mail_Register/Search_User_Accounts" class="nav-link <%= act == 11 ? "active" : "" %>">
+                                <i class="fas fa-user-cog nav-icon"></i>
+                                <p>Management Account </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Flot</p>
+                            <a href="/Form_Mail_Register/Reset_Password_User_Fast" class="nav-link <%= act == 16 ? "active" : "" %>">
+                                <i class="fas fa-sync-alt nav-icon"></i>
+                                <p>Reset Password </p>
+                            </a>
+                        </li>
+                        <%
+                            if (au.Admintype.admin_type_id == 3)
+                            {
+                        %>
+                        <li class="nav-item">
+                            <a href="/Form_Mail_Register/Update_User_Account_CPDTSV" class="nav-link <%= act == 17 ? "active" : "" %>">
+                                <i class="fas fa-users-cog nav-icon"></i>
+                                <p>Update Person2UserAcc </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Inline</p>
+                            <a href="/Form_Mail_Register/Move_OU_Account" class="nav-link <%= act == 18 ? "active" : "" %>">
+                                <i class="fas fa-exchange-alt nav-icon"></i>
+                                <p>Move OU Account </p>
                             </a>
                         </li>
+                        <!-- <li class="nav-item">
+                            <a href="/Form_Mail_Register/Upload_File_CSV" class="nav-link">
+                                <i class="fas fa-file-upload nav-icon"></i>
+                                <p>Upload File </p>
+                            </a>
+                        </li> -->
+                        <%
+                            }
+                        %>
                     </ul>
                 </li>
-
-                <li class="nav-header"> ข้อมูลกำลังพล </li>
+                <%
+                    if (au.Admintype.admin_type_id == 3)
+                    {
+                %>
+                <li class="nav-header">ข้อมูลกำลังพล </li>
                 <li class="nav-item has-treeview <%= act > 20 ? "menu-open" : "" %>">
                     <a href="#" class="nav-link <%= act > 20 ? "active" : "" %>">
-                        <i class="nav-icon fas fa-edit"></i>
-                        <p> ปรับปรุงข้อมูลกำลังพล <i class="fas fa-angle-left right"></i></p>
+                        <i class="nav-icon fas fa-user-tie"></i>
+                        <p>ปรับปรุงข้อมูลกำลังพล <i class="fas fa-angle-left right"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/Form_ComparePersonData/Form_Add_PersonData" class="nav-link <%= act == 21 ? "active" : "" %>">
-                                <i class="fa fa-registered nav-icon"></i>
-                                <p>:: เพิ่มข้อมูลกำลังพล ::</p>
+                                <i class="fas fa-user-circle nav-icon"></i>
+                                <p>:: Add Person ::</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/Form_ComparePersonData/Form_Search_PersonData" class="nav-link <%= act == 22 ? "active" : "" %>">
-                                <i class="fa fa-random nav-icon"></i>
-                                <p>:: ข้อมูลกำลังพลจาก WebService ::</p>
+                            <a href="/Form_ComparePersonData/Form_Search_Person" class="nav-link <%= act == 22 ? "active" : "" %>">
+                                <i class="fas fa-search-plus nav-icon"></i>
+                                <p>:: Search Person ::</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/Form_ComparePersonData/Form_Search_PersonData" class="nav-link <%= act == 29 ? "active" : "" %>">
+                                <i class="fas fa-people-arrows nav-icon"></i>
+                                <p>:: Compare WebService ::</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-
+                <%
+                        }
+                    }
+                %>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

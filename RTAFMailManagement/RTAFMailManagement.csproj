@@ -59,7 +59,9 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.DirectoryServices" />
@@ -1820,6 +1822,8 @@
     <Content Include="Form_ComparePersonData\Form_Display_Data_Compare.ascx" />
     <Content Include="Form_ComparePersonData\Form_Display_Data_Import.ascx" />
     <Content Include="Form_ComparePersonData\Form_Display_Data_Service.ascx" />
+    <Content Include="Form_ComparePersonData\Form_Edit_PersonData.aspx" />
+    <Content Include="Form_ComparePersonData\Form_Search_Person.aspx" />
     <Content Include="Form_Main\Form_MainPage.aspx" />
     <Content Include="Form_Main\Navbar_Control.ascx" />
     <Content Include="Form_ComparePersonData\Form_Search_PersonData.aspx" />
@@ -2050,17 +2054,11 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
-    <None Include="Web References\ADService\ADService.wsdl" />
-    <Content Include="Web References\ADService\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
     <None Include="Web References\RTAFService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\RTAFService\RTAFMail.disco" />
-    <None Include="Web References\ADService\ADService.disco" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
@@ -2137,6 +2135,20 @@
     <Compile Include="Form_ComparePersonData\Form_Display_Data_Service.ascx.designer.cs">
       <DependentUpon>Form_Display_Data_Service.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Form_ComparePersonData\Form_Edit_PersonData.aspx.cs">
+      <DependentUpon>Form_Edit_PersonData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_ComparePersonData\Form_Edit_PersonData.aspx.designer.cs">
+      <DependentUpon>Form_Edit_PersonData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_ComparePersonData\Form_Search_Person.aspx.cs">
+      <DependentUpon>Form_Search_Person.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_ComparePersonData\Form_Search_Person.aspx.designer.cs">
+      <DependentUpon>Form_Search_Person.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Form_Main\Form_MainPage.aspx.cs">
       <DependentUpon>Form_MainPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2199,11 +2211,6 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Web References\ADService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="Web References\RTAFService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -2344,17 +2351,6 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://10.107.1.200/ADService.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\ADService\</RelPath>
-      <UpdateFromURL>http://10.107.1.200/ADService.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>RTAFMailManagement_ADService_ADService</CachedSettingsPropName>
-    </WebReferenceUrl>
     <WebReferenceUrl Include="http://10.107.6.5/RTAFService/RTAFMail.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\RTAFService\</RelPath>

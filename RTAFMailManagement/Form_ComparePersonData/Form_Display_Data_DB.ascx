@@ -11,7 +11,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">:: ข้อมูลกำลังพลจาก RTAFDB :: </h3>
+        <h3 class="card-title">:: ข้อมูลกำลังพลจากฐ้านข้อมูล RTAFDB :: </h3>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -19,15 +19,17 @@
             <thead>
                 <tr>
                     <th style="width: 5%; text-align: center;">#</th>
-                    <th style="width: 15%; text-align: center;">รหัสบัตรประชาชน</th>
-                    <th style="width: 10%; text-align: center;">เลข 10 หลัก</th>
-                    <th style="width: 5%; text-align: center;">ยศ</th>
+                    <th style="text-align: center;">รหัสบัตรประชาชน</th>
+                    <th style="text-align: center;">เลข 10 หลัก</th>
+                    <th style="text-align: center;">ยศ</th>
                     <th style="width: 10%; text-align: center;">ชื่อ</th>
                     <th style="width: 10%; text-align: center;">นามสกุล</th>
-                    <th style="width: 5%; text-align: center;">วันเกิด</th>
-                    <th style="width: 5%; text-align: center;">สังกัด</th>
-                    <th style="width: 25%; text-align: center;">ตำแหน่ง</th>
-                    <th style="width: 20%; text-align: center;">สถานะ</th>
+                    <th style="width: 10%; text-align: center;">ชื่อ ( Eng ) </th>
+                    <th style="width: 10%; text-align: center;">นามสกุล ( Eng ) </th>
+                    <th style="text-align: center;">วันเกิด</th>
+                    <th style="text-align: center;">สังกัด</th>
+                    <th style="text-align: center;">ตำแหน่ง</th>
+                    <th style="text-align: center;">สถานะ</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,10 +47,12 @@
                     <td><%= data.Rank.rank_Name %></td>
                     <td><%= data.rtaf_person_FirstName %></td>
                     <td><%= data.rtaf_person_LastName %></td>
+                    <td><%= data.rtaf_person_FirstName_Eng %></td>
+                    <td><%= data.rtaf_person_LastName_Eng %></td>
                     <td><%= DateTimeUtility.convertDateToPageRealServer(data.rtaf_person_BirthDate) %></td>
                     <td><%= data.Unit.unit_Name %></td>
                     <td><%= data.rtaf_person_Position %></td>
-                    <td><%= data.status %></td>
+                    <td><%= data.rtaf_person_status %></td>
                 </tr>
                 <%
                     }
