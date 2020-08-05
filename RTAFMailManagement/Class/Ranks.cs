@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace RTAFMailManagement.Class
+﻿namespace RTAFMailManagement.Class
 {
     public class Ranks
     {
-        public long rank_id { get; set; }
-        public int rank_Code { get; set; }
-        public string rank_Name { get; set; }
-        public string rank_FullName { get; set; }
-        public string rank_NameEng { get; set; }
-        public string rank_FullNameEng { get; set; }
-        public string rank_GroupName { get; set; }
-        public string rank_Remark { get; set; }
-        public int rank_Sort { get; set; }
-        public string rank_Mailbox { get; set; }
-        public int rank_sortrank { get; set; }
-        public string rank_rankgroup { get; set; }
-        public int rank_ranktype { get; set; }
+        public long Rank_id { get; set; }
+        public int Rank_Code { get; set; }
+        public string Rank_Name { get; set; }
+        public string Rank_FullName { get; set; }
+        public string Rank_NameEng { get; set; }
+        public string Rank_FullNameEng { get; set; }
+        public string Rank_GroupName { get; set; }
+        public string Rank_Remark { get; set; }
+        public int Rank_Sort { get; set; }
+        public string Rank_Mailbox { get; set; }
+        public int Rank_sortrank { get; set; }
+        public string Rank_rankgroup { get; set; }
+        public int Rank_ranktype { get; set; }
 
     }
 }

@@ -53,7 +53,7 @@ namespace RTAFMailManagement.Global_Class
                     rtaf_person_BirthDate = resault[i].BIRTHDAY.ToString(),
 
                     rtaf_person_Position = resault[i].POSITION,
-                    status = resault[i].STATUS
+                    rtaf_person_status = resault[i].STATUS
                 };
 
                 list_data.Add(person);

@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace RTAFMailManagement.Form_ComparePersonData
+namespace RTAFMailManagement.Form_Configuration
 {
-    public partial class Form_Edit_PersonData : Page
+    public partial class Units_Management : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

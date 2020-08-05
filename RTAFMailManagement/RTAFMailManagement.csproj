@@ -1824,6 +1824,28 @@
     <Content Include="Form_ComparePersonData\Form_Display_Data_Service.ascx" />
     <Content Include="Form_ComparePersonData\Form_Edit_PersonData.aspx" />
     <Content Include="Form_ComparePersonData\Form_Search_Person.aspx" />
+    <Content Include="Form_Configuration\Admins_Management.aspx" />
+    <Content Include="Form_Configuration\Admins_Edit.aspx" />
+    <Content Include="Form_Configuration\Admin_Types_Edit.aspx" />
+    <Content Include="Form_Configuration\Admin_Types_Management.aspx" />
+    <Content Include="Form_Configuration\AD_Status_Edit.aspx" />
+    <Content Include="Form_Configuration\AD_Status_Management.aspx" />
+    <Content Include="Form_Configuration\Questions_Edit.aspx" />
+    <Content Include="Form_Configuration\Questions_Management.aspx" />
+    <Content Include="Form_Configuration\Ranks_Edit.aspx" />
+    <Content Include="Form_Configuration\Ranks_Management.aspx" />
+    <Content Include="Form_Configuration\RTAF_Status_Edit.aspx" />
+    <Content Include="Form_Configuration\RTAF_Status_Management.aspx" />
+    <Content Include="Form_Configuration\Units_Edit.aspx" />
+    <Content Include="Form_Configuration\Units_Management.aspx" />
+    <Content Include="Form_Configuration\Users_Type_Edit.aspx" />
+    <Content Include="Form_Configuration\Users_Type_Management.aspx" />
+    <Content Include="Form_Mail_Register\Add_Users_Account.aspx" />
+    <Content Include="Form_Mail_Register\ChangeADStatus.aspx" />
+    <Content Include="Form_Mail_Register\Reset_Password_User_Fast.aspx" />
+    <Content Include="Form_Mail_Register\Search_User_Accounts.aspx" />
+    <Content Include="Form_Mail_Register\Update_Users_Profile.aspx" />
+    <Content Include="Form_Mail_Register\Update_User_Account_CPDTSV.aspx" />
     <Content Include="Form_Main\Form_MainPage.aspx" />
     <Content Include="Form_Main\Navbar_Control.ascx" />
     <Content Include="Form_ComparePersonData\Form_Search_PersonData.aspx" />
@@ -2080,12 +2102,18 @@
     <Compile Include="Authentication\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Class\Activity_Log.cs" />
+    <Compile Include="Class\Admin_Users.cs" />
+    <Compile Include="Class\Admin_Users_Type.cs" />
+    <Compile Include="Class\AD_Status.cs" />
     <Compile Include="Class\Compare_Data.cs" />
+    <Compile Include="Class\Questions.cs" />
     <Compile Include="Class\Users.cs" />
     <Compile Include="Class\Ranks.cs" />
     <Compile Include="Class\RTAF_DATA.cs" />
-    <Compile Include="Class\Status.cs" />
+    <Compile Include="Class\RTAF_Status.cs" />
     <Compile Include="Class\Units.cs" />
+    <Compile Include="Class\Users_Type.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2149,6 +2177,160 @@
     <Compile Include="Form_ComparePersonData\Form_Search_Person.aspx.designer.cs">
       <DependentUpon>Form_Search_Person.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Form_Configuration\Admins_Management.aspx.cs">
+      <DependentUpon>Admins_Management.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Configuration\Admins_Management.aspx.designer.cs">
+      <DependentUpon>Admins_Management.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Configuration\Admins_Edit.aspx.cs">
+      <DependentUpon>Admins_Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Configuration\Admins_Edit.aspx.designer.cs">
+      <DependentUpon>Admins_Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Configuration\Admin_Types_Edit.aspx.cs">
+      <DependentUpon>Admin_Types_Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Configuration\Admin_Types_Edit.aspx.designer.cs">
+      <DependentUpon>Admin_Types_Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Configuration\Admin_Types_Management.aspx.cs">
+      <DependentUpon>Admin_Types_Management.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Configuration\Admin_Types_Management.aspx.designer.cs">
+      <DependentUpon>Admin_Types_Management.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Configuration\AD_Status_Edit.aspx.cs">
+      <DependentUpon>AD_Status_Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Configuration\AD_Status_Edit.aspx.designer.cs">
+      <DependentUpon>AD_Status_Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Configuration\AD_Status_Management.aspx.cs">
+      <DependentUpon>AD_Status_Management.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Configuration\AD_Status_Management.aspx.designer.cs">
+      <DependentUpon>AD_Status_Management.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Configuration\Questions_Edit.aspx.cs">
+      <DependentUpon>Questions_Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Configuration\Questions_Edit.aspx.designer.cs">
+      <DependentUpon>Questions_Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Configuration\Questions_Management.aspx.cs">
+      <DependentUpon>Questions_Management.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Configuration\Questions_Management.aspx.designer.cs">
+      <DependentUpon>Questions_Management.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Configuration\Ranks_Edit.aspx.cs">
+      <DependentUpon>Ranks_Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Configuration\Ranks_Edit.aspx.designer.cs">
+      <DependentUpon>Ranks_Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Configuration\Ranks_Management.aspx.cs">
+      <DependentUpon>Ranks_Management.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Configuration\Ranks_Management.aspx.designer.cs">
+      <DependentUpon>Ranks_Management.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Configuration\RTAF_Status_Edit.aspx.cs">
+      <DependentUpon>RTAF_Status_Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Configuration\RTAF_Status_Edit.aspx.designer.cs">
+      <DependentUpon>RTAF_Status_Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Configuration\RTAF_Status_Management.aspx.cs">
+      <DependentUpon>RTAF_Status_Management.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Configuration\RTAF_Status_Management.aspx.designer.cs">
+      <DependentUpon>RTAF_Status_Management.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Configuration\Units_Edit.aspx.cs">
+      <DependentUpon>Units_Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Configuration\Units_Edit.aspx.designer.cs">
+      <DependentUpon>Units_Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Configuration\Units_Management.aspx.cs">
+      <DependentUpon>Units_Management.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Configuration\Units_Management.aspx.designer.cs">
+      <DependentUpon>Units_Management.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Configuration\Users_Type_Edit.aspx.cs">
+      <DependentUpon>Users_Type_Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Configuration\Users_Type_Edit.aspx.designer.cs">
+      <DependentUpon>Users_Type_Edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Configuration\Users_Type_Management.aspx.cs">
+      <DependentUpon>Users_Type_Management.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Configuration\Users_Type_Management.aspx.designer.cs">
+      <DependentUpon>Users_Type_Management.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Mail_Register\Add_Users_Account.aspx.cs">
+      <DependentUpon>Add_Users_Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Mail_Register\Add_Users_Account.aspx.designer.cs">
+      <DependentUpon>Add_Users_Account.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Mail_Register\ChangeADStatus.aspx.cs">
+      <DependentUpon>ChangeADStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Mail_Register\ChangeADStatus.aspx.designer.cs">
+      <DependentUpon>ChangeADStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Mail_Register\Reset_Password_User_Fast.aspx.cs">
+      <DependentUpon>Reset_Password_User_Fast.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Mail_Register\Reset_Password_User_Fast.aspx.designer.cs">
+      <DependentUpon>Reset_Password_User_Fast.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Mail_Register\Search_User_Accounts.aspx.cs">
+      <DependentUpon>Search_User_Accounts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Mail_Register\Search_User_Accounts.aspx.designer.cs">
+      <DependentUpon>Search_User_Accounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Mail_Register\Update_Users_Profile.aspx.cs">
+      <DependentUpon>Update_Users_Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Mail_Register\Update_Users_Profile.aspx.designer.cs">
+      <DependentUpon>Update_Users_Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Mail_Register\Update_User_Account_CPDTSV.aspx.cs">
+      <DependentUpon>Update_User_Account_CPDTSV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Mail_Register\Update_User_Account_CPDTSV.aspx.designer.cs">
+      <DependentUpon>Update_User_Account_CPDTSV.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Form_Main\Form_MainPage.aspx.cs">
       <DependentUpon>Form_MainPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2180,10 +2362,14 @@
     <Compile Include="Global_Class\Log_Error.cs" />
     <Compile Include="Global_Class\Messages_Logs.cs" />
     <Compile Include="Global_Class\MSSQLConnection.cs" />
+    <Compile Include="Managers\Admin_Type_Manager.cs" />
+    <Compile Include="Managers\Admin_User_Manager.cs" />
+    <Compile Include="Managers\AD_Status_Manager.cs" />
+    <Compile Include="Managers\Question_Manager.cs" />
     <Compile Include="Managers\Users_Mananer.cs" />
     <Compile Include="Managers\Ranks_Manager.cs" />
     <Compile Include="Managers\RTAFData_Managers.cs" />
-    <Compile Include="Managers\Status_Manager.cs" />
+    <Compile Include="Managers\RTAF_Status_Manager.cs" />
     <Compile Include="Managers\Units_Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -2220,7 +2406,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Form_Mail_Register\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

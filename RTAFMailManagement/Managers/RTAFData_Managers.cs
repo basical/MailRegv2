@@ -40,31 +40,31 @@ namespace RTAFMailManagement.Managers
 
                 if (reader.Read())
                 {
-                    data.rtaf_person_id = reader.IsDBNull(0) ? defaultNum : reader.GetInt64(0);
-                    data.rtaf_person_IdCard = reader.IsDBNull(1) ? defaultString : reader.GetString(1);
-                    data.rtaf_person_IdGvm = reader.IsDBNull(2) ? defaultString : reader.GetString(2);
-                    data.rtaf_person_BirthDate = reader.IsDBNull(3) ? defaultString : reader.GetDateTime(3).ToString();
-                    data.rtaf_person_FirstName = reader.IsDBNull(4) ? defaultString : reader.GetString(4).IndexOf(' ') > 1 ? reader.GetString(4).Split(' ')[0] : reader.GetString(4);
-                    data.rtaf_person_LastName = reader.IsDBNull(4) ? defaultString : reader.GetString(4).IndexOf(' ') > 1 ? reader.GetString(4).Split(' ')[1] : "";
+                    data.RTAF_person_id = reader.IsDBNull(0) ? defaultNum : reader.GetInt64(0);
+                    data.RTAF_person_IdCard = reader.IsDBNull(1) ? defaultString : reader.GetString(1);
+                    data.RTAF_person_IdGvm = reader.IsDBNull(2) ? defaultString : reader.GetString(2);
+                    data.RTAF_person_BirthDate = reader.IsDBNull(3) ? defaultString : reader.GetDateTime(3).ToString();
+                    data.RTAF_person_FirstName = reader.IsDBNull(4) ? defaultString : reader.GetString(4).IndexOf(' ') > 1 ? reader.GetString(4).Split(' ')[0] : reader.GetString(4);
+                    data.RTAF_person_LastName = reader.IsDBNull(4) ? defaultString : reader.GetString(4).IndexOf(' ') > 1 ? reader.GetString(4).Split(' ')[1] : "";
 
-                    data.Rank = new Ranks
+                    data.RTAF_person_Rank = new Ranks
                     {
-                        rank_Name = reader.IsDBNull(5) ? defaultString : reader.GetString(5)
+                        Rank_Name = reader.IsDBNull(5) ? defaultString : reader.GetString(5)
                     };
 
-                    data.Unit = new Units
+                    data.RTAF_person_Unit = new Units
                     {
-                        unit_Name = reader.IsDBNull(6) ? defaultString : reader.GetString(6)
+                        Unit_Name = reader.IsDBNull(6) ? defaultString : reader.GetString(6)
                     };
 
-                    data.rtaf_person_Type = reader.IsDBNull(7) ? defaultNum : reader.GetInt32(7);
-                    data.rtaf_person_Enable = reader.IsDBNull(8) ? defaultNum : reader.GetInt32(8);
-                    data.rtaf_person_UpdateDate = reader.IsDBNull(9) ? defaultString : reader.GetDateTime(9).ToString();
-                    data.rtaf_person_CreateDate = reader.IsDBNull(10) ? defaultString : reader.GetDateTime(10).ToString();
-                    data.rtaf_person_Position = reader.IsDBNull(11) ? defaultString : reader.GetString(11);
-                    data.status = reader.IsDBNull(12) ? defaultString : reader.GetString(12);
+                    data.RTAF_person_Type = reader.IsDBNull(7) ? defaultNum : reader.GetInt32(7);
+                    data.RTAF_person_Enable = reader.IsDBNull(8) ? defaultNum : reader.GetInt32(8);
+                    data.RTAF_person_UpdateDate = reader.IsDBNull(9) ? defaultString : reader.GetDateTime(9).ToString();
+                    data.RTAF_person_CreateDate = reader.IsDBNull(10) ? defaultString : reader.GetDateTime(10).ToString();
+                    data.RTAF_person_Position = reader.IsDBNull(11) ? defaultString : reader.GetString(11);
+                    data.RTAF_person_status = reader.IsDBNull(12) ? defaultString : reader.GetString(12);
 
-                    id_error = data.rtaf_person_id.ToString();
+                    id_error = data.RTAF_person_id.ToString();
                 }
                 else
                 {
@@ -108,31 +108,31 @@ namespace RTAFMailManagement.Managers
 
                 if (reader.Read())
                 {
-                    data.rtaf_person_id = reader.IsDBNull(0) ? defaultNum : reader.GetInt64(0);
-                    data.rtaf_person_IdCard = reader.IsDBNull(1) ? defaultString : reader.GetString(1);
-                    data.rtaf_person_IdGvm = reader.IsDBNull(2) ? defaultString : reader.GetString(2);
-                    data.rtaf_person_BirthDate = reader.IsDBNull(3) ? defaultString : reader.GetDateTime(3).ToString();
-                    data.rtaf_person_FirstName = reader.IsDBNull(4) ? defaultString : reader.GetString(4).IndexOf(' ') > 1 ? reader.GetString(4).Split(' ')[0] : reader.GetString(4);
-                    data.rtaf_person_LastName = reader.IsDBNull(4) ? defaultString : reader.GetString(4).IndexOf(' ') > 1 ? reader.GetString(4).Split(' ')[1] : "";
+                    data.RTAF_person_id = reader.IsDBNull(0) ? defaultNum : reader.GetInt64(0);
+                    data.RTAF_person_IdCard = reader.IsDBNull(1) ? defaultString : reader.GetString(1);
+                    data.RTAF_person_IdGvm = reader.IsDBNull(2) ? defaultString : reader.GetString(2);
+                    data.RTAF_person_BirthDate = reader.IsDBNull(3) ? defaultString : reader.GetDateTime(3).ToString();
+                    data.RTAF_person_FirstName = reader.IsDBNull(4) ? defaultString : reader.GetString(4).IndexOf(' ') > 1 ? reader.GetString(4).Split(' ')[0] : reader.GetString(4);
+                    data.RTAF_person_LastName = reader.IsDBNull(4) ? defaultString : reader.GetString(4).IndexOf(' ') > 1 ? reader.GetString(4).Split(' ')[1] : "";
 
-                    data.Rank = new Ranks
+                    data.RTAF_person_Rank = new Ranks
                     {
-                        rank_Code = reader.IsDBNull(5) ? defaultNum : reader.GetInt32(5)
+                        Rank_Code = reader.IsDBNull(5) ? defaultNum : reader.GetInt32(5)
                     };
 
-                    data.Unit = new Units
+                    data.RTAF_person_Unit = new Units
                     {
-                        unit_Code = reader.IsDBNull(6) ? defaultNum : reader.GetInt32(6)
+                        Unit_Code = reader.IsDBNull(6) ? defaultNum : reader.GetInt32(6)
                     };
 
-                    data.rtaf_person_Type = reader.IsDBNull(7) ? defaultNum : reader.GetInt32(7);
-                    data.rtaf_person_Enable = reader.IsDBNull(8) ? defaultNum : reader.GetInt32(8);
-                    data.rtaf_person_UpdateDate = reader.IsDBNull(9) ? defaultString : reader.GetDateTime(9).ToString();
-                    data.rtaf_person_CreateDate = reader.IsDBNull(10) ? defaultString : reader.GetDateTime(10).ToString();
-                    data.rtaf_person_Position = reader.IsDBNull(11) ? defaultString : reader.GetString(11);
-                    data.status = reader.IsDBNull(12) ? defaultString : reader.GetString(12);
+                    data.RTAF_person_Type = reader.IsDBNull(7) ? defaultNum : reader.GetInt32(7);
+                    data.RTAF_person_Enable = reader.IsDBNull(8) ? defaultNum : reader.GetInt32(8);
+                    data.RTAF_person_UpdateDate = reader.IsDBNull(9) ? defaultString : reader.GetDateTime(9).ToString();
+                    data.RTAF_person_CreateDate = reader.IsDBNull(10) ? defaultString : reader.GetDateTime(10).ToString();
+                    data.RTAF_person_Position = reader.IsDBNull(11) ? defaultString : reader.GetString(11);
+                    data.RTAF_person_status = reader.IsDBNull(12) ? defaultString : reader.GetString(12);
 
-                    id_error = data.rtaf_person_id.ToString();
+                    id_error = data.RTAF_person_id.ToString();
                 }
                 else
                 {
@@ -177,33 +177,33 @@ namespace RTAFMailManagement.Managers
                 {
                     RTAF_DATA data = new RTAF_DATA
                     {
-                        rtaf_person_id = reader.IsDBNull(0) ? defaultNum : reader.GetInt64(0),
-                        rtaf_person_IdCard = reader.IsDBNull(1) ? defaultString : reader.GetString(1),
-                        rtaf_person_IdGvm = reader.IsDBNull(2) ? defaultString : reader.GetString(2),
-                        rtaf_person_BirthDate = reader.IsDBNull(3) ? defaultString : reader.GetDateTime(3).ToString(),
-                        rtaf_person_FirstName = reader.IsDBNull(4) ? defaultString : reader.GetString(4).IndexOf(' ') > 1 ? reader.GetString(4).Split(' ')[0] : reader.GetString(4),
-                        rtaf_person_LastName = reader.IsDBNull(4) ? defaultString : reader.GetString(4).IndexOf(' ') > 1 ? reader.GetString(4).Split(' ')[1] : "",
+                        RTAF_person_id = reader.IsDBNull(0) ? defaultNum : reader.GetInt64(0),
+                        RTAF_person_IdCard = reader.IsDBNull(1) ? defaultString : reader.GetString(1),
+                        RTAF_person_IdGvm = reader.IsDBNull(2) ? defaultString : reader.GetString(2),
+                        RTAF_person_BirthDate = reader.IsDBNull(3) ? defaultString : reader.GetDateTime(3).ToString(),
+                        RTAF_person_FirstName = reader.IsDBNull(4) ? defaultString : reader.GetString(4).IndexOf(' ') > 1 ? reader.GetString(4).Split(' ')[0] : reader.GetString(4),
+                        RTAF_person_LastName = reader.IsDBNull(4) ? defaultString : reader.GetString(4).IndexOf(' ') > 1 ? reader.GetString(4).Split(' ')[1] : "",
 
-                        Rank = new Ranks
+                        RTAF_person_Rank = new Ranks
                         {
-                            rank_Name = reader.IsDBNull(5) ? defaultString : reader.GetString(5)
+                            Rank_Name = reader.IsDBNull(5) ? defaultString : reader.GetString(5)
                         },
 
-                        Unit = new Units
+                        RTAF_person_Unit = new Units
                         {
-                            unit_Name = reader.IsDBNull(6) ? defaultString : reader.GetString(6)
+                            Unit_Name = reader.IsDBNull(6) ? defaultString : reader.GetString(6)
                         },
 
-                        rtaf_person_Type = reader.IsDBNull(7) ? defaultNum : reader.GetInt32(7),
-                        rtaf_person_Enable = reader.IsDBNull(8) ? defaultNum : reader.GetInt32(8),
-                        rtaf_person_UpdateDate = reader.IsDBNull(9) ? defaultString : reader.GetDateTime(9).ToString(),
-                        rtaf_person_CreateDate = reader.IsDBNull(10) ? defaultString : reader.GetDateTime(10).ToString(),
-                        rtaf_person_Position = reader.IsDBNull(11) ? defaultString : reader.GetString(11),
-                        status = reader.IsDBNull(12) ? defaultString : reader.GetString(12),
+                        RTAF_person_Type = reader.IsDBNull(7) ? defaultNum : reader.GetInt32(7),
+                        RTAF_person_Enable = reader.IsDBNull(8) ? defaultNum : reader.GetInt32(8),
+                        RTAF_person_UpdateDate = reader.IsDBNull(9) ? defaultString : reader.GetDateTime(9).ToString(),
+                        RTAF_person_CreateDate = reader.IsDBNull(10) ? defaultString : reader.GetDateTime(10).ToString(),
+                        RTAF_person_Position = reader.IsDBNull(11) ? defaultString : reader.GetString(11),
+                        RTAF_person_status = reader.IsDBNull(12) ? defaultString : reader.GetString(12),
 
                     };
 
-                    id_error = data.rtaf_person_id.ToString();
+                    id_error = data.RTAF_person_id.ToString();
 
                     list_data.Add(data);
                 }
@@ -236,14 +236,14 @@ namespace RTAFMailManagement.Managers
                 con.Open();
                 SqlCommand cmd = new SqlCommand("[dbo].[new_i_RTAFData]", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@i_IdCard", data.rtaf_person_IdCard);
-                cmd.Parameters.AddWithValue("@i_IdGvm", General_Functions.subStringIdGvm(data.rtaf_person_IdGvm));
-                cmd.Parameters.AddWithValue("@i_BirthDate", DateTimeUtility.CDateTime4Service2MSSQL(data.rtaf_person_BirthDate));
-                cmd.Parameters.AddWithValue("@i_Name", data.rtaf_person_FirstName + " " + data.rtaf_person_LastName);
-                cmd.Parameters.AddWithValue("@i_Rank", data.Rank.rank_Code);
-                cmd.Parameters.AddWithValue("@i_Unit", data.Unit.unit_Code);
-                cmd.Parameters.AddWithValue("@i_Position", data.rtaf_person_Position);
-                cmd.Parameters.AddWithValue("@i_status", data.status);
+                cmd.Parameters.AddWithValue("@i_IdCard", data.RTAF_person_IdCard);
+                cmd.Parameters.AddWithValue("@i_IdGvm", General_Functions.subStringIdGvm(data.RTAF_person_IdGvm));
+                cmd.Parameters.AddWithValue("@i_BirthDate", DateTimeUtility.CDateTime4Service2MSSQL(data.RTAF_person_BirthDate));
+                cmd.Parameters.AddWithValue("@i_Name", data.RTAF_person_FirstName + " " + data.RTAF_person_LastName);
+                cmd.Parameters.AddWithValue("@i_Rank", data.RTAF_person_Rank.Rank_Code);
+                cmd.Parameters.AddWithValue("@i_Unit", data.RTAF_person_Unit.Unit_Code);
+                cmd.Parameters.AddWithValue("@i_Position", data.RTAF_person_Position);
+                cmd.Parameters.AddWithValue("@i_status", data.RTAF_person_status);
 
                 cmd.ExecuteNonQuery();
 
@@ -275,14 +275,14 @@ namespace RTAFMailManagement.Managers
                 con.Open();
                 SqlCommand cmd = new SqlCommand("[dbo].[new_u_RTAFData]", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@i_IdCard", data.rtaf_person_IdCard);
-                cmd.Parameters.AddWithValue("@i_IdGvm", General_Functions.subStringIdGvm(data.rtaf_person_IdGvm));
-                cmd.Parameters.AddWithValue("@i_BirthDate", DateTimeUtility.CDateTime4Service2MSSQL(data.rtaf_person_BirthDate));
-                cmd.Parameters.AddWithValue("@i_Name", data.rtaf_person_FirstName + " " + data.rtaf_person_LastName);
-                cmd.Parameters.AddWithValue("@i_Rank", data.Rank.rank_Code);
-                cmd.Parameters.AddWithValue("@i_Unit", data.Unit.unit_Code);
-                cmd.Parameters.AddWithValue("@i_Position", data.rtaf_person_Position);
-                cmd.Parameters.AddWithValue("@i_status", data.status);
+                cmd.Parameters.AddWithValue("@i_IdCard", data.RTAF_person_IdCard);
+                cmd.Parameters.AddWithValue("@i_IdGvm", General_Functions.subStringIdGvm(data.RTAF_person_IdGvm));
+                cmd.Parameters.AddWithValue("@i_BirthDate", DateTimeUtility.CDateTime4Service2MSSQL(data.RTAF_person_BirthDate));
+                cmd.Parameters.AddWithValue("@i_Name", data.RTAF_person_FirstName + " " + data.RTAF_person_LastName);
+                cmd.Parameters.AddWithValue("@i_Rank", data.RTAF_person_Rank.Rank_Code);
+                cmd.Parameters.AddWithValue("@i_Unit", data.RTAF_person_Unit.Unit_Code);
+                cmd.Parameters.AddWithValue("@i_Position", data.RTAF_person_Position);
+                cmd.Parameters.AddWithValue("@i_status", data.RTAF_person_status);
 
                 cmd.ExecuteNonQuery();
 

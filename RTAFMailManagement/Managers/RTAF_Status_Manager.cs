@@ -8,12 +8,12 @@ using System.Web;
 
 namespace RTAFMailManagement.Managers
 {
-    public class Status_Manager
+    public class RTAF_Status_Manager
     {
         string error = string.Empty;
         int defaultNum = 0;
         string defaultString = "";
-        public List<Status> getAllStatus()
+        public List<RTAF_Status> getAllStatus()
         {
             SqlConnection con = MSSQLConnection.connectionMSSQL();
             try
@@ -23,11 +23,11 @@ namespace RTAFMailManagement.Managers
                 SqlCommand cmd = new SqlCommand(sql, con);
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                List<Status> list_data = new List<Status>();
+                List<RTAF_Status> list_data = new List<RTAF_Status>();
 
                 while (reader.Read())
                 {
-                    Status data = new Status
+                    RTAF_Status data = new RTAF_Status
                     {
                         status_Code = reader.IsDBNull(0) ? defaultNum : reader.GetInt32(0),
                         status_Name = reader.IsDBNull(1) ? defaultString : reader.GetString(1),

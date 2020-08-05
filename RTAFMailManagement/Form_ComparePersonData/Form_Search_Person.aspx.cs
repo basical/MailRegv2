@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace RTAFMailManagement.Form_ComparePersonData
 {
-    public partial class Form_Search_Person : System.Web.UI.Page
+    public partial class Form_Search_Person : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

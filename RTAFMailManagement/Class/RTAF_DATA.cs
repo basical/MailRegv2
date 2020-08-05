@@ -1,27 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace RTAFMailManagement.Class
+﻿namespace RTAFMailManagement.Class
 {
     public class RTAF_DATA
     {
-        public long rtaf_person_id { get; set; }
-        public string rtaf_person_IdCard { get; set; }
-        public string rtaf_person_IdGvm { get; set; }
-        public string rtaf_person_BirthDate { get; set; }
-        public string rtaf_person_FirstName { get; set; }
-        public string rtaf_person_LastName { get; set; }
-        public string rtaf_person_FirstName_Eng { get; set; }
-        public string rtaf_person_LastName_Eng { get; set; }
-        public Ranks Rank { get; set; }
-        public Units Unit { get; set; }
-        public int rtaf_person_Type { get; set; } // 1 น.สัญญาบัตร, 2. น.ประทวน
-        public int rtaf_person_Enable { get; set; } // 6 ใช้งาน , 1 รอ
-        public string rtaf_person_UpdateDate { get; set; }
-        public string rtaf_person_CreateDate { get; set; }
-        public string rtaf_person_Position { get; set; }
-        public string rtaf_person_status { get; set; }
+        public long RTAF_person_id { get; set; }
+        public string RTAF_person_IdCard { get; set; }
+        public string RTAF_person_IdGvm { get; set; }
+        public string RTAF_person_BirthDate { get; set; }
+        public string RTAF_person_FirstName { get; set; }
+        public string RTAF_person_LastName { get; set; }
+        public string RTAF_person_FirstName_Eng { get; set; }
+        public string RTAF_person_LastName_Eng { get; set; }
+        public Ranks RTAF_person_Rank { get; set; }
+        public Units RTAF_person_Unit { get; set; }
+        public int RTAF_person_Type { get; set; } // 1 น.สัญญาบัตร, 2. น.ประทวน
+        public int RTAF_person_Enable { get; set; } // 6 ใช้งาน , 1 รอ
+        public string RTAF_person_UpdateDate { get; set; }
+        public string RTAF_person_CreateDate { get; set; }
+        public string RTAF_person_Position { get; set; }
+        public string RTAF_person_status { get; set; }
     }
 }
