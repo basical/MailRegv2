@@ -38,7 +38,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
             for (int i = 0; i < list_data.Count; i++)
             {
                 Units data = list_data[i];
-                Units_DDL.Items.Add(new ListItem(data.unit_FullName + " ( " + data.unit_Name + " ) ", data.unit_Code.ToString()));
+                Units_DDL.Items.Add(new ListItem(data.Unit_FullName + " ( " + data.Unit_Name + " ) ", data.Unit_Code.ToString()));
             }
         }
 
@@ -50,7 +50,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
             for (int i = 0; i < list_data.Count; i++)
             {
                 Ranks data = list_data[i];
-                Rank_DDL.Items.Add(new ListItem(data.rank_FullName + " ( " + data.rank_Name + " ) ", data.rank_Code.ToString()));
+                Rank_DDL.Items.Add(new ListItem(data.Rank_FullName + " ( " + data.Rank_Name + " ) ", data.Rank_Code.ToString()));
             }
         }
     }

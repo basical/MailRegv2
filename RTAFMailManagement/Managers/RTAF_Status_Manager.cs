@@ -29,10 +29,10 @@ namespace RTAFMailManagement.Managers
                 {
                     RTAF_Status data = new RTAF_Status
                     {
-                        status_Code = reader.IsDBNull(0) ? defaultNum : reader.GetInt32(0),
-                        status_Name = reader.IsDBNull(1) ? defaultString : reader.GetString(1),
-                        status_Sort = reader.IsDBNull(2) ? defaultNum : reader.GetInt32(2),
-                        status_Remark = reader.IsDBNull(3) ? defaultString : reader.GetString(3)
+                        RTAF_status_Code = reader.IsDBNull(0) ? defaultNum : reader.GetInt32(0),
+                        RTAF_status_Name = reader.IsDBNull(1) ? defaultString : reader.GetString(1),
+                        RTAF_status_Sort = reader.IsDBNull(2) ? defaultNum : reader.GetInt32(2),
+                        RTAF_status_Remark = reader.IsDBNull(3) ? defaultString : reader.GetString(3)
                     };
 
                     list_data.Add(data);

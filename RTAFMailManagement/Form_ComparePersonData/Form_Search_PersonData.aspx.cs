@@ -40,7 +40,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
             for (int i = 0; i < list_data.Count; i++)
             {
                 Units data = list_data[i];
-                Units_DDL.Items.Add(new ListItem(data.unit_FullName + " ( " + data.unit_Name + " ) ", data.unit_Code.ToString()));
+                Units_DDL.Items.Add(new ListItem(data.Unit_FullName + " ( " + data.Unit_Name + " ) ", data.Unit_Code.ToString()));
             }
         }
 
@@ -61,14 +61,14 @@ namespace RTAFMailManagement.Form_ComparePersonData
 
             for (int i = 0; i < service_data.Count; i++)
             {
-                RTAF_DATA data = new RTAFData_Managers().GetCheckPersonalData(service_data[i].rtaf_person_IdCard,
-                                                                        General_Functions.subStringIdGvm(service_data[i].rtaf_person_IdGvm),
-                                                                        DateTimeUtility.CDateTime4Service2MSSQL(service_data[i].rtaf_person_BirthDate),
-                                                                        service_data[i].rtaf_person_FirstName + " " + service_data[i].rtaf_person_LastName,
-                                                                        (int)service_data[i].Unit.unit_Code,
-                                                                        service_data[i].Rank.rank_Code,
-                                                                        service_data[i].rtaf_person_Position,
-                                                                        service_data[i].rtaf_person_IdCard);
+                RTAF_DATA data = new RTAFData_Managers().GetCheckPersonalData(service_data[i].RTAF_person_IdCard,
+                                                                        General_Functions.subStringIdGvm(service_data[i].RTAF_person_IdGvm),
+                                                                        DateTimeUtility.CDateTime4Service2MSSQL(service_data[i].RTAF_person_BirthDate),
+                                                                        service_data[i].RTAF_person_FirstName + " " + service_data[i].RTAF_person_LastName,
+                                                                        (int)service_data[i].RTAF_person_Unit.Unit_Code,
+                                                                        service_data[i].RTAF_person_Rank.Rank_Code,
+                                                                        service_data[i].RTAF_person_Position,
+                                                                        service_data[i].RTAF_person_IdCard);
 
                 if (data != null)
                 {

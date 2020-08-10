@@ -30,19 +30,19 @@ namespace RTAFMailManagement.Managers
                 {
                     Ranks data = new Ranks
                     {
-                        rank_id = reader.IsDBNull(0) ? defaultNum : reader.GetInt64(0),
-                        rank_Code = reader.IsDBNull(1) ? defaultNum : reader.GetInt32(1),
-                        rank_Name = reader.IsDBNull(2) ? defaultString : reader.GetString(2),
-                        rank_FullName = reader.IsDBNull(3) ? defaultString : reader.GetString(3),
-                        rank_NameEng = reader.IsDBNull(4) ? defaultString : reader.GetString(4),
-                        rank_FullNameEng = reader.IsDBNull(5) ? defaultString : reader.GetString(5),
-                        rank_GroupName = reader.IsDBNull(6) ? defaultString : reader.GetString(6),
-                        rank_Remark = reader.IsDBNull(7) ? defaultString : reader.GetString(7),
-                        rank_Sort = reader.IsDBNull(8) ? defaultNum : reader.GetInt32(8),
-                        rank_Mailbox = reader.IsDBNull(9) ? defaultString : reader.GetString(9),
-                        rank_sortrank = reader.IsDBNull(10) ? defaultNum : reader.GetInt32(10),
-                        rank_rankgroup = reader.IsDBNull(11) ? defaultString : reader.GetString(11),
-                        rank_ranktype = reader.IsDBNull(12) ? defaultNum : reader.GetInt32(12)
+                        Rank_id = reader.IsDBNull(0) ? defaultNum : reader.GetInt64(0),
+                        Rank_Code = reader.IsDBNull(1) ? defaultNum : reader.GetInt32(1),
+                        Rank_Name = reader.IsDBNull(2) ? defaultString : reader.GetString(2),
+                        Rank_FullName = reader.IsDBNull(3) ? defaultString : reader.GetString(3),
+                        Rank_NameEng = reader.IsDBNull(4) ? defaultString : reader.GetString(4),
+                        Rank_FullNameEng = reader.IsDBNull(5) ? defaultString : reader.GetString(5),
+                        Rank_GroupName = reader.IsDBNull(6) ? defaultString : reader.GetString(6),
+                        Rank_Remark = reader.IsDBNull(7) ? defaultString : reader.GetString(7),
+                        Rank_Sort = reader.IsDBNull(8) ? defaultNum : reader.GetInt32(8),
+                        Rank_Mailbox = reader.IsDBNull(9) ? defaultString : reader.GetString(9),
+                        Rank_sortrank = reader.IsDBNull(10) ? defaultNum : reader.GetInt32(10),
+                        Rank_rankgroup = reader.IsDBNull(11) ? defaultString : reader.GetString(11),
+                        Rank_ranktype = reader.IsDBNull(12) ? defaultNum : reader.GetInt32(12)
                     };
 
                     list_data.Add(data);

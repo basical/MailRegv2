@@ -62,7 +62,11 @@ namespace RTAFMailManagement.Managers
                     data.RTAF_person_UpdateDate = reader.IsDBNull(9) ? defaultString : reader.GetDateTime(9).ToString();
                     data.RTAF_person_CreateDate = reader.IsDBNull(10) ? defaultString : reader.GetDateTime(10).ToString();
                     data.RTAF_person_Position = reader.IsDBNull(11) ? defaultString : reader.GetString(11);
-                    data.RTAF_person_status = reader.IsDBNull(12) ? defaultString : reader.GetString(12);
+
+                    data.RTAF_person_Status = new RTAF_Status()
+                    {
+                        RTAF_status_Name = reader.IsDBNull(12) ? defaultString : reader.GetString(12)
+                    };
 
                     id_error = data.RTAF_person_id.ToString();
                 }
@@ -130,7 +134,11 @@ namespace RTAFMailManagement.Managers
                     data.RTAF_person_UpdateDate = reader.IsDBNull(9) ? defaultString : reader.GetDateTime(9).ToString();
                     data.RTAF_person_CreateDate = reader.IsDBNull(10) ? defaultString : reader.GetDateTime(10).ToString();
                     data.RTAF_person_Position = reader.IsDBNull(11) ? defaultString : reader.GetString(11);
-                    data.RTAF_person_status = reader.IsDBNull(12) ? defaultString : reader.GetString(12);
+
+                    data.RTAF_person_Status = new RTAF_Status()
+                    {
+                        RTAF_status_Name = reader.IsDBNull(12) ? defaultString : reader.GetString(12)
+                    };
 
                     id_error = data.RTAF_person_id.ToString();
                 }
@@ -199,8 +207,11 @@ namespace RTAFMailManagement.Managers
                         RTAF_person_UpdateDate = reader.IsDBNull(9) ? defaultString : reader.GetDateTime(9).ToString(),
                         RTAF_person_CreateDate = reader.IsDBNull(10) ? defaultString : reader.GetDateTime(10).ToString(),
                         RTAF_person_Position = reader.IsDBNull(11) ? defaultString : reader.GetString(11),
-                        RTAF_person_status = reader.IsDBNull(12) ? defaultString : reader.GetString(12),
 
+                        RTAF_person_Status = new RTAF_Status()
+                        {
+                            RTAF_status_Name = reader.IsDBNull(12) ? defaultString : reader.GetString(12)
+                        }
                     };
 
                     id_error = data.RTAF_person_id.ToString();
@@ -243,7 +254,7 @@ namespace RTAFMailManagement.Managers
                 cmd.Parameters.AddWithValue("@i_Rank", data.RTAF_person_Rank.Rank_Code);
                 cmd.Parameters.AddWithValue("@i_Unit", data.RTAF_person_Unit.Unit_Code);
                 cmd.Parameters.AddWithValue("@i_Position", data.RTAF_person_Position);
-                cmd.Parameters.AddWithValue("@i_status", data.RTAF_person_status);
+                cmd.Parameters.AddWithValue("@i_status", data.RTAF_person_Status);
 
                 cmd.ExecuteNonQuery();
 
@@ -257,7 +268,7 @@ namespace RTAFMailManagement.Managers
             }
             catch (Exception ex)
             {
-                error = "Exception ==> Managers --> RTAFData_Managers --> addPersonalData() " ;
+                error = "Exception ==> Managers --> RTAFData_Managers --> addPersonalData() ";
                 Log_Error._writeErrorFile(error, ex);
                 return false;
             }
@@ -282,7 +293,7 @@ namespace RTAFMailManagement.Managers
                 cmd.Parameters.AddWithValue("@i_Rank", data.RTAF_person_Rank.Rank_Code);
                 cmd.Parameters.AddWithValue("@i_Unit", data.RTAF_person_Unit.Unit_Code);
                 cmd.Parameters.AddWithValue("@i_Position", data.RTAF_person_Position);
-                cmd.Parameters.AddWithValue("@i_status", data.RTAF_person_status);
+                cmd.Parameters.AddWithValue("@i_status", data.RTAF_person_Status);
 
                 cmd.ExecuteNonQuery();
 

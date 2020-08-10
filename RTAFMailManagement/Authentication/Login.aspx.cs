@@ -20,13 +20,13 @@ namespace RTAFMailManagement.Authentication
 
         protected void Login_btn_Click(object sender, EventArgs e)
         {
-            string username = Username_TBx.Text;
+            /*string username = Username_TBx.Text;
             string password = Password_TBx.Text;
 
-            if(ConnectRTAFService.AuthenUserWithADServer(username, password))
-            {
+            if(ConnectRTAFService.AuthenUserWithADDS(username, password))
+            {*/
                 Response.Redirect("/Form_Main/Form_MainPage");
-            }
+            //}
         }
     }
 }
