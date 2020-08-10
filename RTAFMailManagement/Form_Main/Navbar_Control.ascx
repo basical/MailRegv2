@@ -163,7 +163,7 @@
                     {
                         Admin_Users au = (Admin_Users)Session["admin_user"];
 
-                        if (au.Admintype.admin_type_id == 3)
+                        if (au.Admin_User_Type.Admin_Users_Type_id == 3)
                         {
                 %>
                 <li class="nav-header">CONFIGURATION</li>
@@ -246,7 +246,7 @@
                             </a>
                         </li>
                         <%
-                            if (au.Admintype.admin_type_id == 3)
+                            if (au.Admin_User_Type.Admin_Users_Type_id == 3)
                             {
                         %>
                         <li class="nav-item">
@@ -273,7 +273,7 @@
                     </ul>
                 </li>
                 <%
-                    if (au.Admintype.admin_type_id == 3)
+                    if (au.Admin_User_Type.Admin_Users_Type_id == 3)
                     {
                 %>
                 <li class="nav-header">ข้อมูลกำลังพล </li>

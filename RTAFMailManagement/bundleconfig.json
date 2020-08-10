@@ -4,5 +4,23 @@
     "inputFiles": [
       "Content/dist/css/adminlte.css"
     ]
+  },
+  {
+    "outputFileName": "Content/dist/js/adminlte.min.js",
+    "inputFiles": [
+      "Content/dist/js/adminlte.js"
+    ]
+  },
+  {
+    "outputFileName": "Content/dist/js/jquery.datetimepicker.full.min.js",
+    "inputFiles": [
+      "Content/dist/js/jquery.datetimepicker.full.js"
+    ]
+  },
+  {
+    "outputFileName": "Content/dist/css/jquery.datetimepicker.min.css",
+    "inputFiles": [
+      "Content/dist/css/jquery.datetimepicker.css"
+    ]
   }
 ]

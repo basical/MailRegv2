@@ -52,7 +52,8 @@ namespace RTAFMailManagement
                     "~/Content/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js",
                     "~/Content/plugins/datatables-responsive/js/dataTables.responsive.min.js",
                     "~/Content/plugins/datatables-responsive/js/responsive.bootstrap4.min.js",
-                    "~/Content/dist/js/adminlte.js",
+                    "~/Content/dist/js/adminlte.min.js",
+                    "~/Content/dist/js/jquery.datetimepicker.full.min.js",
                     "~/Content/dist/js/pages/dashboard.js",
                     "~/Content/dist/js/demo.js"));
         }

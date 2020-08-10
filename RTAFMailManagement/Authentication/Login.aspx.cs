@@ -25,7 +25,18 @@ namespace RTAFMailManagement.Authentication
 
             if(ConnectRTAFService.AuthenUserWithADDS(username, password))
             {*/
-                Response.Redirect("/Form_Main/Form_MainPage");
+
+            Admin_Users au = new Admin_Users()
+            {
+                Admin_User_Type = new Admin_Users_Type()
+                {
+                    Admin_Users_Type_id = 3,
+                    Admin_Users_Type_Name = "Super Admin"
+                }
+            };
+
+            Session["admin_user"] = au;
+            Response.Redirect("/Form_Main/Form_MainPage");
             //}
         }
     }

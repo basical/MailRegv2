@@ -135,6 +135,10 @@
     <Content Include="Content\dist\css\alt\adminlte.pages.min.css" />
     <Content Include="Content\dist\css\alt\adminlte.plugins.css" />
     <Content Include="Content\dist\css\alt\adminlte.plugins.min.css" />
+    <Content Include="Content\dist\css\jquery.datetimepicker.css" />
+    <Content Include="Content\dist\css\jquery.datetimepicker.min.css">
+      <DependentUpon>jquery.datetimepicker.css</DependentUpon>
+    </Content>
     <Content Include="Content\dist\img\AdminLTELogo.png" />
     <Content Include="Content\dist\img\avatar.png" />
     <Content Include="Content\dist\img\avatar04.png" />
@@ -170,8 +174,14 @@
     <Content Include="Content\dist\img\user7-128x128.jpg" />
     <Content Include="Content\dist\img\user8-128x128.jpg" />
     <Content Include="Content\dist\js\adminlte.js" />
-    <Content Include="Content\dist\js\adminlte.min.js" />
+    <Content Include="Content\dist\js\adminlte.min.js">
+      <DependentUpon>adminlte.js</DependentUpon>
+    </Content>
     <Content Include="Content\dist\js\demo.js" />
+    <Content Include="Content\dist\js\jquery.datetimepicker.full.js" />
+    <Content Include="Content\dist\js\jquery.datetimepicker.full.min.js">
+      <DependentUpon>jquery.datetimepicker.full.js</DependentUpon>
+    </Content>
     <Content Include="Content\dist\js\pages\dashboard.js" />
     <Content Include="Content\dist\js\pages\dashboard2.js" />
     <Content Include="Content\dist\js\pages\dashboard3.js" />
