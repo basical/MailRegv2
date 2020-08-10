@@ -7,6 +7,8 @@ using System.DirectoryServices;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.DirectoryServices.AccountManagement;
+using System.ServiceModel.Configuration;
 
 namespace RTAFMailManagement.Global_Class
 {
@@ -14,8 +16,8 @@ namespace RTAFMailManagement.Global_Class
     {
         public static List<RTAF_DATA> getRTAFPersonData(string unit_code)
         {
-            string user = ConfigurationManager.AppSettings["UserServicePersonRTAF"];
-            string pass = ConfigurationManager.AppSettings["PassServicePersonRTAF"];
+            string user = ConfigurationManager.AppSettings["UServicePerson"];
+            string pass = ConfigurationManager.AppSettings["PServicePerson"];
             string unitID = ConvertUnitId2String(unit_code); //ค่าid แต่ละกรม
 
             RTAFService.RTAFMail data = new RTAFService.RTAFMail
@@ -32,28 +34,89 @@ namespace RTAFMailManagement.Global_Class
             {
                 RTAF_DATA person = new RTAF_DATA
                 {
-                    rtaf_person_IdGvm = resault[i].ID,
-                    rtaf_person_IdCard = resault[i].PeopleID,
+                    RTAF_person_IdGvm = resault[i].ID,
+                    RTAF_person_IdCard = resault[i].PeopleID,
 
-                    Rank = new Ranks
+                    RTAF_person_Rank = new Ranks
                     {
-                        rank_Name = resault[i].RANK,
-                        rank_Code = int.Parse(resault[i].RANKCODE)
+                        Rank_Name = resault[i].RANK,
+                        Rank_Code = int.Parse(resault[i].RANKCODE)
                     },
 
-                    rtaf_person_FirstName = resault[i].FIRSTNAME,
-                    rtaf_person_LastName = resault[i].LASTNAME,
+                    RTAF_person_FirstName = resault[i].FIRSTNAME,
+                    RTAF_person_LastName = resault[i].LASTNAME,
 
-                    Unit = new Units
+                    RTAF_person_Unit = new Units
                     {
-                        unit_Code = int.Parse(resault[i].UNITCODE),
-                        unit_Name = resault[i].UNITNAME
+                        Unit_Code = int.Parse(resault[i].UNITCODE),
+                        Unit_Name = resault[i].UNITNAME
                     },
 
-                    rtaf_person_BirthDate = resault[i].BIRTHDAY.ToString(),
+                    RTAF_person_BirthDate = resault[i].BIRTHDAY.ToString(),
 
-                    rtaf_person_Position = resault[i].POSITION,
-                    rtaf_person_status = resault[i].STATUS
+                    RTAF_person_Position = resault[i].POSITION,
+
+                    RTAF_person_Status = new RTAF_Status
+                    {
+                        RTAF_status_Name = resault[i].STATUS,
+                    }
+                };
+
+                list_data.Add(person);
+            }
+
+            return list_data;
+        }
+
+        public static List<RTAF_DATA> getNewRTAFPerson(string unit_code)
+        {
+            string user = ConfigurationManager.AppSettings["nUServicePerson"];
+            string pass = ConfigurationManager.AppSettings["nPServicePerson"];
+            string unitID = ConvertUnitId2String(unit_code); //ค่าid แต่ละกรม
+
+            newRTAFMail.RTAFMail data = new newRTAFMail.RTAFMail
+            {
+                UseDefaultCredentials = true
+            };
+
+            // ค่าที่ web service ส่งมา ให้ 
+            newRTAFMail.RTAFMailData[] resault = data.GetData(user, pass, unitID);
+
+            List<RTAF_DATA> list_data = new List<RTAF_DATA>();
+
+            for (int i = 0; i < resault.Length; i++)
+            {
+                RTAF_DATA person = new RTAF_DATA
+                {
+                    RTAF_person_IdGvm = resault[i].ID,
+                    RTAF_person_IdCard = resault[i].PeopleID,
+
+                    RTAF_person_Rank = new Ranks
+                    {
+                        Rank_Name = resault[i].RANK,
+                        Rank_Code = int.Parse(resault[i].RANKCODE)
+                    },
+
+                    RTAF_person_FirstName = resault[i].FIRSTNAME,
+                    RTAF_person_LastName = resault[i].LASTNAME,
+                    RTAF_person_FirstName_Eng = resault[i].EFIRSTNAME,
+                    RTAF_person_LastName_Eng = resault[i].ELASTNAME,
+
+                    RTAF_person_Unit = new Units
+                    {
+                        Unit_Code = int.Parse(resault[i].UNITCODE),
+                        Unit_Name = resault[i].UNITNAME
+                    },
+
+                    RTAF_person_BirthDate = resault[i].BIRTHDAY.ToString(),
+
+                    RTAF_person_Position = resault[i].POSITION,
+                    
+                    RTAF_person_Status = new RTAF_Status
+                    {
+                        RTAF_status_Code = int.Parse(resault[i].CODE),
+                        RTAF_status_Name = resault[i].STATUS,
+                    }
                 };
 
                 list_data.Add(person);
@@ -76,14 +139,13 @@ namespace RTAFMailManagement.Global_Class
             return unit_code;
         }
 
-        public static bool AuthenUserWithADServer(string userName, string password)
+        public static bool AuthenUserWithLDAPs(string userName, string password)
         {
-            string error = string.Empty;
+            string error;
             bool found_user = false;
 
-            string ADPAth = ConfigurationManager.AppSettings["ADPAth"];
+            string ADPAth = ConfigurationManager.AppSettings["AD_Path"];
             
-
             DirectoryEntry de = null;
             DirectorySearcher ds = null;
 
@@ -106,14 +168,14 @@ namespace RTAFMailManagement.Global_Class
             }
             catch(WebException ex)
             {
-                error = "WebException ==> Global_Class --> ConnectRTAFService --> AuthenUserWithADServer()";
+                error = "WebException ==> Global_Class --> ConnectRTAFService --> AuthenUserWithLDAPs()";
                 Log_Error._writeErrorFile(error, ex);
                 return found_user;
                 
             }
             catch (Exception ex)
             {
-                error = "Exception ==> Global_Class --> ConnectRTAFService --> AuthenUserWithADServer()";
+                error = "Exception ==> Global_Class --> ConnectRTAFService --> AuthenUserWithLDAPs()";
                 Log_Error._writeErrorFile(error, ex);
                 return found_user;
 
@@ -122,6 +184,203 @@ namespace RTAFMailManagement.Global_Class
             {
                 ds.Dispose();
                 de.Close();
+            }
+        }
+
+        public static bool AuthenUserWithADDS(string userName, string passWord)
+        {
+            string domainController = ConfigurationManager.AppSettings["AD_SIP"];
+            string container = ConfigurationManager.AppSettings["AD_Container_Intranet"];
+
+            PrincipalContext pc = new PrincipalContext(ContextType.Domain, domainController, container);
+
+            string error;
+
+            try
+            {
+                if (pc.ValidateCredentials(userName, passWord))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (PrincipalException ex)
+            {
+                error = "PrincipalException ==> Global_Class --> ConnectRTAFService --> AuthenUserWithADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                error = "Exception ==> Global_Class --> ConnectRTAFService --> AuthenUserWithADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return false;
+            }
+            finally
+            {
+                pc.Dispose();
+            }
+        }
+
+        public static bool ResetPasswordWithADDS(string userName, string newPassword)
+        {
+            string domainController = ConfigurationManager.AppSettings["AD_SIP"];
+            string container = ConfigurationManager.AppSettings["AD_Container_Intranet"];
+            string adminName = ConfigurationManager.AppSettings["UADService"];
+            string adminPassword = ConfigurationManager.AppSettings["PADService"];
+
+            PrincipalContext pc = new PrincipalContext(ContextType.Domain, domainController, container, adminName, adminPassword);
+
+            string error;
+
+            try
+            {
+                UserPrincipal user = UserPrincipal.FindByIdentity(pc, userName);
+
+                if (user != null)
+                {
+                    user.SetPassword(newPassword);
+                    user.Enabled = true;
+                    user.Save();
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (PrincipalException ex)
+            {
+                error = "PrincipalException ==> Global_Class --> ConnectRTAFService --> ResetPasswordWithADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                error = "Exception ==> Global_Class --> ConnectRTAFService --> ResetPasswordWithADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return false;
+            }
+            finally
+            {
+                pc.Dispose();
+            }
+        }
+
+        public static bool ChangePasswordWithADDS(string userName, string oldPassword, string newPassword)
+        {
+            string domainController = ConfigurationManager.AppSettings["AD_SIP"];
+            string container = ConfigurationManager.AppSettings["AD_Container_Intranet"];
+            string adminName = ConfigurationManager.AppSettings["UADService"];
+            string adminPassword = ConfigurationManager.AppSettings["PADService"];
+
+            PrincipalContext pc = new PrincipalContext(ContextType.Domain, domainController, container, adminName, adminPassword);
+
+            string error;
+
+            try
+            {
+                UserPrincipal user = UserPrincipal.FindByIdentity(pc, userName);
+
+                if (user != null)
+                {
+                    user.ChangePassword(oldPassword, newPassword);
+                    user.Enabled = true;
+                    user.Save();
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (PrincipalException ex)
+            {
+                error = "PrincipalException ==> Global_Class --> ConnectRTAFService --> ChangePasswordWithADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                error = "Exception ==> Global_Class --> ConnectRTAFService --> ChangePasswordWithADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return false;
+            }
+            finally
+            {
+                pc.Dispose();
+            }
+        }
+
+        public static bool ChangeOUNameWithADDS(string userName, string OUName)
+        {
+            string domainController = ConfigurationManager.AppSettings["AD_SIP"];
+            string container = ConfigurationManager.AppSettings["AD_Container_Intranet"];
+            string adminName = ConfigurationManager.AppSettings["UADService"];
+            string adminPassword = ConfigurationManager.AppSettings["PADService"];
+
+            container = string.IsNullOrEmpty(OUName) ? "OU=RTAF," + container : container;
+
+            PrincipalContext pc = new PrincipalContext(ContextType.Domain, domainController, container, adminName, adminPassword);
+
+            string error;
+
+            try
+            {
+                UserPrincipal user = UserPrincipal.FindByIdentity(pc, userName);
+
+                if (user != null)
+                {
+                    user.Enabled = true;
+                    user.Save();
+
+                    GroupPrincipal gp = GroupPrincipal.FindByIdentity(pc, OUName);
+
+                    if (gp != null)
+                    {
+                        gp.Members.Add(user);
+                        gp.Save();
+                    }
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (PrincipalException ex)
+            {
+                error = "PrincipalException ==> Global_Class --> ConnectRTAFService --> ChangeOUNameWithADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                error = "Exception ==> Global_Class --> ConnectRTAFService --> ChangeOUNameWithADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return false;
+            }
+            finally
+            {
+                pc.Dispose();
             }
         }
     }

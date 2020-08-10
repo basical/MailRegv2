@@ -17,6 +17,6 @@
         public string RTAF_person_UpdateDate { get; set; }
         public string RTAF_person_CreateDate { get; set; }
         public string RTAF_person_Position { get; set; }
-        public string RTAF_person_status { get; set; }
+        public RTAF_Status RTAF_person_Status { get; set; }
     }
 }

@@ -35,6 +35,6 @@
         public int User_WorkingRank { get; set; }
         public int User_PosAction { get; set; }
         public string User_SecEmail { get; set; }
-        public string User_status { get; set; }
+        public RTAF_Status User_status { get; set; }
     }
 }
