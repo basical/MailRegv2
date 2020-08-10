@@ -13,5 +13,10 @@ namespace RTAFMailManagement.Form_Mail_Register
         {
 
         }
+
+        protected void Search_Btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

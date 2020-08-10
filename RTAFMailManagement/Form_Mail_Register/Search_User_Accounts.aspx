@@ -132,41 +132,41 @@
                                             {
                                                 Users data = list_data[i];
 
-                                                string ogn_code = CryptographyCode.GenerateSHA512String(data.user_IdGvm);
+                                                string ogn_code = CryptographyCode.GenerateSHA512String(data.User_IdGvm);
                                         %>
                                         <tr style="text-align: center; vertical-align: text-top;">
                                             <td style="text-align: center;"><%= i+1 %></td>
-                                            <td><a class="text-primary" href="Update_Users_Profile?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.user_IdGvm, data.user_IdCard) %>&mode=e" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล"> <%= data.Rank.rank_Name + data.user_FirstName + " " + data.user_LastName  %> </a> </td>
-                                            <td><%= data.user_UserName %></td>
-                                            <td><%= data.Unit.unit_Name %></td>
-                                            <td><%= data.Unit.unit_OUName %></td>
-
+                                            <td><a class="text-primary" href="Update_Users_Profile?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard) %>&mode=e" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล"> <%= data.User_Rank.Rank_Name + data.User_FirstName + " " + data.User_LastName  %> </a> </td>
+                                            <td><%= data.User_UserName %></td>
+                                            <td><%= data.User_Unit.Unit_Name %></td>
+                                            <td><%= data.User_Unit.Unit_OUName %></td>
+                                            
                                             <td style="text-align: center;">
-                                                <span class="<%= data.AD_status.AD_Status_Code == 2 ? "badge bg-success" : data.AD_status.AD_Status_Code == 3 ? "badge bg-danger" : "badge bg-warning" %>"><%= data.AD_status.AD_Status_Name %></span>
+                                                <span class="<%= data.User_ADStatus.AD_Status_Code == 2 ? "badge bg-success" : data.User_ADStatus.AD_Status_Code == 3 ? "badge bg-danger" : "badge bg-warning" %>"><%= data.User_ADStatus.AD_Status_Name %></span>
                                             </td>
                                             <td style="text-align: center;">
-                                                <span class="<%= data.real_ad.AD_Enabled? "badge bg-success" : "badge bg-danger" %>"><%= data.real_ad.AD_Enabled? "Active" : "Disable" %></span>
+                                                <span class="<%= data.User_Real_AD.AD_Enabled? "badge bg-success" : "badge bg-danger" %>"><%= data.User_Real_AD.AD_Enabled? "Active" : "Disable" %></span>
                                             </td>
-                                            <td><%= DateTimeUtility.convertDateTimeToPageRealServer(data.user_UpdateDate) %></td>
+                                            <td><%= DateTimeUtility.convertDateTimeToPageRealServer(data.User_UpdateDate) %></td>
                                             <td <%= data.passdiff >= 150 && data.passdiff < 180 ? "style='color: #ebeb00;'" : data.passdiff >= 180 ? "style='color: #eb0000;'" : "style='color: #107500;'"  %>><%= data.passdiff %></td>
-                                            <td><%= DateTimeUtility.convertDateTimeToPageRealServer(data.real_ad.AD_lastLogin) %></td>
-                                            <td><%= data.user_status %></td>
+                                            <td><%= DateTimeUtility.convertDateTimeToPageRealServer(data.User_Real_AD.AD_lastLogin) %></td>
+                                            <td><%= data.User_status %></td>
                                             <td style="text-align: center;">
                                                 <% 
-                                                    if (data.real_ad.AD_Enabled)
+                                                    if (data.User_Real_AD.AD_Enabled)
                                                     {
                                                 %>
-                                                <a class="btn bg-gradient-danger btn-sm" href="ChangeADStatus?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.user_IdGvm, data.user_IdCard) %>&mode=d" data-toggle="tooltip" data-placement="top" title="ปิดการใช้งาน"><i class="fas fa-user-slash fa-fw"></i></a>
+                                                <a class="btn bg-gradient-danger btn-sm" href="ChangeADStatus?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard) %>&mode=d" data-toggle="tooltip" data-placement="top" title="ปิดการใช้งาน"><i class="fas fa-user-slash fa-fw"></i></a>
                                                 <%  }
                                                     else
                                                     { %>
-                                                <a class="btn bg-gradient-success btn-sm" href="ChangeADStatus?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.user_IdGvm, data.user_IdCard) %>&mode=e" data-toggle="tooltip" data-placement="top" title="เปิดการใช้งาน"><i class="fas fa-user fa-fw"></i></a>
+                                                <a class="btn bg-gradient-success btn-sm" href="ChangeADStatus?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard) %>&mode=e" data-toggle="tooltip" data-placement="top" title="เปิดการใช้งาน"><i class="fas fa-user fa-fw"></i></a>
                                                 <%
                                                     }
                                                 %>
                                             </td>
                                             <td style="text-align: center;">
-                                                <a class="btn bg-gradient-warning btn-sm" href="Update_Users_Profile?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.user_IdGvm, data.user_IdCard) %>&mode=e" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล"><i class="fas fa-edit fa-fw"></i></a>
+                                                <a class="btn bg-gradient-warning btn-sm" href="Update_Users_Profile?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard) %>&mode=e" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล"><i class="fas fa-edit fa-fw"></i></a>
                                             </td>
                                         </tr>
                                         <%

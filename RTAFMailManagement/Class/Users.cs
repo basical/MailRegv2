@@ -21,6 +21,7 @@
         public string User_UserName { get; set; }
         public string User_Name { get; set; }
         public AD_Status User_ADStatus { get; set; }
+        public AD_Real User_Real_AD { get; set; }
         public int User_MailStatus { get; set; }
         public Users_Type User_Type { get; set; } // 1.บุคคล, 2.หน่วยงาน, 3.กลุ่มการทำงาน
         public string User_Tel { get; set; }
@@ -36,5 +37,7 @@
         public int User_PosAction { get; set; }
         public string User_SecEmail { get; set; }
         public RTAF_Status User_status { get; set; }
+
+        public int passdiff { get; set; }
     }
 }

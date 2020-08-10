@@ -167,58 +167,58 @@
                         {
                 %>
                 <li class="nav-header">CONFIGURATION</li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                <li class="nav-item has-treeview <%= act > 0 && act < 10 ? "menu-open" : "" %>">
+                    <a href="#" class="nav-link <%= act > 0 && act < 10 ? "active" : "" %>">
                         <i class="nav-icon fas fa-cogs"></i>
                         <p>CONFIGURATION<i class="fas fa-angle-left right"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>General</p>
+                            <a href="/Form_Configuration/AD_Status_Management" class="nav-link <%= act == 1 ? "active" : "" %>">
+                                <i class="fas fa-server nav-icon"></i>
+                                <p>AD Status</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Icons</p>
+                            <a href="/Form_Configuration/Admins_Management" class="nav-link <%= act == 2 ? "active" : "" %>">
+                                <i class="fas fa-user-tie nav-icon"></i>
+                                <p>Admins</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Buttons</p>
+                            <a href="/Form_Configuration/Admin_Types_Management" class="nav-link <%= act == 3 ? "active" : "" %>">
+                                <i class="fas fa-user-tie nav-icon"></i>
+                                <p>Admin Type</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Sliders</p>
+                            <a href="/Form_Configuration/Questions_Management" class="nav-link <%= act == 4 ? "active" : "" %>">
+                                <i class="far fa-question-circle nav-icon"></i>
+                                <p>Questions</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Modals & Alerts</p>
+                            <a href="/Form_Configuration/Ranks_Management" class="nav-link <%= act == 5 ? "active" : "" %>">
+                                <i class="fas fa-layer-group nav-icon"></i>
+                                <p>Ranks</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Navbar & Tabs</p>
+                            <a href="/Form_Configuration/Units_Management" class="nav-link <%= act == 6 ? "active" : "" %>">
+                                <i class="fas fa-layer-group nav-icon"></i>
+                                <p>Units</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Timeline</p>
+                            <a href="/Form_Configuration/Users_Type_Management" class="nav-link <%= act == 7 ? "active" : "" %>">
+                                <i class="fas fa-user-circle nav-icon"></i>
+                                <p>User Type</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Ribbons</p>
+                            <a href="/Form_Configuration/RTAF_Status_Management" class="nav-link <%= act == 8 ? "active" : "" %>">
+                                <i class="far fa-address-card nav-icon"></i>
+                                <p>RTAF Status</p>
                             </a>
                         </li>
                     </ul>

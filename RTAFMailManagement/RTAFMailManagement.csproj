@@ -2122,6 +2122,7 @@
     <Compile Include="Class\Activity_Log.cs" />
     <Compile Include="Class\Admin_Users.cs" />
     <Compile Include="Class\Admin_Users_Type.cs" />
+    <Compile Include="Class\AD_Real.cs" />
     <Compile Include="Class\AD_Status.cs" />
     <Compile Include="Class\Compare_Data.cs" />
     <Compile Include="Class\Questions.cs" />
