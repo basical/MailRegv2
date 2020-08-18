@@ -25,9 +25,16 @@ namespace RTAFMailManagement.Form_ComparePersonData
             
         }
 
-        protected void Save_Btn_Click(object sender, EventArgs e)
+        // ดึงข้อมูลชั้นยศ ทั้งหมด
+        private void LoadRanks()
         {
-
+            List<Ranks> list_data = new Ranks_Manager().getAllRanks();
+            Rank_DDL.Items.Add(new ListItem("--------กรุณาเลือก--------", "0"));
+            for (int i = 0; i < list_data.Count; i++)
+            {
+                Ranks data = list_data[i];
+                Rank_DDL.Items.Add(new ListItem(data.Rank_FullName + " ( " + data.Rank_Name + " ) ", data.Rank_Code.ToString()));
+            }
         }
 
         // ดึงข้อมูลสังกัด ทอ. ทั้งหมด
@@ -42,16 +49,22 @@ namespace RTAFMailManagement.Form_ComparePersonData
             }
         }
 
-        // ดึงข้อมูลสังกัด ทอ. ทั้งหมด
-        private void LoadRanks()
+
+        // ดึงข้อมูลสถานะกำลังพล ทั้งหมด
+        private void LoadRTAFStatus()
         {
-            List<Ranks> list_data = new Ranks_Manager().getAllRanks();
-            Rank_DDL.Items.Add(new ListItem("--------กรุณาเลือก--------", "0"));
+            List<RTAF_Status> list_data = new RTAF_Status_Manager().getAllStatus();
+            Person_Status_DDL.Items.Add(new ListItem("--------กรุณาเลือก--------", "0"));
             for (int i = 0; i < list_data.Count; i++)
             {
-                Ranks data = list_data[i];
-                Rank_DDL.Items.Add(new ListItem(data.Rank_FullName + " ( " + data.Rank_Name + " ) ", data.Rank_Code.ToString()));
+                RTAF_Status data = list_data[i];
+                Person_Status_DDL.Items.Add(new ListItem(data.RTAF_status_Name + " ( " + data.RTAF_status_Remark + " ) ", data.RTAF_status_Code.ToString()));
             }
+        }
+
+        protected void Save_Btn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

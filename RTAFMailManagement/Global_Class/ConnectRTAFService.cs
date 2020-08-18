@@ -190,7 +190,7 @@ namespace RTAFMailManagement.Global_Class
         public static bool AuthenUserWithADDS(string userName, string passWord)
         {
             string domainController = ConfigurationManager.AppSettings["AD_SIP"];
-            string container = ConfigurationManager.AppSettings["AD_Container_Intranet"];
+            string container = ConfigurationManager.AppSettings["AD_Container"];
 
             PrincipalContext pc = new PrincipalContext(ContextType.Domain, domainController, container);
 
@@ -228,10 +228,137 @@ namespace RTAFMailManagement.Global_Class
             }
         }
 
+        public static AD_Real GetInfomationsAccountWithADDS(string userName, string OUName)
+        {
+            string domainController = ConfigurationManager.AppSettings["AD_SIP"];
+            string container = ConfigurationManager.AppSettings["AD_Container"];
+            string adminName = ConfigurationManager.AppSettings["UADService"];
+            string adminPassword = ConfigurationManager.AppSettings["PADService"];
+
+            container = string.IsNullOrEmpty(OUName) ? container : "OU=" + OUName + ",OU=RTAF," + container;
+
+            PrincipalContext pc = new PrincipalContext(ContextType.Domain, domainController, container, adminName, adminPassword);
+
+            string error;
+
+            try
+            {
+                UserPrincipal user = UserPrincipal.FindByIdentity(pc, userName);
+
+                if (user != null)
+                {
+                    AD_Real real = new AD_Real
+                    {
+                        AD_EmployeeId = user.EmployeeId,
+                        AD_SamAccountName = user.SamAccountName,
+                        AD_GivenName = user.GivenName,
+                        AD_DisplayName = user.DisplayName,
+                        AD_DistinguishedName = user.DistinguishedName,
+                        AD_EmailAddress = user.EmailAddress,
+                        AD_HomeDirectory = user.HomeDirectory,
+                        AD_HomeDrive = user.HomeDrive,
+                        AD_LastBadPasswordAttempt = user.LastBadPasswordAttempt.ToString(),
+                        AD_Name = user.Name,
+                        AD_MiddleName = user.MiddleName,
+                        AD_Surname = user.Surname,
+                        AD_PasswordNeverExpires = user.PasswordNeverExpires,
+                        AD_PasswordNotRequired = user.PasswordNotRequired,
+                        AD_ScriptPath = user.EmployeeId,
+                        AD_Enabled = (bool)user.Enabled,
+                        AD_lastLogIn = user.LastLogon.ToString(),
+                        AD_lastPasswordSet = user.LastPasswordSet.ToString(),
+                        AD_AccountExpirationDate = user.AccountExpirationDate.ToString(),
+                        AD_AccountLockoutTime = user.AccountLockoutTime.ToString(),
+                        AD_BadLogonCount = user.BadLogonCount,
+                        AD_UserCannotChangePassword = user.UserCannotChangePassword,
+                        AD_UserPrincipalName = user.UserPrincipalName
+                    };
+
+                    return real;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (PrincipalException ex)
+            {
+                error = "PrincipalException ==> Global_Class --> ConnectRTAFService --> ChangeOUNameWithADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                error = "Exception ==> Global_Class --> ConnectRTAFService --> ChangeOUNameWithADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return null;
+            }
+            finally
+            {
+                pc.Dispose();
+            }
+        }
+
+        public static AD_Real CheckStatusActiveWithADDS(string userName, string OUName)
+        {
+            string domainController = ConfigurationManager.AppSettings["AD_SIP"];
+            string container = ConfigurationManager.AppSettings["AD_Container"];
+            string adminName = ConfigurationManager.AppSettings["UADService"];
+            string adminPassword = ConfigurationManager.AppSettings["PADService"];
+
+            container = string.IsNullOrEmpty(OUName) ? container : "OU=" + OUName + ",OU=RTAF," + container;
+
+            PrincipalContext pc = new PrincipalContext(ContextType.Domain, domainController, container, adminName, adminPassword);
+
+            string error;
+
+            try
+            {
+                UserPrincipal user = UserPrincipal.FindByIdentity(pc, userName);
+
+                if (user != null)
+                {
+                    AD_Real real = new AD_Real
+                    {
+                        AD_Enabled = (bool)user.Enabled,
+
+                    };
+
+                    return real;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (PrincipalException ex)
+            {
+                error = "PrincipalException ==> Global_Class --> ConnectRTAFService --> ChangeOUNameWithADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                error = "Exception ==> Global_Class --> ConnectRTAFService --> ChangeOUNameWithADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return null;
+            }
+            finally
+            {
+                pc.Dispose();
+            }
+        }
+
         public static bool ResetPasswordWithADDS(string userName, string newPassword)
         {
             string domainController = ConfigurationManager.AppSettings["AD_SIP"];
-            string container = ConfigurationManager.AppSettings["AD_Container_Intranet"];
+            string container = ConfigurationManager.AppSettings["AD_Container"];
             string adminName = ConfigurationManager.AppSettings["UADService"];
             string adminPassword = ConfigurationManager.AppSettings["PADService"];
 
@@ -257,6 +384,13 @@ namespace RTAFMailManagement.Global_Class
                 }
 
             }
+            catch (PasswordException ex)
+            {
+                error = "PasswordException ==> Global_Class --> ConnectRTAFService --> ChangePasswordWithADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return false;
+            }
             catch (PrincipalException ex)
             {
                 error = "PrincipalException ==> Global_Class --> ConnectRTAFService --> ResetPasswordWithADDS()";
@@ -280,7 +414,7 @@ namespace RTAFMailManagement.Global_Class
         public static bool ChangePasswordWithADDS(string userName, string oldPassword, string newPassword)
         {
             string domainController = ConfigurationManager.AppSettings["AD_SIP"];
-            string container = ConfigurationManager.AppSettings["AD_Container_Intranet"];
+            string container = ConfigurationManager.AppSettings["AD_Container"];
             string adminName = ConfigurationManager.AppSettings["UADService"];
             string adminPassword = ConfigurationManager.AppSettings["PADService"];
 
@@ -306,6 +440,13 @@ namespace RTAFMailManagement.Global_Class
                 }
 
             }
+            catch (PasswordException ex)
+            {
+                error = "PasswordException ==> Global_Class --> ConnectRTAFService --> ChangePasswordWithADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return false;
+            }
             catch (PrincipalException ex)
             {
                 error = "PrincipalException ==> Global_Class --> ConnectRTAFService --> ChangePasswordWithADDS()";
@@ -329,7 +470,7 @@ namespace RTAFMailManagement.Global_Class
         public static bool ChangeOUNameWithADDS(string userName, string OUName)
         {
             string domainController = ConfigurationManager.AppSettings["AD_SIP"];
-            string container = ConfigurationManager.AppSettings["AD_Container_Intranet"];
+            string container = ConfigurationManager.AppSettings["AD_Container"];
             string adminName = ConfigurationManager.AppSettings["UADService"];
             string adminPassword = ConfigurationManager.AppSettings["PADService"];
 
@@ -363,6 +504,13 @@ namespace RTAFMailManagement.Global_Class
                     return false;
                 }
 
+            }
+            catch (PrincipalOperationException ex)
+            {
+                error = "PrincipalOperationException ==> Global_Class --> ConnectRTAFService --> ChangeOUNameWithADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return false;
             }
             catch (PrincipalException ex)
             {
