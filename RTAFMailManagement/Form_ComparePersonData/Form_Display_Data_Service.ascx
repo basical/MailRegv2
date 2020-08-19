@@ -42,17 +42,17 @@
                 %>
                 <tr>
                     <td style="text-align: center;"><%= i+1 %></td>
-                    <td><%= data.rtaf_person_IdCard %></td>
-                    <td><%= General_Functions.subStringIdGvm(data.rtaf_person_IdGvm) %></td>
-                    <td><%= data.Rank.rank_Name %></td>
-                    <td><%= data.rtaf_person_FirstName %></td>
-                    <td><%= data.rtaf_person_LastName %></td>
-                    <td><%= data.rtaf_person_FirstName_Eng %></td>
-                    <td><%= data.rtaf_person_LastName_Eng %></td>
-                    <td><%= data.rtaf_person_BirthDate %></td>
-                    <td><%= data.Unit.unit_Name %></td>
-                    <td><%= data.rtaf_person_Position %></td>
-                    <td><%= data.rtaf_person_status %></td>
+                    <td><%= data.RTAF_person_IdCard %></td>
+                    <td><%= General_Functions.subStringIdGvm(data.RTAF_person_IdGvm) %></td>
+                    <td><%= data.RTAF_person_Rank.Rank_Name %></td>
+                    <td><%= data.RTAF_person_FirstName %></td>
+                    <td><%= data.RTAF_person_LastName %></td>
+                    <td><%= data.RTAF_person_FirstName_Eng %></td>
+                    <td><%= data.RTAF_person_LastName_Eng %></td>
+                    <td><%= data.RTAF_person_BirthDate %></td>
+                    <td><%= data.RTAF_person_Unit.Unit_Name %></td>
+                    <td><%= data.RTAF_person_Position %></td>
+                    <td><%= data.RTAF_person_Status %></td>
                 </tr>
                 <%
                     }

@@ -111,21 +111,21 @@
                                             {
                                                 RTAF_DATA data = list_data[i];
 
-                                                string ogn_code = CryptographyCode.GenerateSHA512String(data.rtaf_person_IdGvm);
+                                                string ogn_code = CryptographyCode.GenerateSHA512String(data.RTAF_person_IdGvm);
                                         %>
                                         <tr>
                                             <td style="text-align: center;"><%= i+1 %></td>
-                                            <td><%= data.rtaf_person_IdCard %></td>
-                                            <td><%= data.rtaf_person_IdGvm %></td>
-                                            <td><%= data.Rank.rank_Name %></td>
-                                            <td><%= data.rtaf_person_FirstName %></td>
-                                            <td><%= data.rtaf_person_LastName %></td>
-                                            <td><%= DateTimeUtility.convertDateToPageRealServer(data.rtaf_person_BirthDate) %></td>
-                                            <td><%= data.Unit.unit_Name %></td>
-                                            <td><%= data.rtaf_person_Position %></td>
-                                            <td><%= data.rtaf_person_status %></td>
+                                            <td><%= data.RTAF_person_IdCard %></td>
+                                            <td><%= data.RTAF_person_IdGvm %></td>
+                                            <td><%= data.RTAF_person_Rank.Rank_Name %></td>
+                                            <td><%= data.RTAF_person_FirstName %></td>
+                                            <td><%= data.RTAF_person_LastName %></td>
+                                            <td><%= DateTimeUtility.convertDateToPageRealServer(data.RTAF_person_BirthDate) %></td>
+                                            <td><%= data.RTAF_person_Unit.Unit_Name %></td>
+                                            <td><%= data.RTAF_person_Position %></td>
+                                            <td><%= data.RTAF_person_Status %></td>
                                             <td>
-                                                <a class="btn bg-gradient-warning" href="Form_Edit_PersonData?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.rtaf_person_IdGvm, data.rtaf_person_IdCard) %>&mode=e" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล"><i class="fa fa-edit fa-fw"></i></a>
+                                                <a class="btn bg-gradient-warning" href="Form_Edit_PersonData?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.RTAF_person_IdGvm, data.RTAF_person_IdCard) %>&mode=e" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล"><i class="fa fa-edit fa-fw"></i></a>
 
                                             </td>
                                         </tr>

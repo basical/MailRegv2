@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace RTAFMailManagement.Form_Configuration
 {
-    public partial class Users_Type_Edit : System.Web.UI.Page
+    public partial class Users_Type_Edit : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

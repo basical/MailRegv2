@@ -67,29 +67,29 @@
                 %>
                 <tr>
                     <td style="text-align: center;"><%= i+1 %></td>
-                    <td><%= data.sevice_data.rtaf_person_IdCard %></td>
-                    <td><%= General_Functions.subStringIdGvm(data.sevice_data.rtaf_person_IdGvm) %></td>
-                    <td><%= data.sevice_data.Rank.rank_Name %></td>
-                    <td><%= data.sevice_data.rtaf_person_FirstName %></td>
-                    <td><%= data.sevice_data.rtaf_person_LastName %></td>
-                    <td><%= data.sevice_data.rtaf_person_FirstName_Eng %></td>
-                    <td><%= data.sevice_data.rtaf_person_LastName_Eng %></td>
-                    <td><%= data.sevice_data.rtaf_person_BirthDate %></td>
-                    <td><%= data.sevice_data.Unit.unit_Name %></td>
-                    <td><%= data.sevice_data.rtaf_person_Position %></td>
-                    <td style="border-right: 2px solid #000000;"><%= data.sevice_data.rtaf_person_status %></td>
+                    <td><%= data.sevice_data.RTAF_person_IdCard %></td>
+                    <td><%= General_Functions.subStringIdGvm(data.sevice_data.RTAF_person_IdGvm) %></td>
+                    <td><%= data.sevice_data.RTAF_person_Rank.Rank_Name %></td>
+                    <td><%= data.sevice_data.RTAF_person_FirstName %></td>
+                    <td><%= data.sevice_data.RTAF_person_LastName %></td>
+                    <td><%= data.sevice_data.RTAF_person_FirstName_Eng %></td>
+                    <td><%= data.sevice_data.RTAF_person_LastName_Eng %></td>
+                    <td><%= data.sevice_data.RTAF_person_BirthDate %></td>
+                    <td><%= data.sevice_data.RTAF_person_Unit.Unit_Name %></td>
+                    <td><%= data.sevice_data.RTAF_person_Position %></td>
+                    <td style="border-right: 2px solid #000000;"><%= data.sevice_data.RTAF_person_Status %></td>
 
-                    <td style="border-left: 2px solid #000000;"><%= data.db_data.rtaf_person_IdCard %></td>
-                    <td><%= data.db_data.rtaf_person_IdGvm %></td>
-                    <td><%= data.db_data.Rank.rank_Name %></td>
-                    <td><%= data.db_data.rtaf_person_FirstName %></td>
-                    <td><%= data.db_data.rtaf_person_LastName %></td>
-                    <td><%= data.db_data.rtaf_person_FirstName_Eng %></td>
-                    <td><%= data.db_data.rtaf_person_LastName_Eng %></td>
-                    <td><%= DateTimeUtility.convertDateToPageRealServer(data.db_data.rtaf_person_BirthDate) %></td>
-                    <td><%= data.db_data.Unit.unit_Name %></td>
-                    <td><%= data.db_data.rtaf_person_Position %></td>
-                    <td><%= data.db_data.rtaf_person_status %></td>
+                    <td style="border-left: 2px solid #000000;"><%= data.db_data.RTAF_person_IdCard %></td>
+                    <td><%= data.db_data.RTAF_person_IdGvm %></td>
+                    <td><%= data.db_data.RTAF_person_Rank.Rank_Name %></td>
+                    <td><%= data.db_data.RTAF_person_FirstName %></td>
+                    <td><%= data.db_data.RTAF_person_LastName %></td>
+                    <td><%= data.db_data.RTAF_person_FirstName_Eng %></td>
+                    <td><%= data.db_data.RTAF_person_LastName_Eng %></td>
+                    <td><%= DateTimeUtility.convertDateToPageRealServer(data.db_data.RTAF_person_BirthDate) %></td>
+                    <td><%= data.db_data.RTAF_person_Unit.Unit_Name %></td>
+                    <td><%= data.db_data.RTAF_person_Position %></td>
+                    <td><%= data.db_data.RTAF_person_Status %></td>
                 </tr>
                 <%
                     }

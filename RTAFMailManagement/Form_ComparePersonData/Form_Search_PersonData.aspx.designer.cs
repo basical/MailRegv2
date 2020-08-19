@@ -42,6 +42,15 @@ namespace RTAFMailManagement.Form_ComparePersonData
         protected global::System.Web.UI.WebControls.LinkButton Search_rtaf_data_Btn;
 
         /// <summary>
+        /// OneClick_All_Btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton OneClick_All_Btn;
+
+        /// <summary>
         /// page_tab_1 control.
         /// </summary>
         /// <remarks>
