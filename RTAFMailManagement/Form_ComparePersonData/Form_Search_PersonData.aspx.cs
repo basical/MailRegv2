@@ -17,7 +17,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
         {
             if (!IsPostBack)
             {
-                Session["Class_Active"] = 22;
+                Session["Class_Active"] = 29;
 
                 //LoadUnits();
             }

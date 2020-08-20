@@ -13,6 +13,7 @@ namespace RTAFMailManagement.Managers
         string error = string.Empty;
         int defaultNum = 0;
         string defaultString = "";
+
         public List<Units> getAllUnits()
         {
             SqlConnection con = MSSQLConnection.connectionMSSQL();

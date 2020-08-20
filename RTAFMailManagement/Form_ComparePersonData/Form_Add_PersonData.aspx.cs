@@ -21,8 +21,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
 
                 //LoadUnits();
                 //LoadRanks();
-            }
-            
+            }   
         }
 
         // ดึงข้อมูลชั้นยศ ทั้งหมด

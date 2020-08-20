@@ -249,13 +249,13 @@ namespace RTAFMailManagement.Form_Mail_Register
         protected global::System.Web.UI.WebControls.Label Tel_Lbl;
 
         /// <summary>
-        /// Tel_Tbx control.
+        /// Tel_TBx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Tel_Tbx;
+        protected global::System.Web.UI.WebControls.TextBox Tel_TBx;
 
         /// <summary>
         /// Acc_Type_Lbl control.

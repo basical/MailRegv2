@@ -130,5 +130,14 @@ namespace RTAFMailManagement.Form_ComparePersonData
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton Search_Btn;
+
+        /// <summary>
+        /// Cancel_Btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Cancel_Btn;
     }
 }

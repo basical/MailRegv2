@@ -24,6 +24,15 @@ namespace RTAFMailManagement.Authentication
         protected global::System.Web.UI.WebControls.Label login_Lbl;
 
         /// <summary>
+        /// RFV_Username_TBx control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFV_Username_TBx;
+
+        /// <summary>
         /// Username_TBx control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace RTAFMailManagement.Authentication
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Username_TBx;
+
+        /// <summary>
+        /// RFV_Password_TBx control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFV_Password_TBx;
 
         /// <summary>
         /// Password_TBx control.

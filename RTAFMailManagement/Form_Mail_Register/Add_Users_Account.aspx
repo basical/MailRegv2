@@ -144,7 +144,7 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="Tel_Lbl" runat="server"> เบอร์โทรศัพท์ </asp:Label>
-                                                <asp:TextBox ID="Tel_Tbx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="Tel_TBx" runat="server" CssClass="form-control"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>

@@ -67,6 +67,7 @@
                         <!-- /.card-body -->
                         <div class="card-footer">
                             <asp:LinkButton ID="Search_Btn" runat="server" CssClass="btn bg-gradient-primary" OnClick="Search_Btn_Click"> <i class="fas fa-search fa-fw"></i>&nbsp; ค้นหาข้อมูล </asp:LinkButton>
+                            <asp:LinkButton ID="Cancel_Btn" runat="server" CssClass="btn bg-gradient-warning" OnClick="Cancel_Btn_Click"> <i class="fas fa-window-close"></i>&nbsp; ยกเลิก </asp:LinkButton>
                         </div>
                         <!-- /.card-footer -->
                     </div>

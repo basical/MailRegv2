@@ -48,7 +48,7 @@
                         <!-- /.card-body -->
                         <div class="card-footer">
                             <asp:LinkButton ID="Search_rtaf_data_Btn" runat="server" CssClass="btn bg-gradient-primary" OnClick="Search_rtaf_data_Btn_Click"> <i class="fa fa-search fa-fw"></i> ค้นหาข้อมูล </asp:LinkButton>
-                            <asp:LinkButton ID="OneClick_All_Btn" runat="server" CssClass="btn bg-gradient-primary" OnClick="OneClick_All_Btn_Click"> <i class="fa fa-search fa-fw"></i> ค้นหาข้อมูล </asp:LinkButton>
+                            <asp:LinkButton ID="OneClick_All_Btn" runat="server" CssClass="btn bg-gradient-danger float-right" OnClick="OneClick_All_Btn_Click"> <i class="fa fa-search fa-fw"></i> ค้นหาข้อมูลทั้งหมด </asp:LinkButton>
                         </div>
                         <!-- /.card-footer -->
                     </div>

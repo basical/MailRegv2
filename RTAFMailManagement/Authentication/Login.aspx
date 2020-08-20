@@ -34,16 +34,26 @@
                 <p class="login-box-msg">Sign in to start your session</p>
 
                 <form runat="server">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <asp:RequiredFieldValidator ID="RFV_Username_TBx" runat="server" ErrorMessage=" กรุณากรอกข้อมูล " CssClass="text-danger" ControlToValidate="Username_TBx" SetFocusOnError="true" ValidationGroup="Save_Validation" EnableClientScript="true"></asp:RequiredFieldValidator>
+                        </div>
+                    </div>
                     <div class="input-group mb-3">
-                        <asp:TextBox ID="Username_TBx" runat="server" CssClass="form-control" placeholder="Username" > </asp:TextBox>
+                        <asp:TextBox ID="Username_TBx" runat="server" CssClass="form-control" placeholder="Username" onkeypress="return LoginEvent(event)"> </asp:TextBox>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <asp:RequiredFieldValidator ID="RFV_Password_TBx" runat="server" ErrorMessage=" กรุณากรอกข้อมูล " CssClass="text-danger" ControlToValidate="Password_TBx" SetFocusOnError="true" ValidationGroup="Save_Validation" EnableClientScript="true"></asp:RequiredFieldValidator>
+                        </div>
+                    </div>
                     <div class="input-group mb-3">
-                        <asp:TextBox ID="Password_TBx" CssClass="form-control" runat="server" placeholder="Password" TextMode="Password"></asp:TextBox>
+                        <asp:TextBox ID="Password_TBx" CssClass="form-control" runat="server" placeholder="Password" TextMode="Password" onkeypress="return LoginEvent(event)"></asp:TextBox>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -61,9 +71,17 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-5">
-                            <asp:LinkButton ID="Login_btn" runat="server" CssClass="btn btn-primary btn-block" OnClick="Login_btn_Click">Sign In <i class="fa fa-sign-in-alt fa-fw"></i> </asp:LinkButton>
+                            <asp:LinkButton ID="Login_btn" runat="server" CssClass="btn btn-primary btn-block" OnClick="Login_btn_Click" ValidationGroup="Save_Validation">Sign In <i class="fa fa-sign-in-alt fa-fw"></i> </asp:LinkButton>
                         </div>
                         <!-- /.col -->
+
+                        <script type="text/javascript">
+                            function LoginEvent(e) {
+                                if (e.keyCode == 13) {
+                                    __doPostBack('<%=Login_btn.UniqueID%>', "");
+                                }
+                            }
+                        </script>
                     </div>
                 </form>
             </div>
