@@ -19,7 +19,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
             {
                 Session["Class_Active"] = 22;
 
-                LoadUnits();
+                //LoadUnits();
             }
         }
         protected void Search_rtaf_data_Btn_Click(object sender, EventArgs e)

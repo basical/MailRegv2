@@ -2380,6 +2380,7 @@
     <Compile Include="Global_Class\Log_Error.cs" />
     <Compile Include="Global_Class\Messages_Logs.cs" />
     <Compile Include="Global_Class\MSSQLConnection.cs" />
+    <Compile Include="Managers\Activity_Log_Manager.cs" />
     <Compile Include="Managers\Admin_Type_Manager.cs" />
     <Compile Include="Managers\Admin_User_Manager.cs" />
     <Compile Include="Managers\AD_Status_Manager.cs" />

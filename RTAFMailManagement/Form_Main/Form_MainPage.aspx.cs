@@ -13,7 +13,7 @@ namespace RTAFMailManagement.Form_Main
         {
             if (!IsPostBack)
             {
-                Session["Class_Active"] = 1;
+                Session["Class_Active"] = 0;
             }
         }
     }

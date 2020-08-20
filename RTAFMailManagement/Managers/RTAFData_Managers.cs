@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace RTAFMailManagement.Managers
 {
@@ -67,8 +65,6 @@ namespace RTAFMailManagement.Managers
                     {
                         RTAF_status_Name = reader.IsDBNull(12) ? defaultString : reader.GetString(12)
                     };
-
-                    id_error = data.RTAF_person_id.ToString();
                 }
                 else
                 {
@@ -79,13 +75,13 @@ namespace RTAFMailManagement.Managers
             }
             catch (SqlException ex)
             {
-                error = "SqlException ==> Managers --> RTAFData_Managers --> getCheckPersonalData() : id_error => " + id_error;
+                error = "SqlException ==> Managers --> RTAFData_Managers --> getCheckPersonalData()";
                 Log_Error._writeErrorFile(error, ex);
                 return null;
             }
             catch (Exception ex)
             {
-                error = "Exception ==> Managers --> RTAFData_Managers --> getCheckPersonalData() : id_error => " + id_error;
+                error = "Exception ==> Managers --> RTAFData_Managers --> getCheckPersonalData()";
                 Log_Error._writeErrorFile(error, ex);
                 return null;
             }
@@ -139,8 +135,6 @@ namespace RTAFMailManagement.Managers
                     {
                         RTAF_status_Name = reader.IsDBNull(12) ? defaultString : reader.GetString(12)
                     };
-
-                    id_error = data.RTAF_person_id.ToString();
                 }
                 else
                 {

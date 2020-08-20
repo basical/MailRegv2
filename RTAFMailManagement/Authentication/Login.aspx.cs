@@ -22,9 +22,82 @@ namespace RTAFMailManagement.Authentication
         {
             /*string username = Username_TBx.Text;
             string password = Password_TBx.Text;
+            string ipAdd = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables["REMOTE_ADDR"];
 
-            if(ConnectRTAFService.AuthenUserWithADDS(username, password))
-            {*/
+            if (ConnectRTAFService.AuthenUserWithADDS(username, password))
+            {
+                Admin_Users au = new Admin_User_Manager().GetCheckAdministratorLevel(username);
+
+                if (au.Admin_User_Type.Admin_Users_Type_id == 1)
+                {
+                    Activity_Log log = new Activity_Log()
+                    {
+                        Act_log_user = username,
+                        Act_log_ip = ipAdd,
+                        Act_log_details = "LGN_001 : Admin Authenicated and Sign-in Success"
+                    };
+
+                    new Activity_Log_Manager().AddActivityLogs(log);
+
+                    Session["admin_user"] = au;
+
+                    Response.Redirect("/Form_Main/Form_MainPage");
+                }
+                else if (au.Admin_User_Type.Admin_Users_Type_id == 2)
+                {
+                    Activity_Log log = new Activity_Log()
+                    {
+                        Act_log_user = username,
+                        Act_log_ip = ipAdd,
+                        Act_log_details = "LGN_002 : Unit Admin Authenicated and Sign-in Success"
+                    };
+
+                    new Activity_Log_Manager().AddActivityLogs(log);
+
+                    Session["admin_user"] = au;
+
+                    Response.Redirect("/Form_Main/Form_MainPage");
+                }
+                else if (au.Admin_User_Type.Admin_Users_Type_id == 3)
+                {
+                    Activity_Log log = new Activity_Log()
+                    {
+                        Act_log_user = username,
+                        Act_log_ip = ipAdd,
+                        Act_log_details = "LGN_003 : Super Admin Authenicated and Sign-in Success"
+                    };
+
+                    new Activity_Log_Manager().AddActivityLogs(log);
+
+                    Session["admin_user"] = au;
+
+                    Response.Redirect("/Form_Main/Form_MainPage");
+                }
+                else
+                {
+                    Activity_Log log = new Activity_Log()
+                    {
+                        Act_log_user = username,
+                        Act_log_ip = ipAdd,
+                        Act_log_details = "LGN_000 : Normal User Authenicated and Sign-in Success"
+                    };
+
+                    new Activity_Log_Manager().AddActivityLogs(log);
+
+                    Response.Redirect("/Form_Main/Form_MainPage");
+                }
+            }
+            else
+            {
+                Activity_Log log = new Activity_Log()
+                {
+                    Act_log_user = username,
+                    Act_log_ip = ipAdd,
+                    Act_log_details = "LGN_WAR : Unknown User Attempting Sign in System With Authenticate"
+                };
+
+                new Activity_Log_Manager().AddActivityLogs(log);
+            }*/
 
             Admin_Users au = new Admin_Users()
             {
@@ -37,7 +110,6 @@ namespace RTAFMailManagement.Authentication
 
             Session["admin_user"] = au;
             Response.Redirect("/Form_Main/Form_MainPage");
-            //}
         }
     }
 }

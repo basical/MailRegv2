@@ -152,7 +152,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/Form_Main/Form_MainPage" class="nav-link <%= act == 0 ? "active" : "" %>">
                         <i class="nav-icon fas fa-home"></i>
                         <p>HOME</p>
                     </a>

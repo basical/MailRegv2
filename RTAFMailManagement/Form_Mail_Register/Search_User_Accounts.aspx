@@ -149,7 +149,7 @@
                                             </td>
                                             <td><%= DateTimeUtility.convertDateTimeToPageRealServer(data.User_UpdateDate) %></td>
                                             <td <%= data.passdiff >= 150 && data.passdiff < 180 ? "style='color: #ebeb00;'" : data.passdiff >= 180 ? "style='color: #eb0000;'" : "style='color: #107500;'"  %>><%= data.passdiff %></td>
-                                            <td><%= DateTimeUtility.convertDateTimeToPageRealServer(data.User_Real_AD.AD_lastLogin) %></td>
+                                            <td><%= DateTimeUtility.convertDateTimeToPageRealServer(data.User_Real_AD.AD_lastLogIn) %></td>
                                             <td><%= data.User_status %></td>
                                             <td style="text-align: center;">
                                                 <% 
