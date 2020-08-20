@@ -111,7 +111,7 @@
                                         <tr style="text-align: center;">
                                             <th style="width: 5%; vertical-align: text-top;">#</th>
                                             <th style="width: 15%; vertical-align: text-top;">ยศ ชื่อ-นามสกุล </th>
-                                            <th style="vertical-align: text-top;"> Username </th>
+                                            <th style="vertical-align: text-top;">Username </th>
                                             <th style="vertical-align: text-top;">สังกัด </th>
                                             <th style="vertical-align: text-top;">OU Name </th>
                                             <th style="vertical-align: text-top;">AD Status (DB) </th>
@@ -136,11 +136,11 @@
                                         %>
                                         <tr style="text-align: center; vertical-align: text-top;">
                                             <td style="text-align: center;"><%= i+1 %></td>
-                                            <td><a class="text-primary" href="Update_Users_Profile?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard) %>&mode=e" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล"> <%= data.User_Rank.Rank_Name + data.User_FirstName + " " + data.User_LastName  %> </a> </td>
+                                            <td><a class="text-primary" href="Update_Users_Profile?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard) %>&mode=e" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล"><%= data.User_Rank.Rank_Name + data.User_FirstName + " " + data.User_LastName  %> </a></td>
                                             <td><%= data.User_UserName %></td>
                                             <td><%= data.User_Unit.Unit_Name %></td>
                                             <td><%= data.User_Unit.Unit_OUName %></td>
-                                            
+
                                             <td style="text-align: center;">
                                                 <span class="<%= data.User_ADStatus.AD_Status_Code == 2 ? "badge bg-success" : data.User_ADStatus.AD_Status_Code == 3 ? "badge bg-danger" : "badge bg-warning" %>"><%= data.User_ADStatus.AD_Status_Name %></span>
                                             </td>
@@ -178,21 +178,20 @@
 
                             <!-- /.card-body -->
                             <div class="card-footer clearfix">
-                                <ul class="pagination pagination-sm m-0 float-right">
-                                    <% 
-                                        int page = 1;
-                                        for (int i = 0; i < list_data.Count(); i++)
-                                        {
-                                            if (i % 20 == 0)
-                                            {
-                                    %>
-                                    <li class="page-item"><a class="page-link" href="#"><%= page %></a></li>
-                                    <% 
-                                                page++;
-                                            }
-                                        }
-                                    %>
-                                </ul>
+                                <div class="offset-md-3 col-md-6">
+                                    <ul class="pagination offset-md-4">
+                                        <li >
+                                            <asp:LinkButton ID="link_Previous" runat="server" OnClick="link_Previous_Click" CssClass="btn btn-block btn-outline-primary"> <i class="fas fa-angle-left fa-fw"></i> ก่อนหน้า </asp:LinkButton>
+                                        </li>
+                                        <li>
+                                            <asp:DropDownList ID="Paging_DDL" runat="server" CssClass="form-control custom-select" ForeColor="#cc0000" Font-Bold="true" OnSelectedIndexChanged="Paging_DDL_SelectedIndexChanged" AutoPostBack="true">
+                                            </asp:DropDownList>
+                                        </li>
+                                        <li >
+                                            <asp:LinkButton ID="link_Next" runat="server" OnClick="link_Next_Click" CssClass="btn btn-block btn-outline-primary"> ต่อไป <i class="fas fa-angle-right fa-fw"></i> </asp:LinkButton>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <!-- /.card -->
