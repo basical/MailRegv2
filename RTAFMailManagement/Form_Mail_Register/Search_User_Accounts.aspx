@@ -119,7 +119,8 @@
                                             <th style="width: 10%; vertical-align: text-top">วันที่ปรับปรุงข้อมูลล่าสุด </th>
                                             <th style="width: 10%; vertical-align: text-top;">อายุรหัสผ่าน (วัน) </th>
                                             <th style="width: 10%; vertical-align: text-top">วันที่เข้าระบบล่าสุด </th>
-                                            <th style="width: 15%; vertical-align: text-top">สถานะ</th>
+                                            <th style="width: 15%; vertical-align: text-top">สถานะกำลังพล</th>
+                                            <th></th>
                                             <th></th>
                                             <th></th>
                                         </tr>
@@ -152,6 +153,9 @@
                                             <td><%= DateTimeUtility.convertDateTimeToPageRealServer(data.User_Real_AD.AD_lastLogIn) %></td>
                                             <td><%= data.User_status %></td>
                                             <td style="text-align: center;">
+                                                <a class="btn bg-gradient-info btn-sm" href="Update_Users_Profile?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard) %>&mode=e" data-toggle="tooltip" data-placement="top" title="ข้อมูล User ใน AD Server"><i class="fas fas fa-server fa-fw"></i></a>
+                                            </td>
+                                            <td style="text-align: center;">
                                                 <% 
                                                     if (data.User_Real_AD.AD_Enabled)
                                                     {
@@ -180,14 +184,14 @@
                             <div class="card-footer clearfix">
                                 <div class="offset-md-3 col-md-6">
                                     <ul class="pagination offset-md-4">
-                                        <li >
+                                        <li>
                                             <asp:LinkButton ID="link_Previous" runat="server" OnClick="link_Previous_Click" CssClass="btn btn-block btn-outline-primary"> <i class="fas fa-angle-left fa-fw"></i> ก่อนหน้า </asp:LinkButton>
                                         </li>
                                         <li>
                                             <asp:DropDownList ID="Paging_DDL" runat="server" CssClass="form-control custom-select" ForeColor="#cc0000" Font-Bold="true" OnSelectedIndexChanged="Paging_DDL_SelectedIndexChanged" AutoPostBack="true">
                                             </asp:DropDownList>
                                         </li>
-                                        <li >
+                                        <li>
                                             <asp:LinkButton ID="link_Next" runat="server" OnClick="link_Next_Click" CssClass="btn btn-block btn-outline-primary"> ต่อไป <i class="fas fa-angle-right fa-fw"></i> </asp:LinkButton>
                                         </li>
                                     </ul>

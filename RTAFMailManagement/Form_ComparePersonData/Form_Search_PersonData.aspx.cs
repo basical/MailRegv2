@@ -51,9 +51,17 @@ namespace RTAFMailManagement.Form_ComparePersonData
             Session.Remove("found_data");
             Session.Remove("nfound_data");
 
+            RTAF_DATA sv_data = new RTAF_DATA()
+            {
+                RTAF_person_Unit = new Units()
+                {
+                    Unit_Code = Convert.ToInt64(Unit_id)
+                }
+            };
+
             List<RTAF_DATA> service_data = ConnectRTAFService.getRTAFPersonData(Unit_id);
 
-            List<RTAF_DATA> data_by_unit = new RTAFData_Managers().GetRTAFDataByUnit(int.Parse(Unit_id));
+            List<RTAF_DATA> data_by_unit = new RTAFData_Managers().GetRTAFDataByUnit(sv_data, 0, 0);
 
             List<Compare_Data> found_data = new List<Compare_Data>();
 
@@ -61,14 +69,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
 
             for (int i = 0; i < service_data.Count; i++)
             {
-                RTAF_DATA data = new RTAFData_Managers().GetCheckPersonalData(service_data[i].RTAF_person_IdCard,
-                                                                        General_Functions.subStringIdGvm(service_data[i].RTAF_person_IdGvm),
-                                                                        DateTimeUtility.CDateTime4Service2MSSQL(service_data[i].RTAF_person_BirthDate),
-                                                                        service_data[i].RTAF_person_FirstName + " " + service_data[i].RTAF_person_LastName,
-                                                                        (int)service_data[i].RTAF_person_Unit.Unit_Code,
-                                                                        service_data[i].RTAF_person_Rank.Rank_Code,
-                                                                        service_data[i].RTAF_person_Position,
-                                                                        service_data[i].RTAF_person_IdCard);
+                RTAF_DATA data = new RTAFData_Managers().CheckPersonalData(service_data[i]);
 
                 if (data != null)
                 {
@@ -108,9 +109,17 @@ namespace RTAFMailManagement.Form_ComparePersonData
 
                 Units data = list_data[i];
 
+                RTAF_DATA sv_data = new RTAF_DATA()
+                {
+                    RTAF_person_Unit = new Units()
+                    {
+                        Unit_Code = data.Unit_Code
+                    }
+                };
+
                 List<RTAF_DATA> service_data = ConnectRTAFService.getRTAFPersonData(data.Unit_Code.ToString());
 
-                List<RTAF_DATA> data_by_unit = new RTAFData_Managers().GetRTAFDataByUnit(int.Parse(data.Unit_Code.ToString()));
+                List<RTAF_DATA> data_by_unit = new RTAFData_Managers().GetRTAFDataByUnit(sv_data, 0, 0);
 
                 List<Compare_Data> found_data = new List<Compare_Data>();
 
@@ -118,14 +127,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
 
                 for (int j = 0; j < service_data.Count; j++)
                 {
-                    RTAF_DATA data_s = new RTAFData_Managers().GetCheckPersonalData(service_data[j].RTAF_person_IdCard,
-                                                                            General_Functions.subStringIdGvm(service_data[j].RTAF_person_IdGvm),
-                                                                            DateTimeUtility.CDateTime4Service2MSSQL(service_data[j].RTAF_person_BirthDate),
-                                                                            service_data[j].RTAF_person_FirstName + " " + service_data[j].RTAF_person_LastName,
-                                                                            (int)service_data[j].RTAF_person_Unit.Unit_Code,
-                                                                            service_data[j].RTAF_person_Rank.Rank_Code,
-                                                                            service_data[j].RTAF_person_Position,
-                                                                            service_data[j].RTAF_person_IdCard);
+                    RTAF_DATA data_s = new RTAFData_Managers().CheckPersonalData(service_data[j]);
 
                     if (data_s != null)
                     {

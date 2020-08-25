@@ -5,9 +5,6 @@
     <Setting Name="RTAFMailManagement_RTAFService_RTAFMail" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://10.107.6.5/RTAFService/RTAFMail.asmx</Value>
     </Setting>
-    <Setting Name="RTAFMailManagement_ADService_ADService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://10.107.1.200/ADService.asmx</Value>
-    </Setting>
     <Setting Name="RTAFMailManagement_newRTAFMail_RTAFMail" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://10.107.6.5/RTAFService_1/RTAFMail.asmx</Value>
     </Setting>
