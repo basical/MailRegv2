@@ -196,6 +196,8 @@ namespace RTAFMailManagement.Managers
                 cmd.Parameters.AddWithValue("@i_Position", i_data.RTAF_person_Position);
                 cmd.Parameters.AddWithValue("@i_status", i_data.RTAF_person_Status.RTAF_status_Name);
                 cmd.Parameters.AddWithValue("@i_status_code", i_data.RTAF_person_Status.RTAF_status_Code);
+                cmd.Parameters.AddWithValue("@i_row_str", row_str);
+                cmd.Parameters.AddWithValue("@i_row_end", row_end);
 
                 SqlDataReader reader = cmd.ExecuteReader();
 

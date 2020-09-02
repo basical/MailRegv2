@@ -88,34 +88,34 @@ namespace RTAFMailManagement.Global_Class
             {
                 RTAF_DATA person = new RTAF_DATA
                 {
-                    RTAF_person_IdGvm = General_Functions.subStringIdGvm(resault[i].ID),
-                    RTAF_person_IdCard = resault[i].PeopleID,
+                    RTAF_person_IdGvm = string.IsNullOrEmpty(resault[i].ID) ? "" : General_Functions.subStringIdGvm(resault[i].ID),
+                    RTAF_person_IdCard = string.IsNullOrEmpty(resault[i].ID) ? "" : resault[i].PeopleID,
 
                     RTAF_person_Rank = new Ranks
                     {
-                        Rank_Name = resault[i].RANK,
-                        Rank_Code = int.Parse(resault[i].RANKCODE)
+                        Rank_Name = string.IsNullOrEmpty(resault[i].RANK) ? "" : resault[i].RANK,
+                        Rank_Code = string.IsNullOrEmpty(resault[i].RANKCODE) ? 0 : int.Parse(resault[i].RANKCODE)
                     },
 
-                    RTAF_person_FirstName = resault[i].FIRSTNAME,
-                    RTAF_person_LastName = resault[i].LASTNAME,
+                    RTAF_person_FirstName = string.IsNullOrEmpty(resault[i].ID) ? "" : resault[i].FIRSTNAME,
+                    RTAF_person_LastName = string.IsNullOrEmpty(resault[i].ID) ? "" : resault[i].LASTNAME,
                     RTAF_person_FirstName_Eng = string.IsNullOrEmpty(resault[i].EFIRSTNAME)? "" : resault[i].EFIRSTNAME.ToLower(),
-                    RTAF_person_LastName_Eng = string.IsNullOrEmpty(resault[i].ELASTNAME) ? "" : resault[i].ELASTNAME.ToLower(),
+                    RTAF_person_LastName_Eng = string.IsNullOrEmpty(resault[i].ELASTNAME)? "" : resault[i].ELASTNAME.ToLower(),
 
                     RTAF_person_Unit = new Units
                     {
-                        Unit_Code = int.Parse(resault[i].UNITCODE),
-                        Unit_Name = resault[i].UNITNAME
+                        Unit_Code = string.IsNullOrEmpty(resault[i].UNITCODE) ? 0 : int.Parse(resault[i].UNITCODE),
+                        Unit_Name = string.IsNullOrEmpty(resault[i].UNITNAME) ? "" : resault[i].UNITNAME
                     },
 
                     RTAF_person_BirthDate = string.IsNullOrEmpty(resault[i].BIRTHDAY.ToString())? "1907-01-01" : DateTimeUtility.CDateTime4Service2MSSQL(resault[i].BIRTHDAY.ToString()),
 
-                    RTAF_person_Position = resault[i].POSITION,
+                    RTAF_person_Position = string.IsNullOrEmpty(resault[i].POSITION) ? "" : resault[i].POSITION,
                     
                     RTAF_person_Status = new RTAF_Status
                     {
-                        RTAF_status_Code = int.Parse(resault[i].CODE),
-                        RTAF_status_Name = resault[i].STATUS,
+                        RTAF_status_Code = string.IsNullOrEmpty(resault[i].CODE) ? 0 : int.Parse(resault[i].CODE),
+                        RTAF_status_Name = string.IsNullOrEmpty(resault[i].STATUS) ? "" : resault[i].STATUS,
                     }
                 };
 
@@ -376,7 +376,7 @@ namespace RTAFMailManagement.Global_Class
 
                 if (user != null)
                 {
-                    user.Enabled = disable;
+                    //user.Enabled = disable;
 
                     DirectoryEntry deUser = (DirectoryEntry)user.GetUnderlyingObject();
                     ActiveDs.IADsUser nativeDeUser = (ActiveDs.IADsUser)deUser.NativeObject;
@@ -439,9 +439,9 @@ namespace RTAFMailManagement.Global_Class
 
                 if (user != null)
                 {
-                    user.Enabled = true;
+                    //user.Enabled = true;
                     //user.SetPassword(newPassword);
-                    user.Save();
+                    //user.Save();
 
                     DirectoryEntry deUser = (DirectoryEntry)user.GetUnderlyingObject();
                     ActiveDs.IADsUser nativeDeUser = (ActiveDs.IADsUser)deUser.NativeObject;
@@ -575,16 +575,17 @@ namespace RTAFMailManagement.Global_Class
 
                 if (user != null)
                 {
+                    user.HomeDirectory = OUName;
                     user.Enabled = true;
                     user.Save();
 
-                    GroupPrincipal gp = GroupPrincipal.FindByIdentity(pc, OUName);
+                    /*GroupPrincipal gp = GroupPrincipal.FindByIdentity(pc, OUName);
 
                     if (gp != null)
                     {
                         gp.Members.Add(user);
                         gp.Save();
-                    }
+                    }*/
 
                     return true;
                 }

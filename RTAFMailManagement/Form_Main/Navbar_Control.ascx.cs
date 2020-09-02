@@ -1,4 +1,8 @@
-﻿using System;
+﻿using RTAFMailManagement.Class;
+using RTAFMailManagement.Global_Class;
+using RTAFMailManagement.Managers;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +15,10 @@ namespace RTAFMailManagement.Form_Main
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) { }
-        }
+            if (!IsPostBack)
+            {
+
+            }
+        }                
     }
 }

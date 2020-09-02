@@ -67,12 +67,6 @@
                                     <asp:DropDownList ID="Units_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-3">
-                                    <asp:CheckBox ID="getAll_ChkBx" runat="server" CssClass="form-check-label" />
-                                    <span class="form-check-label text-danger">&nbsp; ค้นหาทั้งหมด </span>
-                                </div>
-                            </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
@@ -137,7 +131,7 @@
                                         %>
                                         <tr style="text-align: center; vertical-align: text-top;">
                                             <td style="text-align: center;"><%= i+1 %></td>
-                                            <td><a class="text-primary" href="Update_Users_Profile?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard) %>&mode=e" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล"><%= data.User_Rank.Rank_Name + data.User_FirstName + " " + data.User_LastName  %> </a></td>
+                                            <td><a id="user_info" class="text-primary" href="Update_Users_Profile?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard, data.User_id.ToString()) %>&mode=e" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล"><%= data.User_Rank.Rank_Name + data.User_FirstName + " " + data.User_LastName  %> </a></td>
                                             <td><%= data.User_UserName %></td>
                                             <td><%= data.User_Unit.Unit_Name %></td>
                                             <td><%= data.User_Unit.Unit_OUName %></td>
@@ -153,24 +147,24 @@
                                             <td><%= DateTimeUtility.convertDateTimeToPageRealServer(data.User_Real_AD.AD_lastLogIn) %></td>
                                             <td><%= data.User_status %></td>
                                             <td style="text-align: center;">
-                                                <a class="btn bg-gradient-info btn-sm" href="Update_Users_Profile?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard) %>&mode=e" data-toggle="tooltip" data-placement="top" title="ข้อมูล User ใน AD Server"><i class="fas fas fa-server fa-fw"></i></a>
+                                                <a class="btn bg-gradient-info btn-sm" href="AD_Account_information?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard, data.User_id.ToString()) %>&mode=e" data-toggle="tooltip" data-placement="top" title="ข้อมูล User ใน AD Server"><i class="far fa-address-card fa-fw"></i></a>
                                             </td>
                                             <td style="text-align: center;">
                                                 <% 
                                                     if (data.User_Real_AD.AD_Enabled)
                                                     {
                                                 %>
-                                                <a class="btn bg-gradient-danger btn-sm" href="ChangeADStatus?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard) %>&mode=d" data-toggle="tooltip" data-placement="top" title="ปิดการใช้งาน"><i class="fas fa-user-slash fa-fw"></i></a>
+                                                <a class="btn bg-gradient-danger btn-sm" href="ChangeADStatus?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard, data.User_id.ToString()) %>&mode=d" data-toggle="tooltip" data-placement="top" title="ปิดการใช้งาน"><i class="fas fa-user-slash fa-fw"></i></a>
                                                 <%  }
                                                     else
                                                     { %>
-                                                <a class="btn bg-gradient-success btn-sm" href="ChangeADStatus?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard) %>&mode=e" data-toggle="tooltip" data-placement="top" title="เปิดการใช้งาน"><i class="fas fa-user fa-fw"></i></a>
+                                                <a class="btn bg-gradient-success btn-sm" href="ChangeADStatus?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard, data.User_id.ToString()) %>&mode=e" data-toggle="tooltip" data-placement="top" title="เปิดการใช้งาน"><i class="fas fa-user fa-fw"></i></a>
                                                 <%
                                                     }
                                                 %>
                                             </td>
                                             <td style="text-align: center;">
-                                                <a class="btn bg-gradient-warning btn-sm" href="Update_Users_Profile?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard) %>&mode=e" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล"><i class="fas fa-edit fa-fw"></i></a>
+                                                <a class="btn bg-gradient-warning btn-sm" href="Update_Users_Profile?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard, data.User_id.ToString()) %>&mode=e" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล"><i class="fas fa-edit fa-fw"></i></a>
                                             </td>
                                         </tr>
                                         <%

@@ -1933,6 +1933,7 @@
     <Content Include="Form_Configuration\Users_Type_Edit.aspx" />
     <Content Include="Form_Configuration\Users_Type_Management.aspx" />
     <Content Include="Form_Mail_Register\Add_Users_Account.aspx" />
+    <Content Include="Form_Mail_Register\AD_Account_information.aspx" />
     <Content Include="Form_Mail_Register\ChangeADStatus.aspx" />
     <Content Include="Form_Mail_Register\Reset_Password_User_Fast.aspx" />
     <Content Include="Form_Mail_Register\Search_User_Accounts.aspx" />
@@ -2061,7 +2062,9 @@
     <Content Include="Content\plugins\summernote\summernote.min.js.map" />
     <Content Include="Content\plugins\sweetalert2-theme-bootstrap-4\bootstrap-4.scss" />
     <Content Include="Content\plugins\toastr\toastr.js.map" />
+    <Content Include="libman.json" />
     <None Include="Properties\PublishProfiles\Deploy Mail Register.pubxml" />
+    <None Include="Properties\PublishProfiles\Deploy MailRegv2.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2209,6 +2212,7 @@
     <Compile Include="Class\AD_Real.cs" />
     <Compile Include="Class\AD_Status.cs" />
     <Compile Include="Class\Compare_Data.cs" />
+    <Compile Include="Class\Mail_Status.cs" />
     <Compile Include="Class\Questions.cs" />
     <Compile Include="Class\Users.cs" />
     <Compile Include="Class\Ranks.cs" />
@@ -2397,6 +2401,13 @@
     </Compile>
     <Compile Include="Form_Mail_Register\Add_Users_Account.aspx.designer.cs">
       <DependentUpon>Add_Users_Account.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Mail_Register\AD_Account_information.aspx.cs">
+      <DependentUpon>AD_Account_information.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Mail_Register\AD_Account_information.aspx.designer.cs">
+      <DependentUpon>AD_Account_information.aspx</DependentUpon>
     </Compile>
     <Compile Include="Form_Mail_Register\ChangeADStatus.aspx.cs">
       <DependentUpon>ChangeADStatus.aspx</DependentUpon>

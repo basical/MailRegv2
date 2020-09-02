@@ -21,8 +21,8 @@ namespace RTAFMailManagement.Form_Mail_Register
             {
                 Session["Class_Active"] = 11;
 
-                //LoadUnits();
-                //LoadRanks();
+                LoadUnits();
+                LoadRanks();
             }
         }
 
@@ -52,60 +52,54 @@ namespace RTAFMailManagement.Form_Mail_Register
 
         protected void Search_Btn_Click(object sender, EventArgs e)
         {
-            /*try
+            try
             {
-                string agree_no = Agree_No_TBx.Text;
-                string agree_no_ref = Agree_No_Ref_TBx.Text;
-                string idcard = Cust_Idcard_TBx.Text;
-                string fname = Cust_FName_TBx.Text.Trim(' ');
-                string lname = Cust_LName_TBx.Text.Trim(' ');
-                string date_str = DateTimeUtility.convertDateToMYSQL(Agree_Date_str_TBx.Text);
-                string date_end = DateTimeUtility.convertDateToMYSQL(Agree_Date_end_TBx.Text);
-                string company_inline = _getCheckedBranch();
-                string zone_id_inline = _getCheckedZone();
-                string pay_id_inline = _getCheckedPaymentmethod();
-
-                if (!string.IsNullOrEmpty(agree_no) || !string.IsNullOrEmpty(agree_no_ref) || !string.IsNullOrEmpty(idcard) || !string.IsNullOrEmpty(fname) || !string.IsNullOrEmpty(lname) || !string.IsNullOrEmpty(date_str) ||
-                    !string.IsNullOrEmpty(date_end) || !string.IsNullOrEmpty(zone_id_inline) || !string.IsNullOrEmpty(company_inline))
+                Users data = new Users
                 {
+                    User_id = 0,
+                    User_UserName = Username_TBx.Text,
+                    User_IdCard = IdCard_TBx.Text,
+                    User_IdGvm = IdGvm_TBx.Text,
 
-                    List<Agreements> list_data_all = agmt_mng.getAgreements(agree_no, agree_no_ref, idcard, fname, lname, date_str, date_end, company_inline, "", zone_id_inline, "", pay_id_inline, 0, 0);
+                    User_Rank = new Ranks()
+                    {
+                        Rank_Code = string.IsNullOrEmpty(Rank_DDL.SelectedValue) ? 0 : int.Parse(Rank_DDL.SelectedValue)
+                    },
+
+                    User_FirstName = FName_TBx.Text,
+                    User_LastName = LName_TBx.Text,
+
+                    User_Unit = new Units()
+                    {
+                        Unit_Code = string.IsNullOrEmpty(Units_DDL.SelectedValue) ? 0 : int.Parse(Units_DDL.SelectedValue)
+                    },
+
+                    User_status = new RTAF_Status()
+                    {
+                        RTAF_status_Code = 0
+                    }
+                };
 
 
-                    int row = list_data_all.Count;
+                List<Users> list_data_all = new Users_Mananer().GetListUsers(data, 0, 0);
 
-                    _pageCount(row);
+                int row = list_data_all.Count;
 
-                    List<Agreements> list_data = agmt_mng.getAgreements(agree_no, agree_no_ref, idcard, fname, lname, date_str, date_end, company_inline, "", zone_id_inline, "", pay_id_inline, 0, 20);
+                _pageCount(row);
 
-                    Session["agree_no"] = agree_no;
-                    Session["agree_no_ref"] = agree_no_ref;
-                    Session["idcard"] = idcard;
-                    Session["fname"] = fname;
-                    Session["lname"] = lname;
-                    Session["date_str"] = date_str;
-                    Session["date_end"] = date_end;
-                    Session["company_inline"] = company_inline;
-                    Session["zone_id_inline"] = zone_id_inline;
-                    Session["pay_id_inline"] = pay_id_inline;
-                    Session["row_str"] = 0;
+                List<Users> list_data = new Users_Mananer().GetListUsers(data, 0, 20);
 
-                    Session["List_Agreements"] = list_data;
-                }
+                Session["User_data"] = data;
+
+                Session["row_str"] = 0;
+
+                Session["List_User_Acc"] = list_data;
+
             }
             catch (Exception ex)
             {
-                error = "Exception ===> Form_Agreements ==> Search_Agreements --> _getAgreements() ";
+                error = "Exception ===> Form_Mail_Register ==> Search_User_Accounts --> _getAgreements() ";
                 Log_Error._writeErrorFile(error, ex);
-            }*/
-
-            if (getAll_ChkBx.Checked)
-            {
-
-            }
-            else
-            {
-
             }
 
             ClearText();
@@ -127,7 +121,6 @@ namespace RTAFMailManagement.Form_Mail_Register
             FName_TBx.Text = "";
             LName_TBx.Text = "";
             Units_DDL.SelectedValue = "0";
-            getAll_ChkBx.Checked = false;
         }
 
         /*******************************************************************************************************************************************************************************
@@ -198,19 +191,9 @@ namespace RTAFMailManagement.Form_Mail_Register
 
         private void _getMoreData(int current_page)
         {
-            /*try
+            try
             {
-                string agree_no = (string)Session["agree_no"];
-                string agree_no_ref = (string)Session["agree_no_ref"];
-                string idcard = (string)Session["idcard"];
-                string fname = (string)Session["fname"];
-                string lname = (string)Session["lname"];
-                string date_str = (string)Session["date_str"];
-                string date_end = (string)Session["date_end"];
-                string company_inline = (string)Session["leasing_Code_inline"];
-                string zone_id_inline = (string)Session["zone_id_inlinecompany_inline"];
-                string agree_type_inline = (string)Session["agree_type_inline"];
-                string pay_id_inline = (string)Session["pay_id_inline"];
+                Users data = (Users)Session["User_data"];
 
                 if (current_page > 1)
                 {
@@ -218,31 +201,32 @@ namespace RTAFMailManagement.Form_Mail_Register
 
                     link_Previous.Enabled = true;
 
-                    List<Agreements> list_data = agmt_mng.getAgreements(agree_no, agree_no_ref, idcard, fname, lname, date_str, date_end, company_inline, "", zone_id_inline, "", pay_id_inline, row_str, 20);
+                    List<Users> list_data = new Users_Mananer().GetListUsers(data, row_str, 20);
 
                     Session["row_str"] = row_str;
 
-                    Session["List_Agreements"] = list_data;
+                    Session["List_User_Acc"] = list_data;
                 }
                 else
                 {
                     link_Previous.Enabled = false;
 
-                    List<Agreements> list_data = agmt_mng.getAgreements(agree_no, agree_no_ref, idcard, fname, lname, date_str, date_end, company_inline, "", zone_id_inline, "", pay_id_inline, 0, 20);
+                    List<Users> list_data = new Users_Mananer().GetListUsers(data, 0, 20);
 
                     Session["row_str"] = 0;
 
-                    Session["List_Agreements"] = list_data;
+                    Session["List_User_Acc"] = list_data;
                 }
 
                 int max_page = (int)Session["max_page"];
+
                 if (current_page == max_page) { link_Next.Enabled = false; }
             }
             catch (Exception ex)
             {
-                error = "Exception ===> Form_Agreements ==> Search_Agreements --> _getMoreData() ";
+                error = "Exception ===> Form_Mail_Register ==> Search_User_Accounts --> _getMoreData() ";
                 Log_Error._writeErrorFile(error, ex);
-            }*/
+            }
         }
     }
 }

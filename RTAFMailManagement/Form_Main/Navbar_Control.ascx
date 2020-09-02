@@ -154,7 +154,7 @@
                 <li class="nav-item">
                     <a href="/Form_Main/Form_MainPage" class="nav-link <%= act == 0 ? "active" : "" %>">
                         <i class="nav-icon fas fa-home"></i>
-                        <p>HOME</p>
+                        <p>หน้าแรก</p>
                     </a>
                 </li>
 
@@ -170,7 +170,7 @@
                 <li class="nav-item has-treeview <%= act > 0 && act < 10 ? "menu-open" : "" %>">
                     <a href="#" class="nav-link <%= act > 0 && act < 10 ? "active" : "" %>">
                         <i class="nav-icon fas fa-cogs"></i>
-                        <p>CONFIGURATION<i class="fas fa-angle-left right"></i></p>
+                        <p>การตั้งค่า<i class="fas fa-angle-left right"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
@@ -224,7 +224,7 @@
                     </ul>
                 </li>
                 <% 
-                    }
+                        }
                 %>
                 <li class="nav-header">บัญชีผู้ใช้งาน </li>
                 <li class="nav-item has-treeview <%= act > 10 && act < 20 ? "menu-open" : "" %>">
@@ -273,8 +273,8 @@
                     </ul>
                 </li>
                 <%
-                    if (au.Admin_User_Type.Admin_Users_Type_id == 3)
-                    {
+                        if (au.Admin_User_Type.Admin_Users_Type_id == 3)
+                        {
                 %>
                 <li class="nav-header">ข้อมูลกำลังพล </li>
                 <li class="nav-item has-treeview <%= act > 20 ? "menu-open" : "" %>">
@@ -305,6 +305,15 @@
                 </li>
                 <%
                         }
+                %>
+
+                <li class="nav-item">
+                    <a href="/Form_Main/Form_MainPage?code=LGOT" class="nav-link"> 
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>ออกจากระบบ</p>
+                    </a>
+                </li>
+                <%
                     }
                 %>
             </ul>

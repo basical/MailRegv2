@@ -19,7 +19,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
             {
                 Session["Class_Active"] = 29;
 
-                //LoadUnits();
+                LoadUnits();
             }
         }
         protected void Search_rtaf_data_Btn_Click(object sender, EventArgs e)
@@ -53,9 +53,19 @@ namespace RTAFMailManagement.Form_ComparePersonData
 
             RTAF_DATA sv_data = new RTAF_DATA()
             {
+                RTAF_person_Rank = new Ranks()
+                {
+                    Rank_Code = 0
+                },
+
                 RTAF_person_Unit = new Units()
                 {
                     Unit_Code = Convert.ToInt64(Unit_id)
+                },
+
+                RTAF_person_Status = new RTAF_Status()
+                {
+                    RTAF_status_Code = 0
                 }
             };
 
@@ -111,9 +121,19 @@ namespace RTAFMailManagement.Form_ComparePersonData
 
                 RTAF_DATA sv_data = new RTAF_DATA()
                 {
+                    RTAF_person_Rank = new Ranks()
+                    {
+                        Rank_Code = 0
+                    },
+
                     RTAF_person_Unit = new Units()
                     {
                         Unit_Code = data.Unit_Code
+                    },
+
+                    RTAF_person_Status = new RTAF_Status()
+                    {
+                        RTAF_status_Code = 0
                     }
                 };
 

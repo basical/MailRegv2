@@ -25,13 +25,15 @@ namespace RTAFMailManagement.Form_Mail_Register
         {
             string username = Username_TBx.Text;
             string newPassword = Password_TBx.Text;
+
+            Admin_Users au = (Admin_Users)Session["admin_user"];
             string ipAdd = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables["REMOTE_ADDR"];
 
             if(ConnectRTAFService.ResetPasswordWithADDS(username, newPassword))
             {
                 Activity_Log log = new Activity_Log()
                 {
-                    Act_log_user = username,
+                    Act_log_user = au.Admin_Users_Name,
                     Act_log_ip = ipAdd,
                     Act_log_details = "ResP_HC_001 : Reset New Passweord Success"
                 };
@@ -46,9 +48,9 @@ namespace RTAFMailManagement.Form_Mail_Register
             {
                 Activity_Log log = new Activity_Log()
                 {
-                    Act_log_user = username,
+                    Act_log_user = au.Admin_Users_Name,
                     Act_log_ip = ipAdd,
-                    Act_log_details = "ResP_HC_ERR : Reset New Passweord Fail"
+                    Act_log_details = "ResP_HC_FAIL : Reset New Passweord Fail"
                 };
 
                 new Activity_Log_Manager().AddActivityLogs(log);
