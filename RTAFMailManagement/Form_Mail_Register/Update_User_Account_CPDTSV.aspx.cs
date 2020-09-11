@@ -13,5 +13,15 @@ namespace RTAFMailManagement.Form_Mail_Register
         {
 
         }
+
+        protected void Save_Btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Cancel_Btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

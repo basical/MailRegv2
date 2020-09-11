@@ -47,7 +47,6 @@ namespace RTAFMailManagement.Form_Mail_Register
             }
         }
 
-
         // ดึงข้อมูลสถานะกำลังพล ทั้งหมด
         private void LoadRTAFStatus()
         {

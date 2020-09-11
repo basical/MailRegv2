@@ -66,6 +66,10 @@
                                     <asp:Label ID="Units_Lbl" runat="server">สังกัด</asp:Label>
                                     <asp:DropDownList ID="Units_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
                                 </div>
+                                <div class="col-sm-3">
+                                    <asp:Label ID="Person_Status_Lbl" runat="server"> สถานะกำลังพล </asp:Label>
+                                    <asp:DropDownList ID="Person_Status_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
+                                </div>
                             </div>
                         </div>
                         <!-- /.card-body -->

@@ -35,7 +35,7 @@ namespace RTAFMailManagement.Form_Mail_Register
                 {
                     Act_log_user = au.Admin_Users_Name,
                     Act_log_ip = ipAdd,
-                    Act_log_details = "ResP_HC_001 : Reset New Passweord Success"
+                    Act_log_details = "ResP_HC_SCC : Reset New Passweord Success"
                 };
 
                 new Activity_Log_Manager().AddActivityLogs(log);

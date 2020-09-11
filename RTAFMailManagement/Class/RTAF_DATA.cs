@@ -2,7 +2,7 @@
 {
     public class RTAF_DATA
     {
-        public long RTAF_person_id { get; set; }
+        public string RTAF_person_Uid { get; set; }
         public string RTAF_person_IdCard { get; set; }
         public string RTAF_person_IdGvm { get; set; }
         public string RTAF_person_BirthDate { get; set; }

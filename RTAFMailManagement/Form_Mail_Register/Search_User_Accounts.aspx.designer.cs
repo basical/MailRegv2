@@ -141,6 +141,24 @@ namespace RTAFMailManagement.Form_Mail_Register
         protected global::System.Web.UI.WebControls.DropDownList Units_DDL;
 
         /// <summary>
+        /// Person_Status_Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Person_Status_Lbl;
+
+        /// <summary>
+        /// Person_Status_DDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Person_Status_DDL;
+
+        /// <summary>
         /// Search_Btn control.
         /// </summary>
         /// <remarks>

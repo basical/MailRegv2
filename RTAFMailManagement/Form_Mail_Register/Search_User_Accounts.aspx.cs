@@ -23,6 +23,7 @@ namespace RTAFMailManagement.Form_Mail_Register
 
                 LoadUnits();
                 LoadRanks();
+                LoadRTAFStatus();
             }
         }
 
@@ -47,6 +48,18 @@ namespace RTAFMailManagement.Form_Mail_Register
             {
                 Units data = list_data[i];
                 Units_DDL.Items.Add(new ListItem(data.Unit_FullName + " ( " + data.Unit_Name + " ) ", data.Unit_Code.ToString()));
+            }
+        }
+
+        // ดึงข้อมูลสถานะกำลังพล ทั้งหมด
+        private void LoadRTAFStatus()
+        {
+            List<RTAF_Status> list_data = new RTAF_Status_Manager().getAllStatus();
+            Person_Status_DDL.Items.Add(new ListItem("--------กรุณาเลือก--------", "0"));
+            for (int i = 0; i < list_data.Count; i++)
+            {
+                RTAF_Status data = list_data[i];
+                Person_Status_DDL.Items.Add(new ListItem(data.RTAF_status_Name + " ( " + data.RTAF_status_Remark + " ) ", data.RTAF_status_Code.ToString()));
             }
         }
 
@@ -76,7 +89,7 @@ namespace RTAFMailManagement.Form_Mail_Register
 
                     User_status = new RTAF_Status()
                     {
-                        RTAF_status_Code = 0
+                        RTAF_status_Code = string.IsNullOrEmpty(Person_Status_DDL.SelectedValue) ? 0 : int.Parse(Person_Status_DDL.SelectedValue)
                     }
                 };
 

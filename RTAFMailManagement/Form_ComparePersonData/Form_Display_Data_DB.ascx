@@ -62,7 +62,7 @@
     </div>
 
     <!-- /.card-body -->
-    <div class="card-footer clearfix">
+    <div class="card-footer">
         <ul class="pagination pagination-sm m-0 float-right">
             <% 
                 int page = 1;

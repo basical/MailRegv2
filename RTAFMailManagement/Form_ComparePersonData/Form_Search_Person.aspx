@@ -62,6 +62,10 @@
                                     <asp:Label ID="Units_Lbl" runat="server">สังกัด</asp:Label>
                                     <asp:DropDownList ID="Units_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
                                 </div>
+                                <div class="col-sm-3">
+                                    <asp:Label ID="Person_Status_Lbl" runat="server"> สถานะกำลังพล </asp:Label>
+                                    <asp:DropDownList ID="Person_Status_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
+                                </div>
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -126,7 +130,7 @@
                                             <td><%= data.RTAF_person_Position %></td>
                                             <td><%= data.RTAF_person_Status %></td>
                                             <td>
-                                                <a class="btn bg-gradient-warning" href="Form_Edit_PersonData?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.RTAF_person_IdGvm, data.RTAF_person_IdCard) %>&mode=e" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล"><i class="fa fa-edit fa-fw"></i></a>
+                                                <a class="btn bg-gradient-warning" href="Form_Edit_PersonData?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.RTAF_person_IdGvm, data.RTAF_person_IdCard, data.RTAF_person_Uid) %>&mode=e" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล"><i class="fa fa-edit fa-fw"></i></a>
 
                                             </td>
                                         </tr>
@@ -138,22 +142,22 @@
                             </div>
 
                             <!-- /.card-body -->
+                            <!-- /.card-body -->
                             <div class="card-footer clearfix">
-                                <ul class="pagination pagination-sm m-0 float-right">
-                                    <% 
-                                        int page = 1;
-                                        for (int i = 0; i < list_data.Count(); i++)
-                                        {
-                                            if (i % 20 == 0)
-                                            {
-                                    %>
-                                    <li class="page-item"><a class="page-link" href="#"><%= page %></a></li>
-                                    <% 
-                                                page++;
-                                            }
-                                        }
-                                    %>
-                                </ul>
+                                <div class="offset-md-3 col-md-6">
+                                    <ul class="pagination offset-md-4">
+                                        <li>
+                                            <asp:LinkButton ID="link_Previous" runat="server" OnClick="link_Previous_Click" CssClass="btn btn-block btn-outline-primary"> <i class="fas fa-angle-left fa-fw"></i> ก่อนหน้า </asp:LinkButton>
+                                        </li>
+                                        <li>
+                                            <asp:DropDownList ID="Paging_DDL" runat="server" CssClass="form-control custom-select" ForeColor="#cc0000" Font-Bold="true" OnSelectedIndexChanged="Paging_DDL_SelectedIndexChanged" AutoPostBack="true">
+                                            </asp:DropDownList>
+                                        </li>
+                                        <li>
+                                            <asp:LinkButton ID="link_Next" runat="server" OnClick="link_Next_Click" CssClass="btn btn-block btn-outline-primary"> ต่อไป <i class="fas fa-angle-right fa-fw"></i> </asp:LinkButton>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <!-- /.card -->
