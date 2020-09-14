@@ -327,6 +327,9 @@ namespace RTAFMailManagement.Managers
                             RTAF_status_Sort = reader.IsDBNull(66) ? defaultNum : reader.GetInt32(66),
                             RTAF_status_Remark = reader.IsDBNull(67) ? defaultString : reader.GetString(67)
                         },
+
+                        User_Real_AD = ConnectRTAFService.GetInfomationsAccountWithADDS(reader.IsDBNull(37) ? defaultString : reader.GetString(37), "")
+
                     };
 
                     list_data.Add(data);

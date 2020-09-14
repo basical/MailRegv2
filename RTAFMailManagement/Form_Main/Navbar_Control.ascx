@@ -234,7 +234,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/Form_Mail_Register/Search_User_Accounts" class="nav-link <%= act == 11 ? "active" : "" %>">
+                            <a href="/Form_Mail_Register/Search_User_Accounts" class="nav-link <%= act == 12 ? "active" : "" %>">
                                 <i class="fas fa-user-cog nav-icon"></i>
                                 <p>Management Account </p>
                             </a>

@@ -63,6 +63,8 @@ namespace RTAFMailManagement.Form_Mail_Register
                             }
                         }
                     }
+
+                    Response.Redirect("/Form_Mail_Register/Search_User_Accounts");
                 }
             }
         }

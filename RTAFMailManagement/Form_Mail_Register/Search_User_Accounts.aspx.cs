@@ -19,7 +19,7 @@ namespace RTAFMailManagement.Form_Mail_Register
         {
             if (!IsPostBack)
             {
-                Session["Class_Active"] = 11;
+                Session["Class_Active"] = 12;
 
                 LoadUnits();
                 LoadRanks();
