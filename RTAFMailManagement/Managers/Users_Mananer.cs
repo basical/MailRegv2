@@ -14,6 +14,51 @@ namespace RTAFMailManagement.Managers
         readonly int defaultNum = 0;
         readonly string defaultString = "";
 
+        public List<Users_Type> getAllUserType()
+        {
+            SqlConnection con = MSSQLConnection.connectionMSSQL();
+            try
+            {
+                con.Open();
+                string sql = "SELECT * FROM idg_Type WHERE Code IS NOT NULL; ";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                List<Users_Type> list_data = new List<Users_Type>();
+
+                while (reader.Read())
+                {
+                    Users_Type data = new Users_Type
+                    {
+                        User_Type_Code = reader.IsDBNull(0) ? defaultNum : reader.GetInt32(0),
+                        User_Type_Name = reader.IsDBNull(1) ? defaultString : reader.GetString(1),
+                        User_Type_Sort = reader.IsDBNull(2) ? defaultNum : reader.GetInt32(2),
+                        User_Type_Remark = reader.IsDBNull(3) ? defaultString : reader.GetString(3)
+                    };
+
+                    list_data.Add(data);
+                }
+
+                return list_data;
+            }
+            catch (SqlException ex)
+            {
+                error = "SqlException ==> Managers --> Users_Mananer --> getAllUserType() ";
+                Log_Error._writeErrorFile(error, ex);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                error = "Exception ==> Managers --> Users_Mananer --> getAllUserType() ";
+                Log_Error._writeErrorFile(error, ex);
+                return null;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
         public bool ChangeADStatusDB(string userName, int AD_status)
         {
             SqlConnection con = MSSQLConnection.connectionMSSQL();

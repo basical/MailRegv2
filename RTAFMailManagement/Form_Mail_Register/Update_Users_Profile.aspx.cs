@@ -17,6 +17,13 @@ namespace RTAFMailManagement.Form_Mail_Register
         {
             if (Request.Params["code"] != null)
             {
+                LoadUnits();
+                LoadRanks();
+                LoadRTAFStatus();
+                LoadADStatus();
+                LoadQuestions();
+                LoadUserTypes();
+
                 string[] code = Request.Params["code"].Split('U');
                 string User_IdGvm = code[1];
                 string User_IdCard = code[2];
@@ -27,14 +34,39 @@ namespace RTAFMailManagement.Form_Mail_Register
 
                 if (Request.Params["code"] == "e")
                 {
+                    Users data = new Users_Mananer().GetUserById(User_Id);
 
+                    DisplayInfoProfile(data);
                 }
             }
         }
 
-        private void DisplayInfoProfile()
+        private void DisplayInfoProfile(Users data)
         {
+            IdCard_TBx.Text = data.User_IdCard;
+            Rank_DDL.SelectedValue = data.User_Rank.Rank_Code.ToString();
+            FName_TBx.Text = data.User_FirstName;
+            LName_TBx.Text = data.User_LastName;
+            IdGvm_TBx.Text = data.User_IdGvm;
+            Rank_Eng_TBx.Text = data.User_Rank.Rank_Name + " " + data.User_Rank.Rank_FullName;
+            FName_Eng_TBx.Text = data.User_FirstNameEn;
+            LName_Eng_TBx.Text = data.User_LastNameEn;
+            Birthday_Date_TBx.Text = data.User_BirthDate;
+            Person_Status_DDL.SelectedValue = data.User_status.RTAF_status_Code.ToString();
+            Units_DDL.SelectedValue = data.User_Unit.Unit_Code.ToString();
+            Position_TBx.Text = data.User_Position;
+            Tel_Tbx.Text = data.User_Tel;
 
+            Username_TBx.Text = data.User_UserName;
+            Email_TBx.Text = data.User_Email;
+            AD_Status_DDL.SelectedValue = data.User_ADStatus.AD_Status_Code.ToString();
+            Quastion_DDL.SelectedValue = data.User_Question.Questions_id.ToString();
+            Answer_TBx.Text = data.User_Answer;
+            Email_Sec_TBx.Text = data.User_SecEmail;
+            Acc_Type_DDL.SelectedValue = data.User_Type.User_Type_Code.ToString();
+
+            AD_Real adrl = ConnectRTAFService.GetInfomationsAccountWithADDS(data.User_UserName, "");
+            AD_Status_Real_TBx.Text = adrl.AD_Enabled.ToString();
         }
 
         protected void Change_Password_Save_Btn_Click(object sender, EventArgs e)
@@ -90,6 +122,78 @@ namespace RTAFMailManagement.Form_Mail_Register
         protected void Close_Btn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        // ดึงข้อมูลชั้นยศ ทั้งหมด
+        private void LoadRanks()
+        {
+            List<Ranks> list_data = new Ranks_Manager().getAllRanks();
+            Rank_DDL.Items.Add(new ListItem("--------กรุณาเลือก--------", "0"));
+            for (int i = 0; i < list_data.Count; i++)
+            {
+                Ranks data = list_data[i];
+                Rank_DDL.Items.Add(new ListItem(data.Rank_FullName + " ( " + data.Rank_Name + " ) ", data.Rank_Code.ToString()));
+            }
+        }
+
+        // ดึงข้อมูลสังกัด ทอ. ทั้งหมด
+        private void LoadUnits()
+        {
+            List<Units> list_data = new Units_Manager().getAllUnits();
+            Units_DDL.Items.Add(new ListItem("--------กรุณาเลือก--------", "0"));
+            for (int i = 0; i < list_data.Count; i++)
+            {
+                Units data = list_data[i];
+                Units_DDL.Items.Add(new ListItem(data.Unit_FullName + " ( " + data.Unit_Name + " ) ", data.Unit_Code.ToString()));
+            }
+        }
+
+        // ดึงข้อมูลสถานะกำลังพล ทั้งหมด
+        private void LoadRTAFStatus()
+        {
+            List<RTAF_Status> list_data = new RTAF_Status_Manager().getAllStatus();
+            Person_Status_DDL.Items.Add(new ListItem("--------กรุณาเลือก--------", "0"));
+            for (int i = 0; i < list_data.Count; i++)
+            {
+                RTAF_Status data = list_data[i];
+                Person_Status_DDL.Items.Add(new ListItem(data.RTAF_status_Name + " ( " + data.RTAF_status_Remark + " ) ", data.RTAF_status_Code.ToString()));
+            }
+        }
+
+        // ดึงข้อมูลสถานะ AD ทั้งหมด
+        private void LoadADStatus()
+        {
+            List<AD_Status> list_data = new AD_Status_Manager().getAllADStatus();
+            AD_Status_DDL.Items.Add(new ListItem("--------กรุณาเลือก--------", "0"));
+            for (int i = 0; i < list_data.Count; i++)
+            {
+                AD_Status data = list_data[i];
+                AD_Status_DDL.Items.Add(new ListItem(data.AD_Status_Name, data.AD_Status_Code.ToString()));
+            }
+        }
+
+        // ดึงข้อมูลคำถาม ทั้งหมด
+        private void LoadQuestions()
+        {
+            List<Questions> list_data = new Question_Manager().getAllQuestion();
+            Quastion_DDL.Items.Add(new ListItem("--------กรุณาเลือก--------", "0"));
+            for (int i = 0; i < list_data.Count; i++)
+            {
+                Questions data = list_data[i];
+                Quastion_DDL.Items.Add(new ListItem(data.Questions_Name, data.Questions_id.ToString()));
+            }
+        }
+
+        // ดึงข้อมูลประเภทผู้ใช้งาน ทั้งหมด
+        private void LoadUserTypes()
+        {
+            List<Users_Type> list_data = new Users_Mananer().getAllUserType();
+            Acc_Type_DDL.Items.Add(new ListItem("--------กรุณาเลือก--------", "0"));
+            for (int i = 0; i < list_data.Count; i++)
+            {
+                Users_Type data = list_data[i];
+                Acc_Type_DDL.Items.Add(new ListItem(data.User_Type_Name, data.User_Type_Code.ToString()));
+            }
         }
     }
 }
