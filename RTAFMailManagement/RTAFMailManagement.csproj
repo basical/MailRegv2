@@ -2171,10 +2171,10 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web References\newRTAFMail\Reference.map">
+    <None Include="Web References\newRTAFMail\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\newRTAFMail\RTAFMail.wsdl" />
     <Content Include="Web References\newRTAFMail\RTAFMailData.datasource">
       <DependentUpon>Reference.map</DependentUpon>
