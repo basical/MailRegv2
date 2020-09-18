@@ -1,4 +1,8 @@
-﻿using System;
+﻿using RTAFMailManagement.Class;
+using RTAFMailManagement.Global_Class;
+using RTAFMailManagement.Managers;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -24,7 +28,7 @@ namespace RTAFMailManagement.Form_Main
 
         private void LogoutFNC()
         {
-            /*Admin_Users au = (Admin_Users)Session["admin_user"];
+            Admin_Users au = (Admin_Users)Session["admin_user"];
             string ipAdd = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables["REMOTE_ADDR"];
 
             Activity_Log log = new Activity_Log()
@@ -34,7 +38,7 @@ namespace RTAFMailManagement.Form_Main
                 Act_log_details = "LGOT_001 : Sign Out Successfully"
             };
 
-            new Activity_Log_Manager().AddActivityLogs(log);*/
+            new Activity_Log_Manager().AddActivityLogs(log);
 
             Session.RemoveAll();
 

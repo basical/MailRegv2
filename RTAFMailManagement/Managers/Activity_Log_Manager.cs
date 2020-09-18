@@ -10,8 +10,8 @@ namespace RTAFMailManagement.Managers
     public class Activity_Log_Manager
     {
         string error = string.Empty;
-        readonly int defaultNum = 0;
-        readonly string defaultString = "";
+        //readonly int defaultNum = 0;
+        //readonly string defaultString = "";
 
         public bool AddActivityLogs(Activity_Log data)
         {

@@ -20,7 +20,7 @@ namespace RTAFMailManagement.Authentication
 
         protected void Login_btn_Click(object sender, EventArgs e)
         {
-            /*string username = Username_TBx.Text;
+            string username = Username_TBx.Text;
             string password = Password_TBx.Text;
             string ipAdd = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables["REMOTE_ADDR"];
 
@@ -97,9 +97,9 @@ namespace RTAFMailManagement.Authentication
                 };
 
                 new Activity_Log_Manager().AddActivityLogs(log);
-            }*/
+            }
 
-            Admin_Users au = new Admin_Users()
+            /*Admin_Users au = new Admin_Users()
             {
                 Admin_User_Type = new Admin_Users_Type()
                 {
@@ -109,7 +109,7 @@ namespace RTAFMailManagement.Authentication
             };
 
             Session["admin_user"] = au;
-            Response.Redirect("/Form_Main/Form_MainPage");
+            Response.Redirect("/Form_Main/Form_MainPage");*/
         }
     }
 }

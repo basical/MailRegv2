@@ -69,7 +69,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
                 }
             };
 
-            List<RTAF_DATA> service_data = ConnectRTAFService.getRTAFPersonData(Unit_id);
+            List<RTAF_DATA> service_data = ConnectRTAFService.getNewRTAFPerson(Unit_id);
 
             List<RTAF_DATA> data_by_unit = new RTAFData_Managers().GetRTAFDataByUnit(sv_data, 0, 0);
 
@@ -137,7 +137,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
                     }
                 };
 
-                List<RTAF_DATA> service_data = ConnectRTAFService.getRTAFPersonData(data.Unit_Code.ToString());
+                List<RTAF_DATA> service_data = ConnectRTAFService.getNewRTAFPerson(data.Unit_Code.ToString());
 
                 List<RTAF_DATA> data_by_unit = new RTAFData_Managers().GetRTAFDataByUnit(sv_data, 0, 0);
 

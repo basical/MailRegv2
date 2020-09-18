@@ -32,7 +32,7 @@ namespace RTAFMailManagement.Managers
                 cmd.Parameters.AddWithValue("@i_LName", sv_data.RTAF_person_LastName);
                 cmd.Parameters.AddWithValue("@i_FName_Eng", sv_data.RTAF_person_FirstName_Eng);
                 cmd.Parameters.AddWithValue("@i_LName_Eng", sv_data.RTAF_person_LastName_Eng);
-                cmd.Parameters.AddWithValue("@i_BirthDate", sv_data.RTAF_person_BirthDate);
+                cmd.Parameters.AddWithValue("@i_BirthDate", DateTimeUtility.CDateTime4Service2MSSQL(sv_data.RTAF_person_BirthDate));
                 cmd.Parameters.AddWithValue("@i_Unit_Code", sv_data.RTAF_person_Unit.Unit_Code);
                 cmd.Parameters.AddWithValue("@i_Position", sv_data.RTAF_person_Position);
                 cmd.Parameters.AddWithValue("@i_status", sv_data.RTAF_person_Status.RTAF_status_Name);
@@ -63,7 +63,7 @@ namespace RTAFMailManagement.Managers
 
                     data.RTAF_person_Unit = new Units
                     {
-                        Unit_Code = reader.IsDBNull(12) ? defaultNum : reader.GetInt32(12),
+                        Unit_Code = reader.IsDBNull(12) ? defaultNum : (int)reader.GetInt64(12),
                         Unit_Name = reader.IsDBNull(13) ? defaultString : reader.GetString(13),
                         Unit_FullName = reader.IsDBNull(14) ? defaultString : reader.GetString(14)
                     };
@@ -142,7 +142,7 @@ namespace RTAFMailManagement.Managers
 
                     data.RTAF_person_Unit = new Units
                     {
-                        Unit_Code = reader.IsDBNull(12) ? defaultNum : reader.GetInt32(12)
+                        Unit_Code = reader.IsDBNull(12) ? defaultNum : (int)reader.GetInt64(12)
                     };
 
                     data.RTAF_person_UpdateDate = reader.IsDBNull(13) ? defaultString : reader.GetDateTime(13).ToString();
@@ -191,7 +191,6 @@ namespace RTAFMailManagement.Managers
                 cmd.Parameters.AddWithValue("@i_LName", "");
                 cmd.Parameters.AddWithValue("@i_FName_Eng", "");
                 cmd.Parameters.AddWithValue("@i_LName_Eng", "");
-                cmd.Parameters.AddWithValue("@i_BirthDate", "");
                 cmd.Parameters.AddWithValue("@i_Unit_Code", i_data.RTAF_person_Unit.Unit_Code);
                 cmd.Parameters.AddWithValue("@i_Position", "");
                 cmd.Parameters.AddWithValue("@i_status", "");
@@ -226,7 +225,7 @@ namespace RTAFMailManagement.Managers
 
                         RTAF_person_Unit = new Units
                         {
-                            Unit_Code = reader.IsDBNull(12) ? defaultNum : reader.GetInt32(12),
+                            Unit_Code = reader.IsDBNull(12) ? defaultNum : (int)reader.GetInt64(12),
                             Unit_Name = reader.IsDBNull(13) ? defaultString : reader.GetString(13),
                             Unit_FullName = reader.IsDBNull(14) ? defaultString : reader.GetString(14)
                         },
@@ -248,13 +247,13 @@ namespace RTAFMailManagement.Managers
             }
             catch (SqlException ex)
             {
-                error = "SqlException ==> Managers --> RTAFData_Managers --> getAllRTAFData() ";
+                error = "SqlException ==> Managers --> RTAFData_Managers --> GetRTAFDataByUnit() ";
                 Log_Error._writeErrorFile(error, ex);
                 return null;
             }
             catch (Exception ex)
             {
-                error = "Exception ==> Managers --> RTAFData_Managers --> getAllRTAFData() ";
+                error = "Exception ==> Managers --> RTAFData_Managers --> GetRTAFDataByUnit() ";
                 Log_Error._writeErrorFile(error, ex);
                 return null;
             }
@@ -281,7 +280,6 @@ namespace RTAFMailManagement.Managers
                 cmd.Parameters.AddWithValue("@i_LName", i_data.RTAF_person_LastName);
                 cmd.Parameters.AddWithValue("@i_FName_Eng", i_data.RTAF_person_FirstName_Eng);
                 cmd.Parameters.AddWithValue("@i_LName_Eng", i_data.RTAF_person_LastName_Eng);
-                cmd.Parameters.AddWithValue("@i_BirthDate", i_data.RTAF_person_BirthDate);
                 cmd.Parameters.AddWithValue("@i_Unit_Code", i_data.RTAF_person_Unit.Unit_Code);
                 cmd.Parameters.AddWithValue("@i_Position", i_data.RTAF_person_Position);
                 cmd.Parameters.AddWithValue("@i_status", i_data.RTAF_person_Status.RTAF_status_Name);
@@ -316,7 +314,7 @@ namespace RTAFMailManagement.Managers
 
                         RTAF_person_Unit = new Units
                         {
-                            Unit_Code = reader.IsDBNull(12) ? defaultNum : reader.GetInt32(12),
+                            Unit_Code = reader.IsDBNull(12) ? defaultNum : (int)reader.GetInt64(12),
                             Unit_Name = reader.IsDBNull(13) ? defaultString : reader.GetString(13),
                             Unit_FullName = reader.IsDBNull(14) ? defaultString : reader.GetString(14)
                         },
@@ -338,13 +336,13 @@ namespace RTAFMailManagement.Managers
             }
             catch (SqlException ex)
             {
-                error = "SqlException ==> Managers --> RTAFData_Managers --> getAllRTAFData() ";
+                error = "SqlException ==> Managers --> RTAFData_Managers --> GetRTAFDataALL() ";
                 Log_Error._writeErrorFile(error, ex);
                 return null;
             }
             catch (Exception ex)
             {
-                error = "Exception ==> Managers --> RTAFData_Managers --> getAllRTAFData() ";
+                error = "Exception ==> Managers --> RTAFData_Managers --> GetRTAFDataALL() ";
                 Log_Error._writeErrorFile(error, ex);
                 return null;
             }
@@ -421,6 +419,7 @@ namespace RTAFMailManagement.Managers
                 cmd.Parameters.AddWithValue("@i_Position", sv_data.RTAF_person_Position);
                 cmd.Parameters.AddWithValue("@i_status", sv_data.RTAF_person_Status.RTAF_status_Name);
                 cmd.Parameters.AddWithValue("@i_status_code", sv_data.RTAF_person_Status.RTAF_status_Code);
+                cmd.Parameters.AddWithValue("@i_type_id", 1);
 
                 cmd.ExecuteNonQuery();
 

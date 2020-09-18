@@ -60,7 +60,7 @@
                     <td><%= data.RTAF_person_BirthDate %></td>
                     <td><%= data.RTAF_person_Unit.Unit_Name %></td>
                     <td><%= data.RTAF_person_Position %></td>
-                    <td><%= data.RTAF_person_Status %></td>
+                    <td><%= data.RTAF_person_Status.RTAF_status_Name %></td>
                 </tr>
                 <%
                     }
@@ -72,19 +72,7 @@
     <!-- /.card-body -->
     <div class="card-footer">
         <ul class="pagination pagination-sm m-0 float-right">
-            <% 
-                int page = 1;
-                for (int i = 0; i < list_data.Count(); i++)
-                {
-                    if (i % 20 == 0)
-                    {
-            %>
-            <li class="page-item"><a class="page-link" href="#"><%= page %></a></li>
-            <% 
-                        page++;
-                    }
-                }
-            %>
+
         </ul>
     </div>
 </div>

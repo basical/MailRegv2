@@ -2214,6 +2214,8 @@
     <Compile Include="Class\Compare_Data.cs" />
     <Compile Include="Class\Mail_Status.cs" />
     <Compile Include="Class\Questions.cs" />
+    <Compile Include="Class\RTAF_DATA_Person_Type.cs" />
+    <Compile Include="Class\RTAF_DATA_User_Status.cs" />
     <Compile Include="Class\Users.cs" />
     <Compile Include="Class\Ranks.cs" />
     <Compile Include="Class\RTAF_DATA.cs" />

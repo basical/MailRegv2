@@ -130,7 +130,7 @@ namespace RTAFMailManagement.Global_Class
                     date[1] = "0" + int.Parse(date[1]);
                 }
 
-                return date[2] + "-" + date[1] + "-" + date[0] + " " + dt[1];
+                return (int.Parse(date[2]) - 543) + "-" + date[1] + "-" + date[0] + " " + dt[1];
             }
             else
             {
