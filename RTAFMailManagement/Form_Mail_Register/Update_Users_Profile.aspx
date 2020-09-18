@@ -197,7 +197,7 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="AD_Status_Real_Lbl" runat="server"> AD Status (Server) </asp:Label>
-                                                <asp:TextBox ID="AD_Status_Real_TBx" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                                <asp:TextBox ID="AD_Status_Real_TBx" runat="server" CssClass="form-control" Enabled="false" Font-Bold="true"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="form-group row">

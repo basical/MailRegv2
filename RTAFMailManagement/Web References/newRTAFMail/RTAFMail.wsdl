@@ -39,6 +39,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="POSITION" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="STATUS" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="CODE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PERSON_TYPE_PK" type="s:string" />
         </s:sequence>
       </s:complexType>
     </s:schema>

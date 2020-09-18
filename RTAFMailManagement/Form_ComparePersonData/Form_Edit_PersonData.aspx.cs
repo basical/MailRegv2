@@ -25,7 +25,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
                 Admin_Users au = (Admin_Users)Session["admin_user"];
                 string ipAdd = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables["REMOTE_ADDR"];
 
-                if (Request.Params["code"] == "e")
+                if (Request.Params["mode"] == "e")
                 {
 
                 }

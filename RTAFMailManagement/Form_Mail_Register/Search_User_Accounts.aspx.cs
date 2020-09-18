@@ -111,7 +111,7 @@ namespace RTAFMailManagement.Form_Mail_Register
             }
             catch (Exception ex)
             {
-                error = "Exception ===> Form_Mail_Register ==> Search_User_Accounts --> _getAgreements() ";
+                error = "Exception ===> Form_Mail_Register ==> Search_User_Accounts --> Search_Btn_Click() ";
                 Log_Error._writeErrorFile(error, ex);
             }
 

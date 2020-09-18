@@ -201,7 +201,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
         {
             try
             {
-                UseRTAF_DATArs data = (RTAF_DATA)Session["RTAF_DATA"];
+                RTAF_DATA data = (RTAF_DATA)Session["RTAF_DATA"];
 
                 if (current_page > 1)
                 {

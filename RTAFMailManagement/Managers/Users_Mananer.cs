@@ -110,8 +110,8 @@ namespace RTAFMailManagement.Managers
                 cmd.Parameters.AddWithValue("@i_IdGvm", "");
                 cmd.Parameters.AddWithValue("@i_FName", "");
                 cmd.Parameters.AddWithValue("@i_LName", "");
-                cmd.Parameters.AddWithValue("@i_Rank_Code", 0);
-                cmd.Parameters.AddWithValue("@i_Unit_Code", 0);
+                cmd.Parameters.AddWithValue("@i_Rank", 0);
+                cmd.Parameters.AddWithValue("@i_Unit", 0);
                 cmd.Parameters.AddWithValue("@i_status_code", 0);
                 cmd.Parameters.AddWithValue("@i_row_str", 0);
                 cmd.Parameters.AddWithValue("@i_row_end", 0);
@@ -122,11 +122,11 @@ namespace RTAFMailManagement.Managers
 
                 if (reader.Read())
                 {
-                    data.User_id = reader.IsDBNull(0) ? defaultNum : reader.GetInt32(0);
+                    data.User_id = reader.IsDBNull(0) ? defaultNum : (int)reader.GetInt64(0);
                     data.User_Email = reader.IsDBNull(1) ? defaultString : reader.GetString(1);
                     data.User_IdCard = reader.IsDBNull(2) ? defaultString : reader.GetString(2);
                     data.User_IdGvm = reader.IsDBNull(3) ? defaultString : reader.GetString(3);
-                    data.User_BirthDate = reader.IsDBNull(4) ? defaultString : reader.GetString(4);
+                    data.User_BirthDate = reader.IsDBNull(4) ? defaultString : reader.GetDateTime(4).ToString();
                     data.User_FirstName = reader.IsDBNull(5) ? defaultString : reader.GetString(5);
                     data.User_LastName = reader.IsDBNull(6) ? defaultString : reader.GetString(6);
                     data.User_FirstNameEn = reader.IsDBNull(7) ? defaultString : reader.GetString(7);
@@ -151,11 +151,11 @@ namespace RTAFMailManagement.Managers
 
                     data.User_Unit = new Units()
                     {
-                        Unit_id = reader.IsDBNull(22) ? defaultNum : reader.GetInt32(22),
+                        Unit_id = reader.IsDBNull(22) ? defaultNum : reader.GetInt64(22),
                         Unit_Code = reader.IsDBNull(23) ? defaultNum : reader.GetInt64(23),
                         Unit_Name = reader.IsDBNull(24) ? defaultString : reader.GetString(24),
                         Unit_FullName = reader.IsDBNull(25) ? defaultString : reader.GetString(25),
-                        Unit_SubCode = reader.IsDBNull(26) ? defaultNum : reader.GetInt32(26),
+                        Unit_SubCode = reader.IsDBNull(26) ? defaultNum : reader.GetInt64(26),
                         Unit_Sort = reader.IsDBNull(27) ? defaultNum : reader.GetInt32(27),
                         Unit_Level = reader.IsDBNull(28) ? defaultNum : reader.GetInt32(28),
                         Unit_OUName = reader.IsDBNull(29) ? defaultString : reader.GetString(29),
@@ -202,8 +202,8 @@ namespace RTAFMailManagement.Managers
 
                     data.User_Tel = reader.IsDBNull(51) ? defaultString : reader.GetString(51);
                     data.User_Type_Rank = reader.IsDBNull(52) ? defaultNum : reader.GetInt32(52);
-                    data.User_UpdateDate = reader.IsDBNull(53) ? defaultString : reader.GetString(53);
-                    data.User_CreateDate = reader.IsDBNull(54) ? defaultString : reader.GetString(54);
+                    data.User_UpdateDate = reader.IsDBNull(53) ? defaultString : reader.GetDateTime(53).ToString();
+                    data.User_CreateDate = reader.IsDBNull(54) ? defaultString : reader.GetDateTime(54).ToString();
                     data.User_Remark = reader.IsDBNull(55) ? defaultString : reader.GetString(55);
                     data.User_PasswordOld = reader.IsDBNull(56) ? defaultString : reader.GetString(56);
                     data.User_Permission = reader.IsDBNull(57) ? defaultNum : reader.GetInt32(57);
@@ -259,8 +259,8 @@ namespace RTAFMailManagement.Managers
                 cmd.Parameters.AddWithValue("@i_IdGvm", i_data.User_IdGvm);
                 cmd.Parameters.AddWithValue("@i_FName", i_data.User_FirstName);
                 cmd.Parameters.AddWithValue("@i_LName", i_data.User_LastName);
-                cmd.Parameters.AddWithValue("@i_Rank_Code", i_data.User_Rank.Rank_Code);
-                cmd.Parameters.AddWithValue("@i_Unit_Code", i_data.User_Unit.Unit_Code);
+                cmd.Parameters.AddWithValue("@i_Rank", i_data.User_Rank.Rank_Code);
+                cmd.Parameters.AddWithValue("@i_Unit", i_data.User_Unit.Unit_Code);
                 cmd.Parameters.AddWithValue("@i_status_code", i_data.User_status.RTAF_status_Code);
                 cmd.Parameters.AddWithValue("@i_row_str", row_str);
                 cmd.Parameters.AddWithValue("@i_row_end", row_end);
@@ -273,11 +273,11 @@ namespace RTAFMailManagement.Managers
                 {
                     Users data = new Users()
                     {
-                        User_id = reader.IsDBNull(0) ? defaultNum : reader.GetInt32(0),
+                        User_id = reader.IsDBNull(0) ? defaultNum : (int)reader.GetInt64(0),
                         User_Email = reader.IsDBNull(1) ? defaultString : reader.GetString(1),
                         User_IdCard = reader.IsDBNull(2) ? defaultString : reader.GetString(2),
                         User_IdGvm = reader.IsDBNull(3) ? defaultString : reader.GetString(3),
-                        User_BirthDate = reader.IsDBNull(4) ? defaultString : reader.GetString(4),
+                        User_BirthDate = reader.IsDBNull(4) ? defaultString : reader.GetDateTime(4).ToString(),
                         User_FirstName = reader.IsDBNull(5) ? defaultString : reader.GetString(5),
                         User_LastName = reader.IsDBNull(6) ? defaultString : reader.GetString(6),
                         User_FirstNameEn = reader.IsDBNull(7) ? defaultString : reader.GetString(7),
@@ -302,11 +302,11 @@ namespace RTAFMailManagement.Managers
 
                         User_Unit = new Units()
                         {
-                            Unit_id = reader.IsDBNull(22) ? defaultNum : reader.GetInt32(22),
+                            Unit_id = reader.IsDBNull(22) ? defaultNum : reader.GetInt64(22),
                             Unit_Code = reader.IsDBNull(23) ? defaultNum : reader.GetInt64(23),
                             Unit_Name = reader.IsDBNull(24) ? defaultString : reader.GetString(24),
                             Unit_FullName = reader.IsDBNull(25) ? defaultString : reader.GetString(25),
-                            Unit_SubCode = reader.IsDBNull(26) ? defaultNum : reader.GetInt32(26),
+                            Unit_SubCode = reader.IsDBNull(26) ? defaultNum : reader.GetInt64(26),
                             Unit_Sort = reader.IsDBNull(27) ? defaultNum : reader.GetInt32(27),
                             Unit_Level = reader.IsDBNull(28) ? defaultNum : reader.GetInt32(28),
                             Unit_OUName = reader.IsDBNull(29) ? defaultString : reader.GetString(29),
@@ -353,8 +353,8 @@ namespace RTAFMailManagement.Managers
 
                         User_Tel = reader.IsDBNull(51) ? defaultString : reader.GetString(51),
                         User_Type_Rank = reader.IsDBNull(52) ? defaultNum : reader.GetInt32(52),
-                        User_UpdateDate = reader.IsDBNull(53) ? defaultString : reader.GetString(53),
-                        User_CreateDate = reader.IsDBNull(54) ? defaultString : reader.GetString(54),
+                        User_UpdateDate = reader.IsDBNull(53) ? defaultString : reader.GetDateTime(53).ToString(),
+                        User_CreateDate = reader.IsDBNull(54) ? defaultString : reader.GetDateTime(54).ToString(),
                         User_Remark = reader.IsDBNull(55) ? defaultString : reader.GetString(55),
                         User_PasswordOld = reader.IsDBNull(56) ? defaultString : reader.GetString(56),
                         User_Permission = reader.IsDBNull(57) ? defaultNum : reader.GetInt32(57),
@@ -373,7 +373,7 @@ namespace RTAFMailManagement.Managers
                             RTAF_status_Remark = reader.IsDBNull(67) ? defaultString : reader.GetString(67)
                         },
 
-                        User_Real_AD = ConnectRTAFService.GetInfomationsAccountWithADDS(reader.IsDBNull(37) ? defaultString : reader.GetString(37), "")
+                        User_Real_AD = ConnectRTAFService.GetInfomationsAccountWithADDS(reader.IsDBNull(37) ? defaultString : reader.GetString(37), ""),
 
                     };
 
@@ -416,8 +416,8 @@ namespace RTAFMailManagement.Managers
                 cmd.Parameters.AddWithValue("@i_LName", i_data.User_LastName);
                 cmd.Parameters.AddWithValue("@i_FName_Eng", i_data.User_FirstNameEn);
                 cmd.Parameters.AddWithValue("@i_LName_Eng", i_data.User_LastNameEn);
-                cmd.Parameters.AddWithValue("@i_Rank_Code", i_data.User_Rank.Rank_Code);
-                cmd.Parameters.AddWithValue("@i_Unit_Code", i_data.User_Unit.Unit_Code);
+                cmd.Parameters.AddWithValue("@i_Rank", i_data.User_Rank.Rank_Code);
+                cmd.Parameters.AddWithValue("@i_Unit", i_data.User_Unit.Unit_Code);
                 cmd.Parameters.AddWithValue("@i_Position", i_data.User_Position);
                 cmd.Parameters.AddWithValue("@i_status", i_data.User_status_msg);
                 cmd.Parameters.AddWithValue("@i_status_code", i_data.User_status.RTAF_status_Code);

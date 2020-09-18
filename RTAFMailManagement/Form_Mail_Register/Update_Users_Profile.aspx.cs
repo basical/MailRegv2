@@ -4,6 +4,7 @@ using RTAFMailManagement.Managers;
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -32,7 +33,7 @@ namespace RTAFMailManagement.Form_Mail_Register
                 Admin_Users au = (Admin_Users)Session["admin_user"];
                 string ipAdd = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables["REMOTE_ADDR"];
 
-                if (Request.Params["code"] == "e")
+                if (Request.Params["mode"] == "e")
                 {
                     Users data = new Users_Mananer().GetUserById(User_Id);
 
@@ -48,17 +49,30 @@ namespace RTAFMailManagement.Form_Mail_Register
             FName_TBx.Text = data.User_FirstName;
             LName_TBx.Text = data.User_LastName;
             IdGvm_TBx.Text = data.User_IdGvm;
-            Rank_Eng_TBx.Text = data.User_Rank.Rank_Name + " " + data.User_Rank.Rank_FullName;
+            Rank_Eng_TBx.Text = data.User_Rank.Rank_FullNameEng + " ( " + data.User_Rank.Rank_NameEng + " ) ";
             FName_Eng_TBx.Text = data.User_FirstNameEn;
             LName_Eng_TBx.Text = data.User_LastNameEn;
-            Birthday_Date_TBx.Text = data.User_BirthDate;
-            Person_Status_DDL.SelectedValue = data.User_status.RTAF_status_Code.ToString();
+            Birthday_Date_TBx.Text = DateTimeUtility.convertDateToPageRealServer(data.User_BirthDate);
+
+            if(data.User_status.RTAF_status_Code == 0)
+            {
+                Person_Status_DDL.SelectedItem.Text = data.User_status_msg;
+            }
+            else
+            {
+                Person_Status_DDL.SelectedValue = data.User_status.RTAF_status_Code.ToString();
+            }
+
             Units_DDL.SelectedValue = data.User_Unit.Unit_Code.ToString();
             Position_TBx.Text = data.User_Position;
             Tel_Tbx.Text = data.User_Tel;
 
             Username_TBx.Text = data.User_UserName;
+            Username_TBx.ForeColor = Color.OrangeRed;
+
             Email_TBx.Text = data.User_Email;
+            Email_TBx.ForeColor = Color.Blue;
+
             AD_Status_DDL.SelectedValue = data.User_ADStatus.AD_Status_Code.ToString();
             Quastion_DDL.SelectedValue = data.User_Question.Questions_id.ToString();
             Answer_TBx.Text = data.User_Answer;
@@ -66,7 +80,17 @@ namespace RTAFMailManagement.Form_Mail_Register
             Acc_Type_DDL.SelectedValue = data.User_Type.User_Type_Code.ToString();
 
             AD_Real adrl = ConnectRTAFService.GetInfomationsAccountWithADDS(data.User_UserName, "");
-            AD_Status_Real_TBx.Text = adrl.AD_Enabled.ToString();
+
+            if (adrl.AD_Enabled)
+            {
+                AD_Status_Real_TBx.Text = "Active";
+                AD_Status_Real_TBx.ForeColor = Color.Green;
+            }
+            else
+            {
+                AD_Status_Real_TBx.Text = "Disable";
+                AD_Status_Real_TBx.ForeColor = Color.Red;
+            }
         }
 
         protected void Change_Password_Save_Btn_Click(object sender, EventArgs e)
@@ -192,7 +216,7 @@ namespace RTAFMailManagement.Form_Mail_Register
             for (int i = 0; i < list_data.Count; i++)
             {
                 Users_Type data = list_data[i];
-                Acc_Type_DDL.Items.Add(new ListItem(data.User_Type_Name, data.User_Type_Code.ToString()));
+                Acc_Type_DDL.Items.Add(new ListItem(data.User_Type_Name + " ( " + data.User_Type_Remark + " ) ", data.User_Type_Code.ToString()));
             }
         }
     }

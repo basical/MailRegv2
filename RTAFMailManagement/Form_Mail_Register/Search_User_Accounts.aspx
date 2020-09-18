@@ -146,10 +146,10 @@
                                             <td style="text-align: center;">
                                                 <span class="<%= data.User_Real_AD.AD_Enabled? "badge bg-success" : "badge bg-danger" %>"><%= data.User_Real_AD.AD_Enabled? "Active" : "Disable" %></span>
                                             </td>
-                                            <td><%= DateTimeUtility.convertDateTimeToPageRealServer(data.User_UpdateDate) %></td>
-                                            <td <%= data.passdiff >= 150 && data.passdiff < 180 ? "style='color: #ebeb00;'" : data.passdiff >= 180 ? "style='color: #eb0000;'" : "style='color: #107500;'"  %>><%= data.passdiff %></td>
-                                            <td><%= DateTimeUtility.convertDateTimeToPageRealServer(data.User_Real_AD.AD_lastLogIn) %></td>
-                                            <td><%= data.User_status %></td>
+                                            <td><%= DateTimeUtility.convertDateTimeToPageRealServer(data.User_Real_AD.AD_Nv_PasswordLastChanged) %></td>
+                                            <td <%= data.User_Real_AD.passdiff >= 150 && data.User_Real_AD.passdiff < 180 ? "style='color: #ebeb00;'" : data.User_Real_AD.passdiff >= 180 ? "style='color: #eb0000;'" : "style='color: #107500;'"  %>><%= data.User_Real_AD.passdiff %></td>
+                                            <td><%= DateTimeUtility.convertDateTimeToPageRealServer(data.User_Real_AD.AD_Nv_LastLogin) %></td>
+                                            <td><%= data.User_status_msg %></td>
                                             <td style="text-align: center;">
                                                 <a class="btn bg-gradient-info btn-sm" href="AD_Account_information?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard, data.User_id.ToString()) %>&mode=e" data-toggle="tooltip" data-placement="top" title="ข้อมูล User ใน AD Server"><i class="far fa-address-card fa-fw"></i></a>
                                             </td>

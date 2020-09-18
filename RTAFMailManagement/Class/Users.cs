@@ -38,6 +38,5 @@
         public string User_SecEmail { get; set; }
         public string User_status_msg { get; set; }
         public RTAF_Status User_status { get; set; }
-        public int passdiff { get; set; }
     }
 }

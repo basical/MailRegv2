@@ -81,5 +81,6 @@ namespace RTAFMailManagement.Class
         public dynamic AD_Nv_TelephoneNumber { get; set; }
         public dynamic AD_Nv_TelephonePager { get; set; }
         public string AD_Nv_Title { get; set; }
+        public double passdiff { get; set; }
     }
 }

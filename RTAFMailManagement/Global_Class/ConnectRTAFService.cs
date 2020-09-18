@@ -117,6 +117,8 @@ namespace RTAFMailManagement.Global_Class
                         RTAF_status_Code = string.IsNullOrEmpty(resault[i].CODE) ? 0 : int.Parse(resault[i].CODE),
                         RTAF_status_Name = string.IsNullOrEmpty(resault[i].STATUS) ? "" : resault[i].STATUS,
                     }
+
+
                 };
 
                 list_data.Add(person);
@@ -252,81 +254,83 @@ namespace RTAFMailManagement.Global_Class
 
                     AD_Real real = new AD_Real
                     {
-                        AD_EmployeeId = user.EmployeeId,
-                        AD_SamAccountName = user.SamAccountName,
-                        AD_GivenName = user.GivenName,
-                        AD_DisplayName = user.DisplayName,
-                        AD_DistinguishedName = user.DistinguishedName,
-                        AD_EmailAddress = user.EmailAddress,
-                        AD_HomeDirectory = user.HomeDirectory,
-                        AD_HomeDrive = user.HomeDrive,
-                        AD_LastBadPasswordAttempt = user.LastBadPasswordAttempt.ToString(),
-                        AD_Name = user.Name,
-                        AD_MiddleName = user.MiddleName,
-                        AD_Surname = user.Surname,
+                        AD_EmployeeId = user.EmployeeId ?? user.EmployeeId,
+                        AD_SamAccountName = user.SamAccountName ?? user.SamAccountName,
+                        AD_GivenName = user.GivenName ?? user.GivenName,
+                        AD_DisplayName = user.DisplayName ?? user.DisplayName,
+                        AD_DistinguishedName = user.DistinguishedName ?? user.DistinguishedName,
+                        AD_EmailAddress = user.EmailAddress ?? user.EmailAddress,
+                        AD_HomeDirectory = user.HomeDirectory ?? user.HomeDirectory,
+                        AD_HomeDrive = user.HomeDrive ?? user.HomeDrive,
+                        AD_LastBadPasswordAttempt = user.LastBadPasswordAttempt == null ? "" : user.LastBadPasswordAttempt.ToString(),
+                        AD_Name = user.Name ?? user.Name,
+                        AD_MiddleName = user.MiddleName ?? user.MiddleName,
+                        AD_Surname = user.Surname ?? user.Surname,
                         AD_PasswordNeverExpires = user.PasswordNeverExpires,
                         AD_PasswordNotRequired = user.PasswordNotRequired,
-                        AD_ScriptPath = user.EmployeeId,
+                        AD_ScriptPath = user.ScriptPath ?? user.ScriptPath,
                         AD_Enabled = (bool)user.Enabled,
-                        AD_lastLogIn = user.LastLogon.ToString(),
-                        AD_lastPasswordSet = user.LastPasswordSet.ToString(),
-                        AD_AccountExpirationDate = user.AccountExpirationDate.ToString(),
-                        AD_AccountLockoutTime = user.AccountLockoutTime.ToString(),
+                        AD_lastLogIn = user.LastLogon == null ? "" : user.LastLogon.ToString(),
+                        AD_lastPasswordSet = user.LastPasswordSet == null ? "" : user.LastPasswordSet.ToString(),
+                        AD_AccountExpirationDate = user.AccountExpirationDate == null ? "" : user.AccountExpirationDate.ToString(),
+                        AD_AccountLockoutTime = user.AccountLockoutTime == null ? "" : user.AccountLockoutTime.ToString(),
                         AD_BadLogonCount = user.BadLogonCount,
                         AD_UserCannotChangePassword = user.UserCannotChangePassword,
-                        AD_UserPrincipalName = user.UserPrincipalName,
+                        AD_UserPrincipalName = user.UserPrincipalName ?? user.UserPrincipalName,
 
                         AD_Nv_AccountDisabled = nativeDeUser.AccountDisabled,
-                        AD_Nv_AccountExpirationDate = nativeDeUser.AccountExpirationDate.ToString(),
-                        AD_Nv_ADsPath = nativeDeUser.ADsPath.ToString(),
-                        AD_Nv_BadLoginAddress = nativeDeUser.BadLoginAddress.ToString(),
+                        AD_Nv_AccountExpirationDate = nativeDeUser.AccountExpirationDate == null ? "" :  nativeDeUser.AccountExpirationDate.ToString(),
+                        AD_Nv_ADsPath = nativeDeUser.ADsPath,
+                        //AD_Nv_BadLoginAddress = nativeDeUser.BadLoginAddress,
                         AD_Nv_BadLoginCount = nativeDeUser.BadLoginCount,
-                        AD_Nv_Department = nativeDeUser.Department.ToString(),
-                        AD_Nv_Description = nativeDeUser.Description.ToString(),
-                        AD_Nv_Division = nativeDeUser.Division.ToString(),
-                        AD_Nv_EmailAddress = nativeDeUser.EmailAddress.ToString(),
-                        AD_Nv_EmployeeID = nativeDeUser.EmployeeID.ToString(),
-                        AD_Nv_FaxNumber = nativeDeUser.FaxNumber.ToString(),
-                        AD_Nv_FirstName = nativeDeUser.FirstName.ToString(),
-                        AD_Nv_FullName = nativeDeUser.FullName.ToString(),
-                        AD_Nv_GraceLoginsAllowed = nativeDeUser.GraceLoginsAllowed,
-                        AD_Nv_GraceLoginsRemaining = nativeDeUser.GraceLoginsRemaining,
-                        AD_Nv_GUID = nativeDeUser.GUID.ToString(),
-                        AD_Nv_HomeDirectory = nativeDeUser.HomeDirectory.ToString(),
-                        AD_Nv_HomePage = nativeDeUser.HomePage.ToString(),
+                        //AD_Nv_Department = nativeDeUser.Department,
+                        AD_Nv_Description = nativeDeUser.Description,
+                        //AD_Nv_Division = nativeDeUser.Division,
+                        AD_Nv_EmailAddress = nativeDeUser.EmailAddress,
+                        //AD_Nv_EmployeeID = nativeDeUser.EmployeeID,
+                        //AD_Nv_FaxNumber = nativeDeUser.FaxNumber.ToString(),
+                        AD_Nv_FirstName = nativeDeUser.FirstName,
+                        AD_Nv_FullName = nativeDeUser.FullName,
+                        //AD_Nv_GraceLoginsAllowed = nativeDeUser.GraceLoginsAllowed,
+                        //AD_Nv_GraceLoginsRemaining = nativeDeUser.GraceLoginsRemaining,
+                        AD_Nv_GUID = nativeDeUser.GUID,
+                        //AD_Nv_HomeDirectory = nativeDeUser.HomeDirectory,
+                        //AD_Nv_HomePage = nativeDeUser.HomePage,
                         AD_Nv_IsAccountLocked = nativeDeUser.IsAccountLocked,
-                        AD_Nv_Languages = nativeDeUser.Languages.ToString(),
+                        //AD_Nv_Languages = nativeDeUser.Languages,
                         AD_Nv_LastFailedLogin = nativeDeUser.LastFailedLogin.ToString(),
                         AD_Nv_LastLogin = nativeDeUser.LastLogin.ToString(),
-                        AD_Nv_LastLogoff = nativeDeUser.LastLogoff.ToString(),
-                        AD_Nv_LastName = nativeDeUser.LastName.ToString(),
-                        AD_Nv_LoginHours = nativeDeUser.LoginHours.ToString(),
-                        AD_Nv_LoginScript = nativeDeUser.LoginScript.ToString(),
-                        AD_Nv_LoginWorkstations = nativeDeUser.LoginWorkstations.ToString(),
-                        AD_Nv_Manager = nativeDeUser.Manager.ToString(),
-                        AD_Nv_MaxLogins = nativeDeUser.MaxLogins,
-                        AD_Nv_MaxStorage = nativeDeUser.MaxStorage,
-                        AD_Nv_Name = nativeDeUser.Name.ToString(),
-                        AD_Nv_NamePrefix = nativeDeUser.NamePrefix.ToString(),
-                        AD_Nv_NameSuffix = nativeDeUser.NameSuffix.ToString(),
-                        AD_Nv_OfficeLocations = nativeDeUser.OfficeLocations.ToString(),
-                        AD_Nv_OtherName = nativeDeUser.OtherName.ToString(),
-                        AD_Nv_Parent = nativeDeUser.Parent.ToString(),
+                        //AD_Nv_LastLogoff = nativeDeUser.LastLogoff.ToString(),
+                        AD_Nv_LastName = nativeDeUser.LastName,
+                        //AD_Nv_LoginHours = nativeDeUser.LoginHours,
+                        //AD_Nv_LoginScript = nativeDeUser.LoginScript,
+                        //AD_Nv_LoginWorkstations = nativeDeUser.LoginWorkstations,
+                        //AD_Nv_Manager = nativeDeUser.Manager,
+                        //AD_Nv_MaxLogins = nativeDeUser.MaxLogins,
+                        //AD_Nv_MaxStorage = nativeDeUser.MaxStorage,
+                        AD_Nv_Name = nativeDeUser.Name,
+                        //AD_Nv_NamePrefix = nativeDeUser.NamePrefix,
+                        //AD_Nv_NameSuffix = nativeDeUser.NameSuffix,
+                        //AD_Nv_OfficeLocations = nativeDeUser.OfficeLocations,
+                        //AD_Nv_OtherName = nativeDeUser.OtherName,
+                        //AD_Nv_Parent = nativeDeUser.Parent,
                         AD_Nv_PasswordExpirationDate = nativeDeUser.PasswordExpirationDate.ToString(),
                         AD_Nv_PasswordLastChanged = nativeDeUser.PasswordLastChanged.ToString(),
                         AD_Nv_PasswordMinimumLength = nativeDeUser.PasswordMinimumLength,
                         AD_Nv_PasswordRequired = nativeDeUser.PasswordRequired,
-                        AD_Nv_Picture = nativeDeUser.Picture.ToString(),
-                        AD_Nv_PostalAddresses = nativeDeUser.PostalAddresses.ToString(),
-                        AD_Nv_PostalCodes = nativeDeUser.PostalCodes.ToString(),
-                        AD_Nv_Profile = nativeDeUser.Profile.ToString(),
+                        //AD_Nv_Picture = nativeDeUser.Picture,
+                        //AD_Nv_PostalAddresses = nativeDeUser.PostalAddresses,
+                        //AD_Nv_PostalCodes = nativeDeUser.PostalCodes,
+                        //AD_Nv_Profile = nativeDeUser.Profile,
                         AD_Nv_RequireUniquePassword = nativeDeUser.RequireUniquePassword,
-                        AD_Nv_Schema = nativeDeUser.Schema.ToString(),
-                        AD_Nv_TelephoneHome = nativeDeUser.TelephoneHome.ToString(),
-                        AD_Nv_TelephoneMobile = nativeDeUser.TelephoneMobile.ToString(),
-                        AD_Nv_TelephoneNumber = nativeDeUser.TelephoneNumber.ToString(),
-                        AD_Nv_TelephonePager = nativeDeUser.TelephonePager.ToString(),
-                        AD_Nv_Title = nativeDeUser.Title.ToString()
+                        AD_Nv_Schema = nativeDeUser.Schema ?? nativeDeUser.Schema,
+                        //AD_Nv_TelephoneHome = nativeDeUser.TelephoneHome,
+                        //AD_Nv_TelephoneMobile = nativeDeUser.TelephoneMobile,
+                        //AD_Nv_TelephoneNumber = nativeDeUser.TelephoneNumber,
+                        //AD_Nv_TelephonePager = nativeDeUser.TelephonePager,
+                        AD_Nv_Title = nativeDeUser.Title,
+
+                        passdiff = Math.Round((DateTime.Now - nativeDeUser.PasswordLastChanged).TotalDays, 2)
                     };
 
                     deUser.Close();
@@ -376,7 +380,7 @@ namespace RTAFMailManagement.Global_Class
 
                 if (user != null)
                 {
-                    //user.Enabled = disable;
+                    user.Enabled = disable;
 
                     DirectoryEntry deUser = (DirectoryEntry)user.GetUnderlyingObject();
                     ActiveDs.IADsUser nativeDeUser = (ActiveDs.IADsUser)deUser.NativeObject;
@@ -439,10 +443,6 @@ namespace RTAFMailManagement.Global_Class
 
                 if (user != null)
                 {
-                    //user.Enabled = true;
-                    //user.SetPassword(newPassword);
-                    //user.Save();
-
                     DirectoryEntry deUser = (DirectoryEntry)user.GetUnderlyingObject();
                     ActiveDs.IADsUser nativeDeUser = (ActiveDs.IADsUser)deUser.NativeObject;
 
@@ -451,6 +451,8 @@ namespace RTAFMailManagement.Global_Class
                     nativeDeUser.PasswordExpirationDate = DateTime.Now.AddMonths(6);
 
                     deUser.Close();
+
+                    user.Enabled = true;
 
                     user.Save();
 
@@ -506,10 +508,6 @@ namespace RTAFMailManagement.Global_Class
 
                 if (user != null)
                 {
-                    user.Enabled = true;
-                    //user.ChangePassword(oldPassword, newPassword);
-                    user.Save();
-
                     DirectoryEntry deUser = (DirectoryEntry)user.GetUnderlyingObject();
                     ActiveDs.IADsUser nativeDeUser = (ActiveDs.IADsUser)deUser.NativeObject;
 
@@ -518,6 +516,8 @@ namespace RTAFMailManagement.Global_Class
                     nativeDeUser.PasswordExpirationDate = DateTime.Now.AddMonths(6);
 
                     deUser.Close();
+
+                    user.Enabled = true;
 
                     user.Save();
 

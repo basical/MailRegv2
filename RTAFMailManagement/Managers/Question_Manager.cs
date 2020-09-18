@@ -21,7 +21,7 @@ namespace RTAFMailManagement.Managers
             try
             {
                 con.Open();
-                string sql = "SELECT * FROM idg_Status_AD WHERE Code IS NOT NULL; ";
+                string sql = "SELECT * FROM idg_Question ORDER BY id ";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -34,8 +34,9 @@ namespace RTAFMailManagement.Managers
                         Questions_id = reader.IsDBNull(0) ? defaultNum : reader.GetInt32(0),
                         Questions_Name = reader.IsDBNull(1) ? defaultString : reader.GetString(1),
                         Questions_Name_Eng = reader.IsDBNull(2) ? defaultString : reader.GetString(2),
-                        Questions_Remark = reader.IsDBNull(3) ? defaultString : reader.GetString(3),
-                        Questions_Sort = reader.IsDBNull(4) ? defaultNum : reader.GetInt32(4)
+                        Questions_Sort = reader.IsDBNull(3) ? defaultNum : reader.GetInt32(3),
+                        Questions_Remark = reader.IsDBNull(4) ? defaultString : reader.GetString(4)
+                        
                     };
 
                     list_data.Add(data);

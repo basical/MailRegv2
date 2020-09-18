@@ -161,6 +161,8 @@ namespace RTAFMailManagement.newRTAFMail {
         
         private string cODEField;
         
+        private string pERSON_TYPE_PKField;
+        
         /// <remarks/>
         public string ID {
             get {
@@ -298,6 +300,16 @@ namespace RTAFMailManagement.newRTAFMail {
             }
             set {
                 this.cODEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PERSON_TYPE_PK {
+            get {
+                return this.pERSON_TYPE_PKField;
+            }
+            set {
+                this.pERSON_TYPE_PKField = value;
             }
         }
     }
