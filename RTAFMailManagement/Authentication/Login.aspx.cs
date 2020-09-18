@@ -32,7 +32,7 @@ namespace RTAFMailManagement.Authentication
                 {
                     Activity_Log log = new Activity_Log()
                     {
-                        Act_log_user = username,
+                        Act_log_user = au.Admin_Users_Name,
                         Act_log_ip = ipAdd,
                         Act_log_details = "LGN_ADM : Admin Authenicated and Sign-in Success"
                     };
@@ -47,7 +47,7 @@ namespace RTAFMailManagement.Authentication
                 {
                     Activity_Log log = new Activity_Log()
                     {
-                        Act_log_user = username,
+                        Act_log_user = au.Admin_Users_Name,
                         Act_log_ip = ipAdd,
                         Act_log_details = "LGN_UADM : Unit Admin Authenicated and Sign-in Success"
                     };
@@ -62,7 +62,7 @@ namespace RTAFMailManagement.Authentication
                 {
                     Activity_Log log = new Activity_Log()
                     {
-                        Act_log_user = username,
+                        Act_log_user = au.Admin_Users_Name,
                         Act_log_ip = ipAdd,
                         Act_log_details = "LGN_SADM : Super Admin Authenicated and Sign-in Success"
                     };

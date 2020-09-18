@@ -38,6 +38,8 @@
                     <th style="text-align: center;">สังกัด</th>
                     <th style="text-align: center;">ตำแหน่ง</th>
                     <th style="text-align: center;">สถานะ</th>
+                    <th style="text-align: center;">สถานะ code </th>
+                    <th style="text-align: center;">ประเภทบุคคล code </th>
                 </tr>
             </thead>
             <tbody>
@@ -61,6 +63,8 @@
                     <td><%= data.RTAF_person_Unit.Unit_Name %></td>
                     <td><%= data.RTAF_person_Position %></td>
                     <td><%= data.RTAF_person_Status.RTAF_status_Name %></td>
+                    <td><%= data.RTAF_person_Status.RTAF_status_Code %></td>
+                    <td><%= data.RTAF_person_type.Person_Type_Id %></td>
                 </tr>
                 <%
                     }
@@ -72,7 +76,6 @@
     <!-- /.card-body -->
     <div class="card-footer">
         <ul class="pagination pagination-sm m-0 float-right">
-
         </ul>
     </div>
 </div>

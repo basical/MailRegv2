@@ -42,7 +42,9 @@
                     <th style="text-align: center; background-color: dodgerblue;">วันเกิด</th>
                     <th style="text-align: center; background-color: dodgerblue;">สังกัด</th>
                     <th style="text-align: center; background-color: dodgerblue;">ตำแหน่ง</th>
-                    <th style="text-align: center; background-color: dodgerblue; border-right: 2px solid #000000;">สถานะ</th>
+                    <th style="text-align: center; background-color: dodgerblue;">สถานะ</th>
+                    <th style="text-align: center; background-color: dodgerblue;">สถานะ code </th>
+                    <th style="text-align: center; background-color: dodgerblue; border-right: 2px solid #000000;">ประเภทบุคคล code </th>
 
                     <th style="text-align: center; background-color: crimson; border-left: 2px solid #000000;">รหัสบัตร</th>
                     <th style="text-align: center; background-color: crimson;">10 หลัก</th>
@@ -55,6 +57,8 @@
                     <th style="text-align: center; background-color: crimson;">สังกัด</th>
                     <th style="text-align: center; background-color: crimson;">ตำแหน่ง</th>
                     <th style="text-align: center; background-color: crimson;">สถานะ</th>
+                    <th style="text-align: center; background-color: crimson;">สถานะ code </th>
+                    <th style="text-align: center; background-color: crimson;">ประเภทบุคคล code </th>
                 </tr>
             </thead>
             <tbody>
@@ -77,7 +81,9 @@
                     <td><%= data.sevice_data.RTAF_person_BirthDate %></td>
                     <td><%= data.sevice_data.RTAF_person_Unit.Unit_Name %></td>
                     <td><%= data.sevice_data.RTAF_person_Position %></td>
-                    <td style="border-right: 2px solid #000000;"><%= data.sevice_data.RTAF_person_Status.RTAF_status_Name %></td>
+                    <td><%= data.sevice_data.RTAF_person_Status.RTAF_status_Name %></td>
+                    <td><%= data.sevice_data.RTAF_person_Status.RTAF_status_Code %></td>
+                    <td style="border-right: 2px solid #000000;"><%= data.sevice_data.RTAF_person_type.Person_Type_Id %></td>
 
                     <td style="border-left: 2px solid #000000;"><%= data.db_data.RTAF_person_IdCard %></td>
                     <td><%= data.db_data.RTAF_person_IdGvm %></td>
@@ -90,6 +96,8 @@
                     <td><%= data.db_data.RTAF_person_Unit.Unit_Name %></td>
                     <td><%= data.db_data.RTAF_person_Position %></td>
                     <td><%= data.db_data.RTAF_person_Status.RTAF_status_Name %></td>
+                    <td><%= data.db_data.RTAF_person_Status.RTAF_status_Code %></td>
+                    <td><%= data.db_data.RTAF_person_type.Person_Type_Id %></td>
                 </tr>
                 <%
                     }
@@ -101,7 +109,6 @@
     <!-- /.card-body -->
     <div class="card-footer">
         <ul class="pagination pagination-sm m-0 float-right">
-
         </ul>
     </div>
 </div>

@@ -31,7 +31,7 @@
                     <th style="text-align: center;">ตำแหน่ง</th>
                     <th style="text-align: center;">สถานะ</th>
                     <th style="text-align: center;">สถานะ code </th>
-                    <th style="text-align: center;">ประเภทบุุคคล code </th>
+                    <th style="text-align: center;">ประเภทบุคคล code </th>
                 </tr>
             </thead>
             <tbody>

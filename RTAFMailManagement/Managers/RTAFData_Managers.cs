@@ -76,6 +76,18 @@ namespace RTAFMailManagement.Managers
                         RTAF_status_Code = reader.IsDBNull(17) ? defaultNum : reader.GetInt32(17),
                         RTAF_status_Name = reader.IsDBNull(18) ? defaultString : reader.GetString(18)
                     };
+
+                    data.RTAF_person_type = new RTAF_DATA_Person_Type()
+                    {
+                        Person_Type_Id = reader.IsDBNull(19) ? defaultNum : reader.GetInt32(19),
+                        Person_Type_Name = reader.IsDBNull(20) ? defaultString : reader.GetString(20)
+                    };
+
+                    data.RTAF_user_status = new RTAF_DATA_User_Status()
+                    {
+                        User_Status_id = reader.IsDBNull(21) ? defaultNum : reader.GetInt32(21),
+                        User_Status_Name = reader.IsDBNull(22) ? defaultString : reader.GetString(22)
+                    };
                 }
                 else
                 {
@@ -147,6 +159,16 @@ namespace RTAFMailManagement.Managers
 
                     data.RTAF_person_UpdateDate = reader.IsDBNull(13) ? defaultString : reader.GetDateTime(13).ToString();
                     data.RTAF_person_CreateDate = reader.IsDBNull(14) ? defaultString : reader.GetDateTime(14).ToString();
+
+                    data.RTAF_person_type = new RTAF_DATA_Person_Type()
+                    {
+                        Person_Type_Id = reader.IsDBNull(15) ? defaultNum : reader.GetInt32(15)
+                    };
+
+                    data.RTAF_user_status = new RTAF_DATA_User_Status()
+                    {
+                        User_Status_id = reader.IsDBNull(16) ? defaultNum : reader.GetInt32(16)
+                    };
 
                 }
                 else
@@ -237,6 +259,18 @@ namespace RTAFMailManagement.Managers
                         {
                             RTAF_status_Code = reader.IsDBNull(17) ? defaultNum : reader.GetInt32(17),
                             RTAF_status_Name = reader.IsDBNull(18) ? defaultString : reader.GetString(18)
+                        },
+
+                        RTAF_person_type = new RTAF_DATA_Person_Type()
+                        {
+                            Person_Type_Id = reader.IsDBNull(19) ? defaultNum : reader.GetInt32(19),
+                            Person_Type_Name = reader.IsDBNull(20) ? defaultString : reader.GetString(20)
+                        },
+
+                        RTAF_user_status = new RTAF_DATA_User_Status()
+                        {
+                            User_Status_id = reader.IsDBNull(21) ? defaultNum : reader.GetInt32(21),
+                            User_Status_Name = reader.IsDBNull(22) ? defaultString : reader.GetString(22)
                         }
                     };
 
@@ -326,6 +360,18 @@ namespace RTAFMailManagement.Managers
                         {
                             RTAF_status_Code = reader.IsDBNull(17) ? defaultNum : reader.GetInt32(17),
                             RTAF_status_Name = reader.IsDBNull(18) ? defaultString : reader.GetString(18)
+                        },
+
+                        RTAF_person_type = new RTAF_DATA_Person_Type()
+                        {
+                            Person_Type_Id = reader.IsDBNull(19) ? defaultNum : reader.GetInt32(19),
+                            Person_Type_Name = reader.IsDBNull(20) ? defaultString : reader.GetString(20)
+                        },
+
+                        RTAF_user_status = new RTAF_DATA_User_Status()
+                        {
+                            User_Status_id = reader.IsDBNull(21) ? defaultNum : reader.GetInt32(21),
+                            User_Status_Name = reader.IsDBNull(22) ? defaultString : reader.GetString(22)
                         }
                     };
 
@@ -369,11 +415,12 @@ namespace RTAFMailManagement.Managers
                 cmd.Parameters.AddWithValue("@i_LName", sv_data.RTAF_person_LastName);
                 cmd.Parameters.AddWithValue("@i_FName_Eng", sv_data.RTAF_person_FirstName_Eng);
                 cmd.Parameters.AddWithValue("@i_LName_Eng", sv_data.RTAF_person_LastName_Eng);
-                cmd.Parameters.AddWithValue("@i_BirthDate", sv_data.RTAF_person_BirthDate);
+                cmd.Parameters.AddWithValue("@i_BirthDate", DateTimeUtility.CDateTime4Service2MSSQL(sv_data.RTAF_person_BirthDate));
                 cmd.Parameters.AddWithValue("@i_Unit_Code", sv_data.RTAF_person_Unit.Unit_Code);
                 cmd.Parameters.AddWithValue("@i_Position", sv_data.RTAF_person_Position);
                 cmd.Parameters.AddWithValue("@i_status", sv_data.RTAF_person_Status.RTAF_status_Name);
                 cmd.Parameters.AddWithValue("@i_status_code", sv_data.RTAF_person_Status.RTAF_status_Code);
+                cmd.Parameters.AddWithValue("@i_type_id", 1);
 
                 cmd.ExecuteNonQuery();
 
@@ -414,7 +461,7 @@ namespace RTAFMailManagement.Managers
                 cmd.Parameters.AddWithValue("@i_LName", sv_data.RTAF_person_LastName);
                 cmd.Parameters.AddWithValue("@i_FName_Eng", sv_data.RTAF_person_FirstName_Eng);
                 cmd.Parameters.AddWithValue("@i_LName_Eng", sv_data.RTAF_person_LastName_Eng);
-                cmd.Parameters.AddWithValue("@i_BirthDate", sv_data.RTAF_person_BirthDate);
+                cmd.Parameters.AddWithValue("@i_BirthDate", DateTimeUtility.CDateTime4Service2MSSQL(sv_data.RTAF_person_BirthDate));
                 cmd.Parameters.AddWithValue("@i_Unit_Code", sv_data.RTAF_person_Unit.Unit_Code);
                 cmd.Parameters.AddWithValue("@i_Position", sv_data.RTAF_person_Position);
                 cmd.Parameters.AddWithValue("@i_status", sv_data.RTAF_person_Status.RTAF_status_Name);

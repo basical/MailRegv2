@@ -35,7 +35,7 @@ namespace RTAFMailManagement.Form_Main
             {
                 Act_log_user = au.Admin_Users_Name,
                 Act_log_ip = ipAdd,
-                Act_log_details = "LGOT_001 : Sign Out Successfully"
+                Act_log_details = "LGOT_001 : User Sign Out Successfull"
             };
 
             new Activity_Log_Manager().AddActivityLogs(log);
