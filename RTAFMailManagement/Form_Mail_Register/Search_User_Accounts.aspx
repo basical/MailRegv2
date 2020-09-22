@@ -144,26 +144,30 @@
                                                 <span class="<%= data.User_ADStatus.AD_Status_Code == 2 ? "badge bg-success" : data.User_ADStatus.AD_Status_Code == 3 ? "badge bg-danger" : "badge bg-warning" %>"><%= data.User_ADStatus.AD_Status_Name %></span>
                                             </td>
                                             <td style="text-align: center;">
-                                                <span class="<%= data.User_Real_AD.AD_Enabled? "badge bg-success" : "badge bg-danger" %>"><%= data.User_Real_AD.AD_Enabled? "Active" : "Disable" %></span>
+                                                <span class="<%= data.User_Real_AD != null? data.User_Real_AD.AD_Enabled? "badge bg-success" : "badge bg-danger" : "badge bg-danger" %>"><%= data.User_Real_AD != null? data.User_Real_AD.AD_Enabled? "Active" : "Disable" : "Disable" %></span>
                                             </td>
-                                            <td><%= DateTimeUtility.convertDateTimeToPageRealServer(data.User_Real_AD.AD_Nv_PasswordLastChanged) %></td>
-                                            <td <%= data.User_Real_AD.passdiff >= 150 && data.User_Real_AD.passdiff < 180 ? "style='color: #ebeb00;'" : data.User_Real_AD.passdiff >= 180 ? "style='color: #eb0000;'" : "style='color: #107500;'"  %>><%= data.User_Real_AD.passdiff %></td>
-                                            <td><%= DateTimeUtility.convertDateTimeToPageRealServer(data.User_Real_AD.AD_Nv_LastLogin) %></td>
+                                            <td><%= data.User_Real_AD != null? DateTimeUtility.convertDateTimeToPageRealServer(data.User_Real_AD.AD_Nv_PasswordLastChanged) : "" %></td>
+                                            <td <%= data.User_Real_AD != null? data.User_Real_AD.passdiff >= 150 && data.User_Real_AD.passdiff < 180 ? "style='color: #ebeb00;'" : data.User_Real_AD.passdiff >= 180 ? "style='color: #eb0000;'" : "style='color: #107500;'" : "style='color: #eb0000;'" %>><%= data.User_Real_AD != null? data.User_Real_AD.passdiff : 0 %></td>
+                                            <td><%= data.User_Real_AD != null? DateTimeUtility.convertDateTimeToPageRealServer(data.User_Real_AD.AD_Nv_LastLogin) : "" %></td>
                                             <td><%= data.User_status_msg %></td>
                                             <td style="text-align: center;">
                                                 <a class="btn bg-gradient-info btn-sm" href="AD_Account_information?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard, data.User_id.ToString()) %>&mode=e" data-toggle="tooltip" data-placement="top" title="ข้อมูล User ใน AD Server"><i class="far fa-address-card fa-fw"></i></a>
                                             </td>
                                             <td style="text-align: center;">
                                                 <% 
-                                                    if (data.User_Real_AD.AD_Enabled)
+                                                    if (data.User_Real_AD != null)
                                                     {
+                                                        if (data.User_Real_AD.AD_Enabled)
+                                                        {
                                                 %>
                                                 <a class="btn bg-gradient-danger btn-sm" href="ChangeADStatus?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard, data.User_id.ToString()) %>&mode=d" data-toggle="tooltip" data-placement="top" title="ปิดการใช้งาน"><i class="fas fa-user-slash fa-fw"></i></a>
                                                 <%  }
-                                                    else
-                                                    { %>
+                                                        else
+                                                        { 
+                                                %>
                                                 <a class="btn bg-gradient-success btn-sm" href="ChangeADStatus?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard, data.User_id.ToString()) %>&mode=e" data-toggle="tooltip" data-placement="top" title="เปิดการใช้งาน"><i class="fas fa-user fa-fw"></i></a>
                                                 <%
+                                                        }
                                                     }
                                                 %>
                                             </td>

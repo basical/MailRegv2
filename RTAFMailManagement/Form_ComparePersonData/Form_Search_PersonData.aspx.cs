@@ -119,68 +119,21 @@ namespace RTAFMailManagement.Form_ComparePersonData
 
             List<Units> list_data = new Units_Manager().getAllUnits();
 
-            for (int i = 0; i < list_data.Count; i++)
+            if (new RTAFData_Managers().ClearPersonalData())
             {
 
-                Units data = list_data[i];
-
-                RTAF_DATA sv_data = new RTAF_DATA()
+                for (int i = 0; i < list_data.Count; i++)
                 {
-                    RTAF_person_Rank = new Ranks()
+
+                    Units data = list_data[i];
+
+                    List<RTAF_DATA> service_data = ConnectRTAFService.getNewRTAFPerson(data.Unit_Code.ToString());
+
+                    for (int j = 0; j < service_data.Count; j++)
                     {
-                        Rank_Code = 0
-                    },
-
-                    RTAF_person_Unit = new Units()
-                    {
-                        Unit_Code = data.Unit_Code
-                    },
-
-                    RTAF_person_Status = new RTAF_Status()
-                    {
-                        RTAF_status_Code = 0
-                    }
-                };
-
-                List<RTAF_DATA> service_data = ConnectRTAFService.getNewRTAFPerson(data.Unit_Code.ToString());
-
-                List<RTAF_DATA> data_by_unit = new RTAFData_Managers().GetRTAFDataByUnit(sv_data, 0, 0);
-
-                List<Compare_Data> found_data = new List<Compare_Data>();
-
-                List<RTAF_DATA> nfound_data = new List<RTAF_DATA>();
-
-                for (int j = 0; j < service_data.Count; j++)
-                {
-                    RTAF_DATA data_s = new RTAFData_Managers().CheckPersonalData(service_data[j]);
-
-                    if (data_s != null)
-                    {
-                        Compare_Data cprd = new Compare_Data();
-
-                        cprd.db_data = new RTAF_DATA();
-                        cprd.db_data = data_s;
-
-                        cprd.sevice_data = new RTAF_DATA();
-                        cprd.sevice_data = service_data[j];
-
-                        found_data.Add(cprd);
-                    }
-                    else
-                    {
-                        RTAF_DATA f_data = new RTAFData_Managers().GetRTAFData(service_data[j].RTAF_person_IdCard, service_data[j].RTAF_person_IdGvm);
-
-                        if (f_data == null)
-                        {
-                            nfound_data.Add(service_data[j]);
-                        }
+                        new RTAFData_Managers().AddPersonalData(service_data[j]);
                     }
                 }
-
-                Session["service_data"] = service_data;
-                Session["data_by_unit"] = data_by_unit;
-                Session["found_data"] = found_data;
-                Session["nfound_data"] = nfound_data;
             }
         }
     }

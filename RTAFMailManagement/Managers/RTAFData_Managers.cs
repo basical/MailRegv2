@@ -420,7 +420,7 @@ namespace RTAFMailManagement.Managers
                 cmd.Parameters.AddWithValue("@i_Position", sv_data.RTAF_person_Position);
                 cmd.Parameters.AddWithValue("@i_status", sv_data.RTAF_person_Status.RTAF_status_Name);
                 cmd.Parameters.AddWithValue("@i_status_code", sv_data.RTAF_person_Status.RTAF_status_Code);
-                cmd.Parameters.AddWithValue("@i_type_id", 1);
+                cmd.Parameters.AddWithValue("@i_type_id", sv_data.RTAF_person_type.Person_Type_Id);
 
                 cmd.ExecuteNonQuery();
 
@@ -481,6 +481,37 @@ namespace RTAFMailManagement.Managers
             catch (Exception ex)
             {
                 error = "Exception ==> Managers --> RTAFData_Managers --> editPersonalData() ";
+                Log_Error._writeErrorFile(error, ex);
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public bool ClearPersonalData()
+        {
+            SqlConnection con = MSSQLConnection.connectionMSSQL();
+            try
+            {
+                con.Open();
+                string sql = "TRUNCATE TABLE [dbo].[idg_RTAF_Persons] ";
+                SqlCommand cmd = new SqlCommand(sql, con);
+
+                cmd.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                error = "SqlException ==> Managers --> RTAFData_Managers --> ClearPersonalData() ";
+                Log_Error._writeErrorFile(error, ex);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                error = "Exception ==> Managers --> RTAFData_Managers --> ClearPersonalData() ";
                 Log_Error._writeErrorFile(error, ex);
                 return false;
             }

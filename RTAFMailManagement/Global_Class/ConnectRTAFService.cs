@@ -92,11 +92,11 @@ namespace RTAFMailManagement.Global_Class
                     RTAF_person_IdCard = string.IsNullOrEmpty(resault[i].ID) ? "" : resault[i].PeopleID,
                     RTAF_person_FirstName = string.IsNullOrEmpty(resault[i].ID) ? "" : resault[i].FIRSTNAME,
                     RTAF_person_LastName = string.IsNullOrEmpty(resault[i].ID) ? "" : resault[i].LASTNAME,
-                    RTAF_person_FirstName_Eng = string.IsNullOrEmpty(resault[i].EFIRSTNAME)? "" : resault[i].EFIRSTNAME.ToLower(),
-                    RTAF_person_LastName_Eng = string.IsNullOrEmpty(resault[i].ELASTNAME)? "" : resault[i].ELASTNAME.ToLower(),
-                    RTAF_person_BirthDate = string.IsNullOrEmpty(resault[i].BIRTHDAY.ToString())? "01/01/2540 0:00:00" : resault[i].BIRTHDAY.ToString(),
+                    RTAF_person_FirstName_Eng = string.IsNullOrEmpty(resault[i].EFIRSTNAME) ? "" : resault[i].EFIRSTNAME.ToLower(),
+                    RTAF_person_LastName_Eng = string.IsNullOrEmpty(resault[i].ELASTNAME) ? "" : resault[i].ELASTNAME.ToLower(),
+                    RTAF_person_BirthDate = string.IsNullOrEmpty(resault[i].BIRTHDAY.ToString()) ? "01/01/2540 0:00:00" : resault[i].BIRTHDAY.ToString(),
                     RTAF_person_Position = string.IsNullOrEmpty(resault[i].POSITION) ? "" : resault[i].POSITION,
-                    
+
                     RTAF_person_Status = new RTAF_Status
                     {
                         RTAF_status_Code = string.IsNullOrEmpty(resault[i].CODE) ? 0 : int.Parse(resault[i].CODE),
@@ -147,7 +147,7 @@ namespace RTAFMailManagement.Global_Class
             bool found_user = false;
 
             string ADPAth = ConfigurationManager.AppSettings["AD_Path"];
-            
+
             DirectoryEntry de = null;
             DirectorySearcher ds = null;
 
@@ -157,7 +157,7 @@ namespace RTAFMailManagement.Global_Class
                 ds = new DirectorySearcher(de);
                 SearchResult res = ds.FindOne();
 
-                if(res != null)
+                if (res != null)
                 {
                     found_user = true;
                 }
@@ -168,12 +168,12 @@ namespace RTAFMailManagement.Global_Class
 
                 return found_user;
             }
-            catch(WebException ex)
+            catch (WebException ex)
             {
                 error = "WebException ==> Global_Class --> ConnectRTAFService --> AuthenUserWithLDAPs()";
                 Log_Error._writeErrorFile(error, ex);
                 return found_user;
-                
+
             }
             catch (Exception ex)
             {
@@ -276,62 +276,69 @@ namespace RTAFMailManagement.Global_Class
                         AD_AccountLockoutTime = user.AccountLockoutTime == null ? "" : user.AccountLockoutTime.ToString(),
                         AD_BadLogonCount = user.BadLogonCount,
                         AD_UserCannotChangePassword = user.UserCannotChangePassword,
-                        AD_UserPrincipalName = user.UserPrincipalName ?? user.UserPrincipalName,
-
-                        AD_Nv_AccountDisabled = nativeDeUser.AccountDisabled,
-                        AD_Nv_AccountExpirationDate = nativeDeUser.AccountExpirationDate == null ? "" :  nativeDeUser.AccountExpirationDate.ToString(),
-                        AD_Nv_ADsPath = nativeDeUser.ADsPath,
-                        //AD_Nv_BadLoginAddress = nativeDeUser.BadLoginAddress,
-                        AD_Nv_BadLoginCount = nativeDeUser.BadLoginCount,
-                        //AD_Nv_Department = nativeDeUser.Department,
-                        AD_Nv_Description = nativeDeUser.Description,
-                        //AD_Nv_Division = nativeDeUser.Division,
-                        AD_Nv_EmailAddress = nativeDeUser.EmailAddress,
-                        //AD_Nv_EmployeeID = nativeDeUser.EmployeeID,
-                        //AD_Nv_FaxNumber = nativeDeUser.FaxNumber.ToString(),
-                        AD_Nv_FirstName = nativeDeUser.FirstName,
-                        AD_Nv_FullName = nativeDeUser.FullName,
-                        //AD_Nv_GraceLoginsAllowed = nativeDeUser.GraceLoginsAllowed,
-                        //AD_Nv_GraceLoginsRemaining = nativeDeUser.GraceLoginsRemaining,
-                        AD_Nv_GUID = nativeDeUser.GUID,
-                        //AD_Nv_HomeDirectory = nativeDeUser.HomeDirectory,
-                        //AD_Nv_HomePage = nativeDeUser.HomePage,
-                        AD_Nv_IsAccountLocked = nativeDeUser.IsAccountLocked,
-                        //AD_Nv_Languages = nativeDeUser.Languages,
-                        AD_Nv_LastFailedLogin = nativeDeUser.LastFailedLogin.ToString(),
-                        AD_Nv_LastLogin = nativeDeUser.LastLogin.ToString(),
-                        //AD_Nv_LastLogoff = nativeDeUser.LastLogoff.ToString(),
-                        AD_Nv_LastName = nativeDeUser.LastName,
-                        //AD_Nv_LoginHours = nativeDeUser.LoginHours,
-                        //AD_Nv_LoginScript = nativeDeUser.LoginScript,
-                        //AD_Nv_LoginWorkstations = nativeDeUser.LoginWorkstations,
-                        //AD_Nv_Manager = nativeDeUser.Manager,
-                        //AD_Nv_MaxLogins = nativeDeUser.MaxLogins,
-                        //AD_Nv_MaxStorage = nativeDeUser.MaxStorage,
-                        AD_Nv_Name = nativeDeUser.Name,
-                        //AD_Nv_NamePrefix = nativeDeUser.NamePrefix,
-                        //AD_Nv_NameSuffix = nativeDeUser.NameSuffix,
-                        //AD_Nv_OfficeLocations = nativeDeUser.OfficeLocations,
-                        //AD_Nv_OtherName = nativeDeUser.OtherName,
-                        //AD_Nv_Parent = nativeDeUser.Parent,
-                        AD_Nv_PasswordExpirationDate = nativeDeUser.PasswordExpirationDate.ToString(),
-                        AD_Nv_PasswordLastChanged = nativeDeUser.PasswordLastChanged.ToString(),
-                        AD_Nv_PasswordMinimumLength = nativeDeUser.PasswordMinimumLength,
-                        AD_Nv_PasswordRequired = nativeDeUser.PasswordRequired,
-                        //AD_Nv_Picture = nativeDeUser.Picture,
-                        //AD_Nv_PostalAddresses = nativeDeUser.PostalAddresses,
-                        //AD_Nv_PostalCodes = nativeDeUser.PostalCodes,
-                        //AD_Nv_Profile = nativeDeUser.Profile,
-                        AD_Nv_RequireUniquePassword = nativeDeUser.RequireUniquePassword,
-                        AD_Nv_Schema = nativeDeUser.Schema ?? nativeDeUser.Schema,
-                        //AD_Nv_TelephoneHome = nativeDeUser.TelephoneHome,
-                        //AD_Nv_TelephoneMobile = nativeDeUser.TelephoneMobile,
-                        //AD_Nv_TelephoneNumber = nativeDeUser.TelephoneNumber,
-                        //AD_Nv_TelephonePager = nativeDeUser.TelephonePager,
-                        AD_Nv_Title = nativeDeUser.Title,
-
-                        passdiff = Math.Round((DateTime.Now - nativeDeUser.PasswordLastChanged).TotalDays, 2)
+                        AD_UserPrincipalName = user.UserPrincipalName ?? user.UserPrincipalName
                     };
+
+                    try { real.AD_Nv_AccountDisabled = nativeDeUser.AccountDisabled; } catch (Exception) { real.AD_Nv_AccountDisabled = false; }
+                    try { real.AD_Nv_AccountExpirationDate = nativeDeUser.AccountExpirationDate.ToString(); } catch (Exception) { real.AD_Nv_AccountExpirationDate = ""; }
+                    try { real.AD_Nv_ADsPath = nativeDeUser.ADsPath; } catch (Exception) { real.AD_Nv_ADsPath = ""; }
+                    try { real.AD_Nv_BadLoginAddress = nativeDeUser.BadLoginAddress; } catch (Exception) { real.AD_Nv_BadLoginAddress = ""; }
+                    try { real.AD_Nv_BadLoginCount = nativeDeUser.BadLoginCount; } catch (Exception) { real.AD_Nv_BadLoginCount = 0; }
+                    try { real.AD_Nv_Department = nativeDeUser.Department; } catch (Exception) { real.AD_Nv_Department = ""; }
+                    try { real.AD_Nv_Description = nativeDeUser.Description; } catch (Exception) { real.AD_Nv_Description = ""; }
+                    try { real.AD_Nv_Division = nativeDeUser.Division; } catch (Exception) { real.AD_Nv_Division = ""; }
+                    try { real.AD_Nv_EmailAddress = nativeDeUser.EmailAddress; } catch (Exception) { real.AD_Nv_EmailAddress = ""; }
+                    try { real.AD_Nv_EmployeeID = nativeDeUser.EmployeeID; } catch (Exception) { real.AD_Nv_EmployeeID = ""; }
+                    try { real.AD_Nv_FaxNumber = nativeDeUser.FaxNumber.ToString(); } catch (Exception) { real.AD_Nv_FirstName = ""; }
+                    try { real.AD_Nv_FirstName = nativeDeUser.FirstName; } catch (Exception) { real.AD_Nv_FirstName = ""; }
+                    try { real.AD_Nv_FullName = nativeDeUser.FullName; } catch (Exception) { real.AD_Nv_FullName = ""; }
+                    try { real.AD_Nv_GraceLoginsAllowed = nativeDeUser.GraceLoginsAllowed; } catch (Exception) { real.AD_Nv_GraceLoginsAllowed = 0; }
+                    try { real.AD_Nv_GraceLoginsRemaining = nativeDeUser.GraceLoginsRemaining; } catch (Exception) { real.AD_Nv_GraceLoginsRemaining = 0; }
+                    try { real.AD_Nv_GUID = nativeDeUser.GUID; } catch (Exception) { real.AD_Nv_GUID = ""; }
+                    try { real.AD_Nv_HomeDirectory = nativeDeUser.HomeDirectory; } catch (Exception) { real.AD_Nv_HomeDirectory = ""; }
+                    try { real.AD_Nv_HomePage = nativeDeUser.HomePage; } catch (Exception) { real.AD_Nv_HomePage = ""; }
+                    try { real.AD_Nv_IsAccountLocked = nativeDeUser.IsAccountLocked; } catch (Exception) { real.AD_Nv_IsAccountLocked = false; }
+                    try { real.AD_Nv_Languages = nativeDeUser.Languages; } catch (Exception) { real.AD_Nv_Languages = ""; }
+                    try { real.AD_Nv_LastFailedLogin = nativeDeUser.LastFailedLogin.ToString(); } catch (Exception) { real.AD_Nv_LastFailedLogin = ""; }
+                    try { real.AD_Nv_LastLogin = nativeDeUser.LastLogin.ToString(); } catch (Exception) { real.AD_Nv_LastLogin = ""; }
+                    try { real.AD_Nv_LastLogoff = nativeDeUser.LastLogoff.ToString(); } catch (Exception) { real.AD_Nv_LastLogoff = ""; }
+                    try { real.AD_Nv_LastName = nativeDeUser.LastName; } catch (Exception) { real.AD_Nv_LastName = ""; }
+                    try { real.AD_Nv_LoginHours = nativeDeUser.LoginHours; } catch (Exception) { real.AD_Nv_LoginHours = ""; }
+                    try { real.AD_Nv_LoginScript = nativeDeUser.LoginScript; } catch (Exception) { real.AD_Nv_LoginScript = ""; }
+                    try { real.AD_Nv_LoginWorkstations = nativeDeUser.LoginWorkstations; } catch (Exception) { real.AD_Nv_LoginWorkstations = ""; }
+                    try { real.AD_Nv_Manager = nativeDeUser.Manager; } catch (Exception) { real.AD_Nv_Manager = ""; }
+                    try { real.AD_Nv_MaxLogins = nativeDeUser.MaxLogins; } catch (Exception) { real.AD_Nv_MaxLogins = 0; }
+                    try { real.AD_Nv_MaxStorage = nativeDeUser.MaxStorage; } catch (Exception) { real.AD_Nv_MaxStorage = 0; }
+                    try { real.AD_Nv_Name = nativeDeUser.Name; } catch (Exception) { real.AD_Nv_Name = ""; }
+                    try { real.AD_Nv_NamePrefix = nativeDeUser.NamePrefix; } catch (Exception) { real.AD_Nv_NamePrefix = ""; }
+                    try { real.AD_Nv_NameSuffix = nativeDeUser.NameSuffix; } catch (Exception) { real.AD_Nv_NameSuffix = ""; }
+                    try { real.AD_Nv_OfficeLocations = nativeDeUser.OfficeLocations; } catch (Exception) { real.AD_Nv_OfficeLocations = ""; }
+                    try { real.AD_Nv_OtherName = nativeDeUser.OtherName; } catch (Exception) { real.AD_Nv_OtherName = ""; }
+                    try { real.AD_Nv_Parent = nativeDeUser.Parent; } catch (Exception) { real.AD_Nv_Parent = ""; }
+                    try { real.AD_Nv_PasswordExpirationDate = nativeDeUser.PasswordExpirationDate.ToString(); } catch (Exception) { real.AD_Nv_PasswordExpirationDate = ""; }
+                    try
+                    {
+                        real.AD_Nv_PasswordLastChanged = nativeDeUser.PasswordLastChanged.ToString();
+                        real.passdiff = Math.Round((DateTime.Now - nativeDeUser.PasswordLastChanged).TotalDays, 2);
+                    }
+                    catch (Exception)
+                    {
+                        real.AD_Nv_PasswordLastChanged = "";
+                        real.passdiff = 0;
+                    }
+                    try { real.AD_Nv_PasswordMinimumLength = nativeDeUser.PasswordMinimumLength; } catch (Exception) { real.AD_Nv_PasswordMinimumLength = 0; }
+                    try { real.AD_Nv_PasswordRequired = nativeDeUser.PasswordRequired; } catch (Exception) { real.AD_Nv_PasswordRequired = false; }
+                    try { real.AD_Nv_Picture = nativeDeUser.Picture; } catch (Exception) { real.AD_Nv_Picture = ""; }
+                    try { real.AD_Nv_PostalAddresses = nativeDeUser.PostalAddresses; } catch (Exception) { real.AD_Nv_PostalAddresses = ""; }
+                    try { real.AD_Nv_PostalCodes = nativeDeUser.PostalCodes; } catch (Exception) { real.AD_Nv_PostalCodes = ""; }
+                    try { real.AD_Nv_Profile = nativeDeUser.Profile; } catch (Exception) { real.AD_Nv_Profile = ""; }
+                    try { real.AD_Nv_RequireUniquePassword = nativeDeUser.RequireUniquePassword; } catch (Exception) { real.AD_Nv_RequireUniquePassword = false; }
+                    try { real.AD_Nv_Schema = nativeDeUser.Schema; } catch (Exception) { real.AD_Nv_Schema = ""; }
+                    try { real.AD_Nv_TelephoneHome = nativeDeUser.TelephoneHome; } catch (Exception) { real.AD_Nv_TelephoneHome = ""; }
+                    try { real.AD_Nv_TelephoneMobile = nativeDeUser.TelephoneMobile; } catch (Exception) { real.AD_Nv_TelephoneMobile = ""; }
+                    try { real.AD_Nv_TelephoneNumber = nativeDeUser.TelephoneNumber; } catch (Exception) { real.AD_Nv_TelephoneNumber = ""; }
+                    try { real.AD_Nv_TelephonePager = nativeDeUser.TelephonePager; } catch (Exception) { real.AD_Nv_TelephonePager = ""; }
+                    try { real.AD_Nv_Title = nativeDeUser.Title; } catch (Exception) { real.AD_Nv_Title = ""; }
 
                     deUser.Close();
 
@@ -447,7 +454,6 @@ namespace RTAFMailManagement.Global_Class
 
                     nativeDeUser.AccountDisabled = false;
                     nativeDeUser.SetPassword(newPassword);
-                    nativeDeUser.PasswordExpirationDate = DateTime.Now.AddMonths(6);
 
                     deUser.Close();
 
