@@ -30,14 +30,17 @@ namespace RTAFMailManagement.Form_Mail_Register
                 string User_IdCard = code[2];
                 string User_Id = code[3];
 
-                Admin_Users au = (Admin_Users)Session["admin_user"];
-                string ipAdd = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables["REMOTE_ADDR"];
 
                 if (Request.Params["mode"] == "e")
                 {
                     Users data = new Users_Mananer().GetUserById(User_Id);
 
                     DisplayInfoProfile(data);
+                }
+                else if (Request.Params["mode"] == "d")
+                {
+                    Admin_Users au = (Admin_Users)Session["admin_user"];
+                    string ipAdd = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables["REMOTE_ADDR"];
                 }
             }
         }
@@ -54,7 +57,7 @@ namespace RTAFMailManagement.Form_Mail_Register
             LName_Eng_TBx.Text = data.User_LastNameEn;
             Birthday_Date_TBx.Text = DateTimeUtility.convertDateToPageRealServer(data.User_BirthDate);
 
-            if(data.User_status.RTAF_status_Code == 0)
+            if (data.User_status.RTAF_status_Code == 0)
             {
                 Person_Status_DDL.SelectedItem.Text = data.User_status_msg;
             }
@@ -140,12 +143,12 @@ namespace RTAFMailManagement.Form_Mail_Register
 
         protected void Cancel_Btn_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("/Form_Mail_Register/Search_User_Accounts");
         }
 
         protected void Close_Btn_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("/Form_Mail_Register/Search_User_Accounts");
         }
 
         // ดึงข้อมูลชั้นยศ ทั้งหมด

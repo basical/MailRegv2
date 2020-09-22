@@ -26,9 +26,9 @@
         <table id="service_table" class="table table-bordered table-striped" style="font-size: 9pt;">
             <thead>
                 <tr>
-                    <th style="text-align: center; background-color: dodgerblue; border-right: 2px solid #000000;" colspan="12">ข้อมูลใหม่ [ WEB Service ] </th>
+                    <th style="text-align: center; background-color: dodgerblue; border-right: 2px solid #000000;" colspan="14">ข้อมูลใหม่ [ WEB Service ] </th>
 
-                    <th style="text-align: center; background-color: crimson; border-left: 2px solid #000000;" colspan="11">ข้อมูลเก่า [ RTAF DB ]</th>
+                    <th style="text-align: center; background-color: crimson; border-left: 2px solid #000000;" colspan="13">ข้อมูลเก่า [ RTAF DB ]</th>
                 </tr>
                 <tr>
                     <th style="text-align: center; background-color: dodgerblue;">#</th>

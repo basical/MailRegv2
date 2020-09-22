@@ -159,22 +159,22 @@ namespace RTAFMailManagement.Form_Configuration
         protected global::System.Web.UI.WebControls.DropDownList Person_Status_DDL;
 
         /// <summary>
-        /// Search_Btn control.
+        /// Save_Btn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Search_Btn;
+        protected global::System.Web.UI.WebControls.LinkButton Save_Btn;
 
         /// <summary>
-        /// Add_Btn control.
+        /// Close_Btn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Add_Btn;
+        protected global::System.Web.UI.WebControls.LinkButton Close_Btn;
 
         /// <summary>
         /// link_Previous control.

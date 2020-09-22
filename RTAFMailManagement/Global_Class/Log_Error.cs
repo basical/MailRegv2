@@ -8,7 +8,7 @@ namespace RTAFMailManagement.Global_Class
     {
         public static void _writeErrorDebug(string txtError)
         {
-            string mainDirectoryPath = "C:/Error_Log_RTAFMail2/";
+            string mainDirectoryPath = "C:/Error_Log_RTAFMail/";
 
             if (!Directory.Exists(mainDirectoryPath))
             {
@@ -35,7 +35,7 @@ namespace RTAFMailManagement.Global_Class
 
         public static void _writeErrorFile(string txtError, Exception ex)
         {
-            string mainDirectoryPath = "C:/Error_Log_RTAFMail2/";
+            string mainDirectoryPath = "C:/Error_Log_RTAFMail/";
 
             if (!Directory.Exists(mainDirectoryPath))
             {
@@ -72,7 +72,7 @@ namespace RTAFMailManagement.Global_Class
 
         public static void _writeErrorFile(string txtError, SqlException ex)
         {
-            string mainDirectoryPath = "C:/Error_Log_RTAFMail2/";
+            string mainDirectoryPath = "C:/Error_Log_RTAFMail/";
 
             if (!Directory.Exists(mainDirectoryPath))
             {

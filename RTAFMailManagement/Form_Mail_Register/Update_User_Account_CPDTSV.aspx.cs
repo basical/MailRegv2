@@ -55,6 +55,9 @@ namespace RTAFMailManagement.Form_Mail_Register
 
                 Users i_data = new Users()
                 {
+                    person_data = data
+
+                    /*
                     User_IdCard = data.RTAF_person_IdCard,
                     User_IdGvm = data.RTAF_person_IdGvm,
                     User_BirthDate = data.RTAF_person_BirthDate,
@@ -82,6 +85,7 @@ namespace RTAFMailManagement.Form_Mail_Register
                     },
 
                     User_status_msg = data.RTAF_person_Status.RTAF_status_Name
+                    */
                 };
 
                 if (new Users_Mananer().UpdateUserAccountWithRTAFDATA(i_data))

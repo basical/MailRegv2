@@ -95,7 +95,12 @@ namespace RTAFMailManagement.Form_ComparePersonData
                 }
                 else
                 {
-                    nfound_data.Add(service_data[i]);
+                    RTAF_DATA f_data = new RTAFData_Managers().GetRTAFData(service_data[i].RTAF_person_IdCard, service_data[i].RTAF_person_IdGvm);
+
+                    if (f_data == null)
+                    {
+                        nfound_data.Add(service_data[i]);
+                    }
                 }
             }
 
@@ -163,7 +168,12 @@ namespace RTAFMailManagement.Form_ComparePersonData
                     }
                     else
                     {
-                        nfound_data.Add(service_data[j]);
+                        RTAF_DATA f_data = new RTAFData_Managers().GetRTAFData(service_data[j].RTAF_person_IdCard, service_data[j].RTAF_person_IdGvm);
+
+                        if (f_data == null)
+                        {
+                            nfound_data.Add(service_data[j]);
+                        }
                     }
                 }
 

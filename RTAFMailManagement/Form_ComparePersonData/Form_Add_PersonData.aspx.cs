@@ -21,6 +21,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
 
                 LoadUnits();
                 LoadRanks();
+                LoadRTAFStatus();
             }   
         }
 
@@ -47,7 +48,6 @@ namespace RTAFMailManagement.Form_ComparePersonData
                 Units_DDL.Items.Add(new ListItem(data.Unit_FullName + " ( " + data.Unit_Name + " ) ", data.Unit_Code.ToString()));
             }
         }
-
 
         // ดึงข้อมูลสถานะกำลังพล ทั้งหมด
         private void LoadRTAFStatus()

@@ -380,8 +380,6 @@ namespace RTAFMailManagement.Global_Class
 
                 if (user != null)
                 {
-                    user.Enabled = disable;
-
                     DirectoryEntry deUser = (DirectoryEntry)user.GetUnderlyingObject();
                     ActiveDs.IADsUser nativeDeUser = (ActiveDs.IADsUser)deUser.NativeObject;
 
@@ -389,6 +387,7 @@ namespace RTAFMailManagement.Global_Class
 
                     deUser.Close();
 
+                    user.Enabled = disable;
                     user.Save();
 
                     return true;
@@ -453,7 +452,6 @@ namespace RTAFMailManagement.Global_Class
                     deUser.Close();
 
                     user.Enabled = true;
-
                     user.Save();
 
                     return true;

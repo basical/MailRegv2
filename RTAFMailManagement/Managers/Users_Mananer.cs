@@ -409,18 +409,19 @@ namespace RTAFMailManagement.Managers
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                cmd.Parameters.AddWithValue("@i_IdCard", i_data.User_IdCard);
-                cmd.Parameters.AddWithValue("@i_IdGvm", i_data.User_IdGvm);
-                cmd.Parameters.AddWithValue("@i_BirthDate", i_data.User_BirthDate);
-                cmd.Parameters.AddWithValue("@i_FName", i_data.User_FirstName);
-                cmd.Parameters.AddWithValue("@i_LName", i_data.User_LastName);
-                cmd.Parameters.AddWithValue("@i_FName_Eng", i_data.User_FirstNameEn);
-                cmd.Parameters.AddWithValue("@i_LName_Eng", i_data.User_LastNameEn);
-                cmd.Parameters.AddWithValue("@i_Rank", i_data.User_Rank.Rank_Code);
-                cmd.Parameters.AddWithValue("@i_Unit", i_data.User_Unit.Unit_Code);
-                cmd.Parameters.AddWithValue("@i_Position", i_data.User_Position);
-                cmd.Parameters.AddWithValue("@i_status", i_data.User_status_msg);
-                cmd.Parameters.AddWithValue("@i_status_code", i_data.User_status.RTAF_status_Code);
+                cmd.Parameters.AddWithValue("@i_IdCard", i_data.person_data.RTAF_person_IdCard);
+                cmd.Parameters.AddWithValue("@i_IdGvm", i_data.person_data.RTAF_person_IdGvm);
+                cmd.Parameters.AddWithValue("@i_BirthDate", i_data.person_data.RTAF_person_BirthDate);
+                cmd.Parameters.AddWithValue("@i_FName", i_data.person_data.RTAF_person_FirstName);
+                cmd.Parameters.AddWithValue("@i_LName", i_data.person_data.RTAF_person_LastName);
+                cmd.Parameters.AddWithValue("@i_FName_Eng", i_data.person_data.RTAF_person_FirstName_Eng);
+                cmd.Parameters.AddWithValue("@i_LName_Eng", i_data.person_data.RTAF_person_LastName_Eng);
+                cmd.Parameters.AddWithValue("@i_Rank", i_data.person_data.RTAF_person_Rank.Rank_Code);
+                cmd.Parameters.AddWithValue("@i_Unit", i_data.person_data.RTAF_person_Unit.Unit_Code);
+                cmd.Parameters.AddWithValue("@i_Position", i_data.person_data.RTAF_person_Position);
+                cmd.Parameters.AddWithValue("@i_status", i_data.person_data.RTAF_person_Status.RTAF_status_Name);
+                cmd.Parameters.AddWithValue("@i_status_code", i_data.person_data.RTAF_person_Status.RTAF_status_Code);
+                cmd.Parameters.AddWithValue("@i_person_uid", i_data.person_data.RTAF_person_Uid);
 
                 cmd.ExecuteNonQuery();
 
