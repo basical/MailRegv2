@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="https://person-service2.rtaf.mi.th/RTAFService_1/RTAFMail.asmx?wsdl" filename="RTAFMail.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="https://person-service2.rtaf.mi.th/RTAFService_1/RTAFMail.asmx?disco" filename="RTAFMail.disco" />
+  </Results>
+</DiscoveryClientResultsFile>

@@ -43,18 +43,20 @@
                                     <asp:Label ID="Units_Lbl" runat="server">สังกัด</asp:Label>
                                     <asp:DropDownList ID="Units_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
                                 </div>
+                                <div class="offset-sm-2 col-sm-6">
+                                    <asp:Label ID="Remark_Lbl" runat="server" ForeColor="Red">*** กรณีใช้งานปุ่ม " Download ทั้งหมด " จะเป็นการลบข้อมูลเก่าทั้งหมด และดึงข้อมูลจาก Web Service มาลงใหม่ ***</asp:Label>
+                                </div>
                             </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
                             <asp:LinkButton ID="Search_rtaf_data_Btn" runat="server" CssClass="btn bg-gradient-primary" OnClick="Search_rtaf_data_Btn_Click"> <i class="fa fa-search fa-fw"></i> ค้นหาข้อมูล </asp:LinkButton>
-                            <asp:LinkButton ID="OneClick_All_Btn" runat="server" CssClass="btn bg-gradient-danger float-right" OnClick="OneClick_All_Btn_Click"> <i class="fa fa-download fa-fw"></i> Download ข้อมุลทั้งหมด  </asp:LinkButton>
+                            <asp:LinkButton ID="OneClick_All_Btn" runat="server" CssClass="btn bg-gradient-danger float-right" OnClick="OneClick_All_Btn_Click"> <i class="fa fa-download fa-fw"></i> Download ข้อมูลทั้งหมด  </asp:LinkButton>
                         </div>
                         <!-- /.card-footer -->
                     </div>
                 </div>
                 <!-- /.card -->
-
 
                 <%
                     if (Session["service_data"] != null && Session["service_data"] != null && Session["service_data"] != null && Session["service_data"] != null)

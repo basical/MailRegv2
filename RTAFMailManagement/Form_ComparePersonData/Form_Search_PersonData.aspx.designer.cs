@@ -33,6 +33,15 @@ namespace RTAFMailManagement.Form_ComparePersonData
         protected global::System.Web.UI.WebControls.DropDownList Units_DDL;
 
         /// <summary>
+        /// Remark_Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Remark_Lbl;
+
+        /// <summary>
         /// Search_rtaf_data_Btn control.
         /// </summary>
         /// <remarks>

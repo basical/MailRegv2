@@ -20,110 +20,6 @@
         </li>
     </ul>
 
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-        <div class="input-group input-group-sm">
-            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
-    </form>
-
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-
-        <!-- Messages Dropdown Menu -->
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-comments"></i>
-                <span class="badge badge-danger navbar-badge">3</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                        <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">Brad Diesel
-                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">Call me whenever you can...</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>4 Hours Ago</p>
-                        </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                        <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">John Pierce
-                                        <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">I got your message bro</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>4 Hours Ago</p>
-                        </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <!-- Message Start -->
-                    <div class="media">
-                        <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">Nora Silvester
-                                        <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                            </h3>
-                            <p class="text-sm">The subject goes here</p>
-                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>4 Hours Ago</p>
-                        </div>
-                    </div>
-                    <!-- Message End -->
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-            </div>
-        </li>
-
-        <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">15</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">15 Notifications</span>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-envelope mr-2"></i>4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-users mr-2"></i>8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class="fas fa-file mr-2"></i>3 new reports
-                            <span class="float-right text-muted text-sm">2 days</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                <i class="fas fa-th-large"></i>
-            </a>
-        </li>
-    </ul>
 </nav>
 <!-- /.navbar -->
 
@@ -137,16 +33,23 @@
     <!-- Sidebar -->
     <div class="sidebar">
 
-        <!-- Sidebar user panel (optional) 
+        <% 
+            if (Session["admin_user"] != null)
+            {
+                Admin_Users au = (Admin_Users)Session["admin_user"];
+        %>
+        <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <div class="info">
+                <a> USING BY : </a>
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a> <%= au.Admin_Users_Name %> </a>
             </div>
-        </div> -->
-
+        </div>
+        <% 
+            }
+        %>
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -176,55 +79,55 @@
                         <li class="nav-item">
                             <a href="/Form_Configuration/AD_Status_Management" class="nav-link <%= act == 1 ? "active" : "" %>">
                                 <i class="fas fa-server nav-icon"></i>
-                                <p>AD Status</p>
+                                <p>AD Status *</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/Form_Configuration/Admins_Management" class="nav-link <%= act == 2 ? "active" : "" %>">
                                 <i class="fas fa-user-tie nav-icon"></i>
-                                <p>Admins</p>
+                                <p>Admins *</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/Form_Configuration/Admin_Types_Management" class="nav-link <%= act == 3 ? "active" : "" %>">
                                 <i class="fas fa-user-tie nav-icon"></i>
-                                <p>Admin Type</p>
+                                <p>Admin Type *</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/Form_Configuration/Questions_Management" class="nav-link <%= act == 4 ? "active" : "" %>">
                                 <i class="far fa-question-circle nav-icon"></i>
-                                <p>Questions</p>
+                                <p>Questions *</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/Form_Configuration/Ranks_Management" class="nav-link <%= act == 5 ? "active" : "" %>">
                                 <i class="fas fa-layer-group nav-icon"></i>
-                                <p>Ranks</p>
+                                <p>Ranks *</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/Form_Configuration/Units_Management" class="nav-link <%= act == 6 ? "active" : "" %>">
                                 <i class="fas fa-layer-group nav-icon"></i>
-                                <p>Units</p>
+                                <p>Units *</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/Form_Configuration/Users_Type_Management" class="nav-link <%= act == 7 ? "active" : "" %>">
                                 <i class="fas fa-user-circle nav-icon"></i>
-                                <p>User Type</p>
+                                <p>User Type *</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/Form_Configuration/RTAF_Status_Management" class="nav-link <%= act == 8 ? "active" : "" %>">
                                 <i class="far fa-address-card nav-icon"></i>
-                                <p>RTAF Status</p>
+                                <p>RTAF Status *</p>
                             </a>
                         </li>
                     </ul>
                 </li>
                 <% 
-                        }
+                    }
                 %>
                 <li class="nav-header">บัญชีผู้ใช้งาน </li>
                 <li class="nav-item has-treeview <%= act > 10 && act < 20 ? "menu-open" : "" %>">
@@ -233,11 +136,37 @@
                         <p>บัญชีผู้ใช้งาน<i class="right fas fa-angle-left"></i></p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/Form_Mail_Register/Search_User_Accounts" class="nav-link <%= act == 12 ? "active" : "" %>">
+                        <li class="nav-item has-treeview <%= act > 10 && act < 16 ? "menu-open" : "" %>">
+                            <a href="#" class="nav-link <%= act > 10 && act < 16 ? "active" : "" %>">
                                 <i class="fas fa-user-cog nav-icon"></i>
-                                <p>Management Account </p>
+                                <p>Managed Account <i class="right fas fa-angle-left"></i></p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <%= act == 13 ? "active" : "" %>">
+                                        <i class="fas fa-user-plus nav-icon"></i>
+                                        <p>Add Account Person *</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <%= act == 14 ? "active" : "" %>">
+                                        <i class="far fa-building nav-icon"></i>
+                                        <p>Add Account Unit *</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link <%= act == 15 ? "active" : "" %>">
+                                        <i class="fas fa-users nav-icon"></i>
+                                        <p>Add Account Group *</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Form_Mail_Register/Search_User_Accounts" class="nav-link <%= act == 12 ? "active" : "" %>">
+                                        <i class="fas fa-search nav-icon"></i>
+                                        <p>Search Account </p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a href="/Form_Mail_Register/Reset_Password_User_Fast" class="nav-link <%= act == 16 ? "active" : "" %>">
@@ -252,29 +181,23 @@
                         <li class="nav-item">
                             <a href="/Form_Mail_Register/Update_User_Account_CPDTSV" class="nav-link <%= act == 17 ? "active" : "" %>">
                                 <i class="fas fa-users-cog nav-icon"></i>
-                                <p>Update Person2UserAcc </p>
+                                <p>Update Person2UserAcc *</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/Form_Mail_Register/Move_OU_Account" class="nav-link <%= act == 18 ? "active" : "" %>">
                                 <i class="fas fa-exchange-alt nav-icon"></i>
-                                <p>Move OU Account </p>
+                                <p>Move OU Account *</p>
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a href="/Form_Mail_Register/Upload_File_CSV" class="nav-link">
-                                <i class="fas fa-file-upload nav-icon"></i>
-                                <p>Upload File </p>
-                            </a>
-                        </li> -->
                         <%
                             }
                         %>
                     </ul>
                 </li>
                 <%
-                        if (au.Admin_User_Type.Admin_Users_Type_id == 3)
-                        {
+                    if (au.Admin_User_Type.Admin_Users_Type_id == 3)
+                    {
                 %>
                 <li class="nav-header">ข้อมูลกำลังพล </li>
                 <li class="nav-item has-treeview <%= act > 20 ? "menu-open" : "" %>">
@@ -304,11 +227,11 @@
                     </ul>
                 </li>
                 <%
-                        }
+                    }
                 %>
 
                 <li class="nav-item">
-                    <a href="/Form_Main/Form_MainPage?code=LGOT" class="nav-link"> 
+                    <a href="/Form_Main/Form_MainPage?code=LGOT" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>ออกจากระบบ</p>
                     </a>

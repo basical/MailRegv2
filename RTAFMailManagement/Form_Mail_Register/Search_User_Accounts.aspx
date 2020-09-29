@@ -144,7 +144,7 @@
                                                 <span class="<%= data.User_ADStatus.AD_Status_Code == 2 ? "badge bg-success" : data.User_ADStatus.AD_Status_Code == 3 ? "badge bg-danger" : "badge bg-warning" %>"><%= data.User_ADStatus.AD_Status_Name %></span>
                                             </td>
                                             <td style="text-align: center;">
-                                                <span class="<%= data.User_Real_AD != null? data.User_Real_AD.AD_Enabled? "badge bg-success" : "badge bg-danger" : "badge bg-danger" %>"><%= data.User_Real_AD != null? data.User_Real_AD.AD_Enabled? "Active" : "Disable" : "Disable" %></span>
+                                                <span class="<%= data.User_Real_AD != null? data.User_Real_AD.AD_Enabled? "badge bg-success" : "badge bg-danger" : "badge bg-danger" %>"><%= data.User_Real_AD != null? data.User_Real_AD.AD_Enabled? "Active" : "Disable" : "Not Found" %></span>
                                             </td>
                                             <td><%= data.User_Real_AD != null? DateTimeUtility.convertDateTimeToPageRealServer(data.User_Real_AD.AD_Nv_PasswordLastChanged) : "" %></td>
                                             <td <%= data.User_Real_AD != null? data.User_Real_AD.passdiff >= 150 && data.User_Real_AD.passdiff < 180 ? "style='color: #ebeb00;'" : data.User_Real_AD.passdiff >= 180 ? "style='color: #eb0000;'" : "style='color: #107500;'" : "style='color: #eb0000;'" %>><%= data.User_Real_AD != null? data.User_Real_AD.passdiff : 0 %></td>

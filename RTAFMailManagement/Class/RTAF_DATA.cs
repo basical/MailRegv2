@@ -18,5 +18,6 @@
         public RTAF_Status RTAF_person_Status { get; set; }
         public RTAF_DATA_Person_Type RTAF_person_type { get; set; }
         public RTAF_DATA_User_Status RTAF_user_status { get; set; }
+        public string RTAF_person_Img64Base { get; set; }
     }
 }

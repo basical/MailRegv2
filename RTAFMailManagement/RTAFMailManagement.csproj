@@ -1933,6 +1933,7 @@
     <Content Include="Form_Mail_Register\AD_Account_information.aspx" />
     <Content Include="Form_Mail_Register\ChangeADStatus.aspx" />
     <Content Include="Form_Mail_Register\Reset_Password_User_Fast.aspx" />
+    <Content Include="Form_Mail_Register\Search_Prepare_Create_Account.aspx" />
     <Content Include="Form_Mail_Register\Search_User_Accounts.aspx" />
     <Content Include="Form_Mail_Register\Update_Users_Profile.aspx" />
     <Content Include="Form_Mail_Register\Update_User_Account_CPDTSV.aspx" />
@@ -2168,11 +2169,20 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
+    <None Include="Web References\newRTAFMails\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\newRTAFMails\RTAFMail.wsdl" />
+    <Content Include="Web References\newRTAFMails\RTAFMailData1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
     <None Include="Web References\newRTAFMail\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\newRTAFMail\RTAFMail.wsdl" />
+    <None Include="Web References\newRTAFMails\RTAFMail.disco" />
     <Content Include="Web References\newRTAFMail\RTAFMailData.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
@@ -2422,6 +2432,13 @@
     <Compile Include="Form_Mail_Register\Reset_Password_User_Fast.aspx.designer.cs">
       <DependentUpon>Reset_Password_User_Fast.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Form_Mail_Register\Search_Prepare_Create_Account.aspx.cs">
+      <DependentUpon>Search_Prepare_Create_Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Mail_Register\Search_Prepare_Create_Account.aspx.designer.cs">
+      <DependentUpon>Search_Prepare_Create_Account.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Form_Mail_Register\Search_User_Accounts.aspx.cs">
       <DependentUpon>Search_User_Accounts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2510,6 +2527,11 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\newRTAFMails\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="Web References\newRTAFMail\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -2675,6 +2697,17 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>RTAFMailManagement_newRTAFMail_RTAFMail</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://person-service2.rtaf.mi.th/RTAFService_1/RTAFMail.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\newRTAFMails\</RelPath>
+      <UpdateFromURL>https://person-service2.rtaf.mi.th/RTAFService_1/RTAFMail.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>RTAFMailManagement_newRTAFMail1_RTAFMail</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>

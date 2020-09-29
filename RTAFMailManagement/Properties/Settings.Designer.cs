@@ -42,5 +42,15 @@ namespace RTAFMailManagement.Properties {
                 return ((string)(this["RTAFMailManagement_newRTAFMail_RTAFMail"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://person-service2.rtaf.mi.th/RTAFService_1/RTAFMail.asmx")]
+        public string RTAFMailManagement_newRTAFMail1_RTAFMail {
+            get {
+                return ((string)(this["RTAFMailManagement_newRTAFMail1_RTAFMail"]));
+            }
+        }
     }
 }

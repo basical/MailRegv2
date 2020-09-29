@@ -73,58 +73,74 @@ namespace RTAFMailManagement.Global_Class
             string user = ConfigurationManager.AppSettings["nUServicePerson"];
             string pass = ConfigurationManager.AppSettings["nPServicePerson"];
             string unitID = ConvertUnitId2String(unit_code); //ค่าid แต่ละกรม
+            string error;
 
-            newRTAFMail.RTAFMail data = new newRTAFMail.RTAFMail
+            newRTAFMails.RTAFMail data = new newRTAFMails.RTAFMail
             {
                 UseDefaultCredentials = true
             };
 
-            // ค่าที่ web service ส่งมา ให้ 
-            newRTAFMail.RTAFMailData[] resault = data.GetData(user, pass, unitID);
-
-            List<RTAF_DATA> list_data = new List<RTAF_DATA>();
-
-            for (int i = 0; i < resault.Length; i++)
+            try
             {
-                RTAF_DATA person = new RTAF_DATA
+                // ค่าที่ web service ส่งมา ให้ 
+                newRTAFMails.RTAFMailData[] resault = data.GetData(user, pass, unitID);
+
+                List<RTAF_DATA> list_data = new List<RTAF_DATA>();
+
+                for (int i = 0; i < resault.Length; i++)
                 {
-                    RTAF_person_IdGvm = string.IsNullOrEmpty(resault[i].ID) ? "" : General_Functions.subStringIdGvm(resault[i].ID),
-                    RTAF_person_IdCard = string.IsNullOrEmpty(resault[i].ID) ? "" : resault[i].PeopleID,
-                    RTAF_person_FirstName = string.IsNullOrEmpty(resault[i].ID) ? "" : resault[i].FIRSTNAME,
-                    RTAF_person_LastName = string.IsNullOrEmpty(resault[i].ID) ? "" : resault[i].LASTNAME,
-                    RTAF_person_FirstName_Eng = string.IsNullOrEmpty(resault[i].EFIRSTNAME) ? "" : resault[i].EFIRSTNAME.ToLower(),
-                    RTAF_person_LastName_Eng = string.IsNullOrEmpty(resault[i].ELASTNAME) ? "" : resault[i].ELASTNAME.ToLower(),
-                    RTAF_person_BirthDate = string.IsNullOrEmpty(resault[i].BIRTHDAY.ToString()) ? "01/01/2540 0:00:00" : resault[i].BIRTHDAY.ToString(),
-                    RTAF_person_Position = string.IsNullOrEmpty(resault[i].POSITION) ? "" : resault[i].POSITION,
-
-                    RTAF_person_Status = new RTAF_Status
+                    RTAF_DATA person = new RTAF_DATA
                     {
-                        RTAF_status_Code = string.IsNullOrEmpty(resault[i].CODE) ? 0 : int.Parse(resault[i].CODE),
-                        RTAF_status_Name = string.IsNullOrEmpty(resault[i].STATUS) ? "" : resault[i].STATUS
-                    },
+                        RTAF_person_IdGvm = string.IsNullOrEmpty(resault[i].ID) ? "" : resault[i].ID,
+                        RTAF_person_IdCard = string.IsNullOrEmpty(resault[i].PeopleID) ? "" : resault[i].PeopleID,
+                        RTAF_person_FirstName = string.IsNullOrEmpty(resault[i].FIRSTNAME) ? "" : resault[i].FIRSTNAME,
+                        RTAF_person_LastName = string.IsNullOrEmpty(resault[i].LASTNAME) ? "" : resault[i].LASTNAME,
+                        RTAF_person_FirstName_Eng = string.IsNullOrEmpty(resault[i].EFIRSTNAME) ? "" : resault[i].EFIRSTNAME.ToLower(),
+                        RTAF_person_LastName_Eng = string.IsNullOrEmpty(resault[i].ELASTNAME) ? "" : resault[i].ELASTNAME.ToLower(),
+                        RTAF_person_BirthDate = string.IsNullOrEmpty(resault[i].BIRTHDAY.ToString()) ? "01/01/2540 0:00:00" : resault[i].BIRTHDAY.ToString(),
+                        RTAF_person_Position = string.IsNullOrEmpty(resault[i].POSITION) ? "" : resault[i].POSITION,
 
-                    RTAF_person_Rank = new Ranks
-                    {
-                        Rank_Name = string.IsNullOrEmpty(resault[i].RANK) ? "" : resault[i].RANK,
-                        Rank_Code = string.IsNullOrEmpty(resault[i].RANKCODE) ? 0 : int.Parse(resault[i].RANKCODE)
-                    },
+                        RTAF_person_Status = new RTAF_Status
+                        {
+                            RTAF_status_Code = string.IsNullOrEmpty(resault[i].CODE) ? 0 : int.Parse(resault[i].CODE),
+                            RTAF_status_Name = string.IsNullOrEmpty(resault[i].STATUS) ? "" : resault[i].STATUS
+                        },
 
-                    RTAF_person_Unit = new Units
-                    {
-                        Unit_Code = string.IsNullOrEmpty(resault[i].UNITCODE) ? 0 : int.Parse(resault[i].UNITCODE),
-                        Unit_Name = string.IsNullOrEmpty(resault[i].UNITNAME) ? "" : resault[i].UNITNAME
-                    },
+                        RTAF_person_Rank = new Ranks
+                        {
+                            Rank_Name = string.IsNullOrEmpty(resault[i].RANK) ? "" : resault[i].RANK,
+                            Rank_Code = string.IsNullOrEmpty(resault[i].RANKCODE) ? 0 : int.Parse(resault[i].RANKCODE)
+                        },
 
-                    RTAF_person_type = new RTAF_DATA_Person_Type
-                    {
-                        Person_Type_Id = string.IsNullOrEmpty(resault[i].PERSON_TYPE_PK) ? 0 : int.Parse(resault[i].PERSON_TYPE_PK)
-                    }
-                };
+                        RTAF_person_Unit = new Units
+                        {
+                            Unit_Code = string.IsNullOrEmpty(resault[i].UNITCODE) ? 0 : int.Parse(resault[i].UNITCODE),
+                            Unit_Name = string.IsNullOrEmpty(resault[i].UNITNAME) ? "" : resault[i].UNITNAME
+                        },
 
-                list_data.Add(person);
+                        RTAF_person_type = new RTAF_DATA_Person_Type
+                        {
+                            Person_Type_Id = string.IsNullOrEmpty(resault[i].PERSON_TYPE_PK) ? 0 : int.Parse(resault[i].PERSON_TYPE_PK)
+                        },
+
+                        RTAF_person_Img64Base = string.IsNullOrEmpty(resault[i].IMAGEBASE64) ? "" : resault[i].IMAGEBASE64
+                    };
+
+                    list_data.Add(person);
+                }
+
+                return list_data;
             }
-
-            return list_data;
+            catch (Exception ex)
+            {
+                error = "Exception ==> Global_Class --> ConnectRTAFService --> getNewRTAFPerson()";
+                Log_Error._writeErrorFile(error, ex);
+                return null;
+            }
+            finally
+            {
+                data.Dispose();
+            }
         }
 
         public static string ConvertUnitId2String(string unit_code)
@@ -517,7 +533,6 @@ namespace RTAFMailManagement.Global_Class
 
                     nativeDeUser.AccountDisabled = false;
                     nativeDeUser.ChangePassword(oldPassword, newPassword);
-                    nativeDeUser.PasswordExpirationDate = DateTime.Now.AddMonths(6);
 
                     deUser.Close();
 
