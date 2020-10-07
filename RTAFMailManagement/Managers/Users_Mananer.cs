@@ -552,7 +552,7 @@ namespace RTAFMailManagement.Managers
                 cmd.Parameters.AddWithValue("@i_Email", i_data.User_Email);
                 cmd.Parameters.AddWithValue("@i_IdCard", i_data.User_IdCard);
                 cmd.Parameters.AddWithValue("@i_IdGvm", i_data.User_IdGvm);
-                cmd.Parameters.AddWithValue("@i_BirthDate", i_data.User_BirthDate);
+                cmd.Parameters.AddWithValue("@i_BirthDate", DateTimeUtility.CDate4Service2MSSQL(i_data.User_BirthDate));
                 cmd.Parameters.AddWithValue("@i_FName", i_data.User_FirstName);
                 cmd.Parameters.AddWithValue("@i_LName", i_data.User_LastName);
                 cmd.Parameters.AddWithValue("@i_FName_Eng", i_data.User_FirstNameEn);

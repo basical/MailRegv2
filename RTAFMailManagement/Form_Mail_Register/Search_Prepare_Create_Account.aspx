@@ -113,9 +113,7 @@
                                             <th style="width: 10%; text-align: center;">สังกัด</th>
                                             <th style="width: 20%; text-align: center;">ตำแหน่ง</th>
                                             <th style="width: 15%; text-align: center;">สถานะ</th>
-                                            <th style="width: 5%; text-align: center;"></th>
-                                            <th style="width: 5%; text-align: center;"></th>
-                                            <th style="width: 5%; text-align: center;"></th>
+                                            <th style="width: 5%; text-align: center;">Create User</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -136,15 +134,9 @@
                                             <td><%= DateTimeUtility.convertDateToPageRealServer(data.RTAF_person_BirthDate) %></td>
                                             <td><%= data.RTAF_person_Unit.Unit_Name %></td>
                                             <td><%= data.RTAF_person_Position %></td>
-                                            <td><%= data.RTAF_person_Status %></td>
+                                            <td><%= data.RTAF_person_Status.RTAF_status_Name %></td>
                                             <td>
-                                                <a class="btn bg-gradient-warning" href="Add_Users_Account?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.RTAF_person_IdGvm, data.RTAF_person_IdCard, data.RTAF_person_Uid) %>&gnrd=ad" data-toggle="tooltip" data-placement="top" title="สร้าง AD Account"><i class="far fa-address-card fa-fw"></i></a>
-                                            </td>
-                                            <td>
-                                                <a class="btn bg-gradient-warning" href="Add_Users_Account?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.RTAF_person_IdGvm, data.RTAF_person_IdCard, data.RTAF_person_Uid) %>&gnrd=ma" data-toggle="tooltip" data-placement="top" title="สร้าง Mail Account"><i class="far fa-address-card fa-fw"></i></a>
-                                            </td>
-                                            <td>
-                                                <a class="btn bg-gradient-warning" href="Add_Users_Account?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.RTAF_person_IdGvm, data.RTAF_person_IdCard, data.RTAF_person_Uid) %>&gnrd=adma" data-toggle="tooltip" data-placement="top" title="สร้าง AD และ Mail Account"><i class="far fa-address-card fa-fw"></i></a>
+                                                <a class="btn bg-gradient-info" href="Add_Users_Account?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.RTAF_person_IdGvm, data.RTAF_person_IdCard, data.RTAF_person_Uid) %>&gnrd=ad" data-toggle="tooltip" data-placement="top" title="สร้าง User Account"><i class="fas fa-server fa-fw"></i></a>
                                             </td>
                                         </tr>
                                         <%

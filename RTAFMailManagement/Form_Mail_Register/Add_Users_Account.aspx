@@ -8,7 +8,9 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark"><i class="fas fa-user-plus"></i>&nbsp; :: เพิ่มข้อมูลผู้ใช้งาน <asp:Label ID="header_page_Lbl" runat="server"> </asp:Label> :: </h1>
+                        <h1 class="m-0 text-dark"><i class="fas fa-user-plus"></i>&nbsp; :: เพิ่มข้อมูลผู้ใช้งาน
+                            <asp:Label ID="header_page_Lbl" runat="server"> </asp:Label>
+                            :: </h1>
 
                     </div>
                 </div>
@@ -48,7 +50,9 @@
                 <!-- Horizontal Form -->
                 <div class="card card-warning">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-user-plus"></i>&nbsp; :: เพิ่มข้อมูลผู้ใช้งาน <asp:Label ID="sub_header_page_Lbl" runat="server"> </asp:Label>  :: </h3>
+                        <h3 class="card-title"><i class="fas fa-user-plus"></i>&nbsp; :: เพิ่มข้อมูลผู้ใช้งาน
+                            <asp:Label ID="sub_header_page_Lbl" runat="server"> </asp:Label>
+                            :: </h3>
                         <div class="card-tools">
                             <asp:LinkButton ID="Close_Btn" runat="server" CssClass="btn btn-tool" OnClick="Close_Btn_Click"> <i class="fas fa-times"></i> </asp:LinkButton>
                         </div>
@@ -189,13 +193,13 @@
                                                 <asp:DropDownList ID="Acc_Type_DDL" runat="server" CssClass="form-control select2" Enabled="false"></asp:DropDownList>
                                             </div>
                                             <div class="col-sm-3">
-                                                <asp:Label ID="List_Username_Lbl" runat="server"> เลือก Username และ E-mail </asp:Label>
+                                                <asp:Label ID="List_Username_Lbl" runat="server"> เลือก Username ** ไม่ต้องระบุ @rtaf.mi.th ** </asp:Label>
                                                 <asp:DropDownList ID="List_Username_DDL" runat="server" CssClass="form-control select2" Visible="true"></asp:DropDownList>
                                                 <asp:TextBox ID="Username_UG_TBx" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="newPassword_Lbl" runat="server"> รหัสผ่าน </asp:Label>
-                                                <asp:TextBox ID="newPassword_TBx" runat="server" CssClass="form-control" TextMode="Password"></asp:TextBox>
+                                                <asp:TextBox ID="newPassword_TBx" runat="server" CssClass="form-control"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="remark_password" runat="server" CssClass="text-danger"> *** รหัสผ่าน ต้องประกอบด้วย อักษรภาษาอังกฤษตัวใหญ่, อักษรภาษาอังกฤษตัวเล็ก, ตัวเลข และอักษรพิเศษ ( อักษรพิเศษ ได้แก่ !, @, #, $ , %, ^, &, *, +, - ) โดยมีความยาวไม่ต่ำกว่า 8 ตัวอักษร เช่น p@ss#2020 เป็นต้น *** </asp:Label>
@@ -219,6 +223,18 @@
                                                 <asp:DropDownList ID="AD_Status_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
                                             </div>
                                         </div>
+                                        <asp:Panel ID="Group_panel" runat="server">
+                                            <div class="form-group row">
+                                                <div class="col-sm-3">
+                                                    <asp:Label ID="Employee_Name_Lbl" runat="server"> ชื่อ - นามสกุล พนง. </asp:Label>
+                                                    <asp:TextBox ID="Employee_Name_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <asp:Label ID="Company_Name_Lbl" runat="server"> บริษัท </asp:Label>
+                                                    <asp:TextBox ID="Company_Name_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                        </asp:Panel>
                                     </div>
                                     <!-- /.card-body -->
                                 </div>
@@ -227,8 +243,9 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <asp:LinkButton ID="Save_Btn" runat="server" CssClass="btn bg-gradient-primary" OnClick="Save_Btn_Click"> <i class="fas fa-save fa-fw"></i>&nbsp; บันทึกข้อมูล </asp:LinkButton>
-                            <asp:LinkButton ID="Cancel_Btn" runat="server" CssClass="btn bg-gradient-warning" OnClick="Cancel_Btn_Click"> <i class="fas fa-window-close"></i>&nbsp; ยกเลิก </asp:LinkButton>
+                            <asp:LinkButton ID="Save_Btn" runat="server" CssClass="btn bg-gradient-info" OnClick="Save_Btn_Click"> <i class="far fa-address-card fa-fw"></i>&nbsp; สร้าง AD </asp:LinkButton>
+                            <asp:LinkButton ID="Create_ADnMail_Btn" runat="server" CssClass="btn bg-gradient-primary" OnClick="Create_ADnMail_Btn_Click"> <i class="fas fa-mail-bulk fa-fw"></i>&nbsp; สร้าง AD และ mail </asp:LinkButton>
+                            <asp:LinkButton ID="Cancel_Btn" runat="server" CssClass="btn bg-gradient-danger float-right" OnClick="Cancel_Btn_Click"> <i class="fas fa-window-close"></i>&nbsp; ยกเลิก </asp:LinkButton>
                         </div>
                         <!-- /.card-footer -->
                     </div>

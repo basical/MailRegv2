@@ -39,5 +39,7 @@
         public string User_status_msg { get; set; }
         public RTAF_Status User_status { get; set; }
         public RTAF_DATA person_data { get; set; }
+        public string Employee_name { get; set; }
+        public string Company_name { get; set; }
     }
 }

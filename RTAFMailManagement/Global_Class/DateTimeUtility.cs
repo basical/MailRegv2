@@ -138,6 +138,29 @@ namespace RTAFMailManagement.Global_Class
             }
         }
 
+        public static string CDate4Service2MSSQL(string datetime)
+        {
+            if (!string.IsNullOrEmpty(datetime))
+            {
+                string[] dt = datetime.Split(' ');
+                string[] date = dt[0].Split('/');
+                if (int.Parse(date[0]) < 10)
+                {
+                    date[0] = "0" + int.Parse(date[0]);
+                }
+                if (int.Parse(date[1]) < 10)
+                {
+                    date[1] = "0" + int.Parse(date[1]);
+                }
+
+                return (int.Parse(date[2]) - 543) + "-" + date[1] + "-" + date[0];
+            }
+            else
+            {
+                return datetime;
+            }
+        }
+
         public static string convertDateToMYSQL(string datetime)
         {
             if (!string.IsNullOrEmpty(datetime))

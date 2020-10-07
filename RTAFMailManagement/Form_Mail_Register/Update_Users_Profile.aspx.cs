@@ -18,6 +18,8 @@ namespace RTAFMailManagement.Form_Mail_Register
         {
             if (Request.Params["code"] != null)
             {
+                Session.Remove("List_User_Acc");
+
                 LoadUnits();
                 LoadRanks();
                 LoadRTAFStatus();
@@ -109,7 +111,7 @@ namespace RTAFMailManagement.Form_Mail_Register
                 {
                     Act_log_user = au.Admin_Users_Name,
                     Act_log_ip = ipAdd,
-                    Act_log_details = "ResP_HC_SCC : Reset New Passweord Success"
+                    Act_log_details = "ResP_HC_SCC : Reset New Passweord User : " + username + " Success"
                 };
 
                 new Activity_Log_Manager().AddActivityLogs(log);
@@ -124,7 +126,7 @@ namespace RTAFMailManagement.Form_Mail_Register
                 {
                     Act_log_user = au.Admin_Users_Name,
                     Act_log_ip = ipAdd,
-                    Act_log_details = "ResP_HC_FAIL : Reset New Passweord Fail"
+                    Act_log_details = "ResP_HC_FAIL : Reset New Passweord User : " + username + " Fail"
                 };
 
                 new Activity_Log_Manager().AddActivityLogs(log);
@@ -158,7 +160,7 @@ namespace RTAFMailManagement.Form_Mail_Register
             for (int i = 0; i < list_data.Count; i++)
             {
                 Ranks data = list_data[i];
-                Rank_DDL.Items.Add(new ListItem(data.Rank_FullName + " ( " + data.Rank_Name + " ) ", data.Rank_Code.ToString()));
+                Rank_DDL.Items.Add(new ListItem(data.Rank_Name+ " ( " + data.Rank_FullName + " ) ", data.Rank_Code.ToString()));
             }
         }
 

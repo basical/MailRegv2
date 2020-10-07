@@ -386,7 +386,7 @@ namespace RTAFMailManagement.Global_Class
             }
         }
 
-        public static bool AddAccount2ADDS(Users data)
+        public static bool AddAccount2ADDS(Users data,int mode)
         {
             string domainController = ConfigurationManager.AppSettings["AD_SIP"];
             string container = ConfigurationManager.AppSettings["AD_Container"];
@@ -401,14 +401,37 @@ namespace RTAFMailManagement.Global_Class
 
             try
             {
-                UserPrincipal user = new UserPrincipal(pc, data.User_UserName, data.User_Password, true);
+                UserPrincipal new_user = new UserPrincipal(pc, data.User_UserName, data.User_Password, true);
+
+                new_user.Save();
+
+                UserPrincipal user = UserPrincipal.FindByIdentity(pc, data.User_UserName);
+
+                user.SamAccountName = data.User_UserName;
+                user.GivenName = data.User_FirstName;
+                user.EmailAddress = data.User_Email;
+                user.Name = data.User_UserName;
+                user.Surname = data.User_LastName;
+                user.UserPrincipalName = data.User_Email;
+                user.Enabled = true;
+                user.Save();
 
                 DirectoryEntry deUser = (DirectoryEntry)user.GetUnderlyingObject();
                 ActiveDs.IADsUser nativeDeUser = (ActiveDs.IADsUser)deUser.NativeObject;
 
                 nativeDeUser.AccountDisabled = false;
-                nativeDeUser.Department = data.User_Unit.Unit_FullName;
-                nativeDeUser.Description = data.User_FirstNameEn + " " + data.User_LastNameEn;
+
+                if (mode != 15)
+                {
+                    nativeDeUser.Department = data.User_Unit.Unit_FullName;
+                    nativeDeUser.Description = data.User_FirstNameEn + " " + data.User_LastNameEn;
+                }
+                else
+                {
+                    nativeDeUser.Department = data.Company_name;
+                    nativeDeUser.Description = data.Employee_name;
+                }
+
                 nativeDeUser.EmailAddress = data.User_Email;
                 nativeDeUser.FirstName = data.User_FirstName;
                 nativeDeUser.FullName = data.User_Rank.Rank_Name + data.User_FirstName + " " + data.User_LastName;
@@ -420,13 +443,6 @@ namespace RTAFMailManagement.Global_Class
 
                 deUser.Close();
 
-                user.SamAccountName = data.User_UserName;
-                user.GivenName = data.User_FirstName;
-                user.EmailAddress = data.User_Email;
-                user.Name = data.User_UserName;
-                user.Surname = data.User_LastName;
-                user.UserPrincipalName = data.User_Email;
-                user.Enabled = true;
                 user.Save();
 
                 return true;

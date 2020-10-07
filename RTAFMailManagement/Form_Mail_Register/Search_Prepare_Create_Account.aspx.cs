@@ -21,13 +21,18 @@ namespace RTAFMailManagement.Form_Mail_Register
             {
                 if(Request.Params["mode"] == "p")
                 {
+                    Session.Remove("Person_Data_DB");
+
                     Session["Class_Active"] = 13;
+
 
                     header_page_Lbl.Text = "ผู้ใช้งาน";
                     sub_header_page_Lbl.Text = "ผู้ใช้งาน";
                 }
                 else if(Request.Params["mode"] == "u")
                 {
+                    Session.Remove("Person_Data_DB");
+
                     Session["Class_Active"] = 14;
 
                     header_page_Lbl.Text = "ผู้รับผิดชอบ หน่วยงาน";
@@ -35,15 +40,17 @@ namespace RTAFMailManagement.Form_Mail_Register
                 }
                 else if (Request.Params["mode"] == "g")
                 {
+                    Session.Remove("Person_Data_DB");
+
                     Session["Class_Active"] = 15;
 
                     header_page_Lbl.Text = "ผู้รับผิดชอบ คณะทำงาน";
                     sub_header_page_Lbl.Text = "ผู้รับผิดชอบ คณะทำงาน";
                 }
 
-                //LoadUnits();
-                //LoadRanks();
-                //LoadRTAFStatus();
+                LoadUnits();
+                LoadRanks();
+                LoadRTAFStatus();
             }
         }
 
@@ -54,7 +61,7 @@ namespace RTAFMailManagement.Form_Mail_Register
             for (int i = 0; i < list_data.Count; i++)
             {
                 Ranks data = list_data[i];
-                Rank_DDL.Items.Add(new ListItem(data.Rank_FullName + " ( " + data.Rank_Name + " ) ", data.Rank_Code.ToString()));
+                Rank_DDL.Items.Add(new ListItem(data.Rank_Name+ " ( " + data.Rank_FullName + " ) ", data.Rank_Code.ToString()));
             }
         }
 

@@ -141,35 +141,42 @@ namespace RTAFMailManagement.Managers
                     data.RTAF_person_BirthDate = reader.IsDBNull(7) ? defaultString : reader.GetDateTime(7).ToString();
                     data.RTAF_person_Position = reader.IsDBNull(8) ? defaultString : reader.GetString(8);
 
-                    data.RTAF_person_Status = new RTAF_Status()
-                    {
-                        RTAF_status_Name = reader.IsDBNull(9) ? defaultString : reader.GetString(9),
-                        RTAF_status_Code = reader.IsDBNull(10) ? defaultNum : reader.GetInt32(10)
-                    };
-
                     data.RTAF_person_Rank = new Ranks
                     {
-                        Rank_Code = reader.IsDBNull(11) ? defaultNum : reader.GetInt32(11)
+                        Rank_Code = reader.IsDBNull(9) ? defaultNum : reader.GetInt32(9),
+                        Rank_Name = reader.IsDBNull(10) ? defaultString : reader.GetString(10),
+                        Rank_FullName = reader.IsDBNull(11) ? defaultString : reader.GetString(11),
+                        Rank_NameEng = reader.IsDBNull(23) ? defaultString : reader.GetString(23),
+                        Rank_FullNameEng = reader.IsDBNull(24) ? defaultString : reader.GetString(24)
                     };
 
                     data.RTAF_person_Unit = new Units
                     {
-                        Unit_Code = reader.IsDBNull(12) ? defaultNum : (int)reader.GetInt64(12)
+                        Unit_Code = reader.IsDBNull(12) ? defaultNum : (int)reader.GetInt64(12),
+                        Unit_Name = reader.IsDBNull(13) ? defaultString : reader.GetString(13),
+                        Unit_FullName = reader.IsDBNull(14) ? defaultString : reader.GetString(14)
                     };
 
-                    data.RTAF_person_UpdateDate = reader.IsDBNull(13) ? defaultString : reader.GetDateTime(13).ToString();
-                    data.RTAF_person_CreateDate = reader.IsDBNull(14) ? defaultString : reader.GetDateTime(14).ToString();
+                    data.RTAF_person_UpdateDate = reader.IsDBNull(15) ? defaultString : reader.GetDateTime(15).ToString();
+                    data.RTAF_person_CreateDate = reader.IsDBNull(16) ? defaultString : reader.GetDateTime(16).ToString();
+
+                    data.RTAF_person_Status = new RTAF_Status()
+                    {
+                        RTAF_status_Code = reader.IsDBNull(17) ? defaultNum : reader.GetInt32(17),
+                        RTAF_status_Name = reader.IsDBNull(18) ? defaultString : reader.GetString(18)
+                    };
 
                     data.RTAF_person_type = new RTAF_DATA_Person_Type()
                     {
-                        Person_Type_Id = reader.IsDBNull(15) ? defaultNum : reader.GetInt32(15)
+                        Person_Type_Id = reader.IsDBNull(19) ? defaultNum : reader.GetInt32(19),
+                        Person_Type_Name = reader.IsDBNull(20) ? defaultString : reader.GetString(20)
                     };
 
                     data.RTAF_user_status = new RTAF_DATA_User_Status()
                     {
-                        User_Status_id = reader.IsDBNull(16) ? defaultNum : reader.GetInt32(16)
+                        User_Status_id = reader.IsDBNull(21) ? defaultNum : reader.GetInt32(21),
+                        User_Status_Name = reader.IsDBNull(22) ? defaultString : reader.GetString(22)
                     };
-
                 }
                 else
                 {

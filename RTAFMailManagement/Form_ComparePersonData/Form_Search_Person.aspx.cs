@@ -21,9 +21,9 @@ namespace RTAFMailManagement.Form_ComparePersonData
             {
                 Session["Class_Active"] = 22;
 
-                //LoadUnits();
-                //LoadRanks();
-                //LoadRTAFStatus();
+                LoadUnits();
+                LoadRanks();
+                LoadRTAFStatus();
             }
         }
 
@@ -34,7 +34,7 @@ namespace RTAFMailManagement.Form_ComparePersonData
             for (int i = 0; i < list_data.Count; i++)
             {
                 Ranks data = list_data[i];
-                Rank_DDL.Items.Add(new ListItem(data.Rank_FullName + " ( " + data.Rank_Name + " ) ", data.Rank_Code.ToString()));
+                Rank_DDL.Items.Add(new ListItem(data.Rank_Name+ " ( " + data.Rank_FullName + " ) ", data.Rank_Code.ToString()));
             }
         }
 

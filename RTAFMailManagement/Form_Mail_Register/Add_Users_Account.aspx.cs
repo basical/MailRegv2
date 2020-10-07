@@ -18,12 +18,14 @@ namespace RTAFMailManagement.Form_Mail_Register
         {
             if (!IsPostBack)
             {
-                //LoadUnits();
-                //LoadRanks();
-                //LoadRTAFStatus();
-                //LoadADStatus();
-                //LoadQuestions();
-                //LoadUserTypes();
+                Session.Remove("Person_Data_DB");
+
+                LoadUnits();
+                LoadRanks();
+                LoadRTAFStatus();
+                LoadADStatus();
+                LoadQuestions();
+                LoadUserTypes();
 
                 if (Request.Params["code"] != null)
                 {
@@ -41,6 +43,7 @@ namespace RTAFMailManagement.Form_Mail_Register
 
                         List_Username_DDL.Visible = true;
                         Username_UG_TBx.Visible = false;
+                        Group_panel.Visible = false;
 
                         LoadPersonData(new RTAFData_Managers().GetRTAFData(User_IdCard, User_IdGvm), 1);
                     }
@@ -51,6 +54,7 @@ namespace RTAFMailManagement.Form_Mail_Register
 
                         List_Username_DDL.Visible = false;
                         Username_UG_TBx.Visible = true;
+                        Group_panel.Visible = false;
 
                         LoadPersonData(new RTAFData_Managers().GetRTAFData(User_IdCard, User_IdGvm), 2);
                     }
@@ -61,24 +65,9 @@ namespace RTAFMailManagement.Form_Mail_Register
 
                         List_Username_DDL.Visible = false;
                         Username_UG_TBx.Visible = true;
+                        Group_panel.Visible = true;
 
                         LoadPersonData(new RTAFData_Managers().GetRTAFData(User_IdCard, User_IdGvm), 3);
-                    }
-                }
-
-                if (Request.Params["gnrd"] != null)
-                {
-                    if (Request.Params["gnrd"] == "ad")
-                    {
-
-                    }
-                    else if (Request.Params["gnrd"] == "ma")
-                    {
-
-                    }
-                    else if (Request.Params["gnrd"] == "adma")
-                    {
-
                     }
                 }
             }
@@ -92,7 +81,7 @@ namespace RTAFMailManagement.Form_Mail_Register
             for (int i = 0; i < list_data.Count; i++)
             {
                 Ranks data = list_data[i];
-                Rank_DDL.Items.Add(new ListItem(data.Rank_FullName + " ( " + data.Rank_Name + " ) ", data.Rank_Code.ToString()));
+                Rank_DDL.Items.Add(new ListItem(data.Rank_Name + " ( " + data.Rank_FullName + " ) ", data.Rank_Code.ToString()));
             }
         }
 
@@ -163,7 +152,7 @@ namespace RTAFMailManagement.Form_Mail_Register
             FName_TBx.Text = data.RTAF_person_FirstName;
             LName_TBx.Text = data.RTAF_person_LastName;
             IdGvm_TBx.Text = data.RTAF_person_IdGvm;
-            Rank_Eng_TBx.Text = data.RTAF_person_Rank.Rank_FullNameEng + " ( " + data.RTAF_person_Rank.Rank_NameEng + " ) ";
+            Rank_Eng_TBx.Text = data.RTAF_person_Rank.Rank_NameEng + " ( " + data.RTAF_person_Rank.Rank_FullNameEng + " ) ";
             FName_Eng_TBx.Text = data.RTAF_person_FirstName_Eng;
             LName_Eng_TBx.Text = data.RTAF_person_LastName_Eng;
             Birthday_Date_TBx.Text = DateTimeUtility.convertDateToPageRealServer(data.RTAF_person_BirthDate);
@@ -227,8 +216,8 @@ namespace RTAFMailManagement.Form_Mail_Register
                 },
 
                 User_FirstName = FName_TBx.Text,
-                User_FirstNameEn = LName_TBx.Text,
-                User_LastName = FName_Eng_TBx.Text,
+                User_LastName = LName_TBx.Text,
+                User_FirstNameEn = FName_Eng_TBx.Text,
                 User_LastNameEn = LName_Eng_TBx.Text,
                 User_BirthDate = Birthday_Date_TBx.Text,
 
@@ -264,7 +253,7 @@ namespace RTAFMailManagement.Form_Mail_Register
 
                 User_ADStatus = new AD_Status()
                 {
-                    AD_Status_Code = int.Parse(AD_Status_DDL.SelectedValue)
+                    AD_Status_Code = int.Parse(AD_Status_DDL.SelectedValue) == 0? 1 : int.Parse(AD_Status_DDL.SelectedValue)
                 },
 
                 User_MailStatus = new Mail_Status()
@@ -280,6 +269,21 @@ namespace RTAFMailManagement.Form_Mail_Register
                 User_Type_Rank = (int)Session["type_rank"]
             };
 
+            int act = Convert.ToInt32(Session["Class_Active"].ToString());
+
+            if (act == 14)
+            {
+                user_data.User_UserName = Username_UG_TBx.Text;
+                user_data.User_Email = Username_UG_TBx.Text + "@rtaf.mi.th";
+            }
+            else if (act == 15)
+            {
+                user_data.User_UserName = Username_UG_TBx.Text;
+                user_data.User_Email = Username_UG_TBx.Text + "@rtaf.mi.th";
+                user_data.Employee_name = Employee_Name_TBx.Text;
+                user_data.Company_name = Company_Name_TBx.Text;
+            }
+
             Admin_Users au = (Admin_Users)Session["admin_user"];
             string ipAdd = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables["REMOTE_ADDR"];
 
@@ -287,7 +291,7 @@ namespace RTAFMailManagement.Form_Mail_Register
             if (new Users_Mananer().AddUserAccount(user_data))
             {
                 /// เพิ่มข้อมูล User Account ใน AD Server
-                if (ConnectRTAFService.AddAccount2ADDS(new Users_Mananer().GetUserAccountByUsername(user_data.User_UserName)))
+                if (ConnectRTAFService.AddAccount2ADDS(new Users_Mananer().GetUserAccountByUsername(user_data.User_UserName), act))
                 {
                     Activity_Log log = new Activity_Log()
                     {
@@ -335,6 +339,18 @@ namespace RTAFMailManagement.Form_Mail_Register
             }
 
             ClearText();
+            Save_Btn.Visible = false;
+            Create_ADnMail_Btn.Visible = false;
+        }
+
+        protected void Create_ADnMail_Btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Close_Btn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/Form_Mail_Register/Search_User_Accounts");
         }
 
         protected void Cancel_Btn_Click(object sender, EventArgs e)
@@ -363,11 +379,6 @@ namespace RTAFMailManagement.Form_Mail_Register
             Answer_TBx.Text = "";
             Email_Sec_TBx.Text = "";
             AD_Status_DDL.SelectedValue = "0";
-        }
-
-        protected void Close_Btn_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("/Form_Mail_Register/Search_User_Accounts");
         }
     }
 }

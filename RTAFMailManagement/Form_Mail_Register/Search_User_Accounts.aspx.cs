@@ -21,9 +21,9 @@ namespace RTAFMailManagement.Form_Mail_Register
             {
                 Session["Class_Active"] = 12;
 
-                //LoadUnits();
-                //LoadRanks();
-                //LoadRTAFStatus();
+                LoadUnits();
+                LoadRanks();
+                LoadRTAFStatus();
             }
         }
 
@@ -35,7 +35,7 @@ namespace RTAFMailManagement.Form_Mail_Register
             for (int i = 0; i < list_data.Count; i++)
             {
                 Ranks data = list_data[i];
-                Rank_DDL.Items.Add(new ListItem(data.Rank_FullName + " ( " + data.Rank_Name + " ) ", data.Rank_Code.ToString()));
+                Rank_DDL.Items.Add(new ListItem(data.Rank_Name+ " ( " + data.Rank_FullName + " ) ", data.Rank_Code.ToString()));
             }
         }
 
