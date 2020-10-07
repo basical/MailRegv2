@@ -75,7 +75,6 @@
                         <!-- /.card-body -->
                         <div class="card-footer">
                             <asp:LinkButton ID="Search_Btn" runat="server" CssClass="btn bg-gradient-primary" OnClick="Search_Btn_Click"> <i class="fas fa-search fa-fw"></i>&nbsp; ค้นหาข้อมูล </asp:LinkButton>
-                            <asp:LinkButton ID="Add_Btn" runat="server" CssClass="btn bg-gradient-success float-right" OnClick="Add_Btn_Click"> <i class="fas fa-user-plus fa-fw"></i>&nbsp; Add User Account </asp:LinkButton>
                         </div>
                         <!-- /.card-footer -->
 
@@ -151,7 +150,7 @@
                                             <td><%= data.User_Real_AD != null? DateTimeUtility.convertDateTimeToPageRealServer(data.User_Real_AD.AD_Nv_LastLogin) : "" %></td>
                                             <td><%= data.User_status_msg %></td>
                                             <td style="text-align: center;">
-                                                <a class="btn bg-gradient-info btn-sm" href="AD_Account_information?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard, data.User_id.ToString()) %>&mode=e" data-toggle="tooltip" data-placement="top" title="ข้อมูล User ใน AD Server"><i class="far fa-address-card fa-fw"></i></a>
+                                                <a class="btn bg-gradient-info btn-sm" href="AD_Account_information?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard, data.User_id.ToString()) %>&mode=e" data-toggle="tooltip" data-placement="top" title="ข้อมูล User ใน AD Server" onclick=""><i class="far fa-address-card fa-fw"></i></a>
                                             </td>
                                             <td style="text-align: center;">
                                                 <% 

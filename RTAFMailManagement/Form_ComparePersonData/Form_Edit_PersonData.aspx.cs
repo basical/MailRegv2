@@ -75,6 +75,22 @@ namespace RTAFMailManagement.Form_ComparePersonData
             }
         }
 
+        private void LoadPersonData(RTAF_DATA data)
+        {
+            IdCard_TBx.Text = data.RTAF_person_IdCard;
+            Rank_DDL.SelectedValue = data.RTAF_person_Rank.Rank_Code.ToString();
+            FName_TBx.Text = data.RTAF_person_FirstName;
+            LName_TBx.Text = data.RTAF_person_LastName;
+            IdGvm_TBx.Text = data.RTAF_person_IdGvm;
+            Rank_Eng_TBx.Text = data.RTAF_person_Rank.Rank_FullNameEng + " ( " + data.RTAF_person_Rank.Rank_NameEng + " ) ";
+            FName_Eng_TBx.Text = data.RTAF_person_FirstName_Eng;
+            LName_Eng_TBx.Text = data.RTAF_person_LastName_Eng;
+            Birthday_Date_TBx.Text = DateTimeUtility.convertDateToPageRealServer(data.RTAF_person_BirthDate);
+            Person_Status_DDL.SelectedValue = data.RTAF_person_Status.RTAF_status_Code.ToString();
+            Units_DDL.SelectedValue = data.RTAF_person_Unit.Unit_Code.ToString();
+            Position_TBx.Text = data.RTAF_person_Position;
+        }
+
         protected void Save_Btn_Click(object sender, EventArgs e)
         {
 

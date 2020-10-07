@@ -19,11 +19,31 @@ namespace RTAFMailManagement.Form_Mail_Register
         {
             if (!IsPostBack)
             {
-                Session["Class_Active"] = 22;
+                if(Request.Params["mode"] == "p")
+                {
+                    Session["Class_Active"] = 13;
 
-                LoadUnits();
-                LoadRanks();
-                LoadRTAFStatus();
+                    header_page_Lbl.Text = "ผู้ใช้งาน";
+                    sub_header_page_Lbl.Text = "ผู้ใช้งาน";
+                }
+                else if(Request.Params["mode"] == "u")
+                {
+                    Session["Class_Active"] = 14;
+
+                    header_page_Lbl.Text = "ผู้รับผิดชอบ หน่วยงาน";
+                    sub_header_page_Lbl.Text = "ผู้รับผิดชอบ หน่วยงาน";
+                }
+                else if (Request.Params["mode"] == "g")
+                {
+                    Session["Class_Active"] = 15;
+
+                    header_page_Lbl.Text = "ผู้รับผิดชอบ คณะทำงาน";
+                    sub_header_page_Lbl.Text = "ผู้รับผิดชอบ คณะทำงาน";
+                }
+
+                //LoadUnits();
+                //LoadRanks();
+                //LoadRTAFStatus();
             }
         }
 
@@ -90,7 +110,6 @@ namespace RTAFMailManagement.Form_Mail_Register
                     }
                 };
 
-
                 List<RTAF_DATA> list_data_all = new RTAFData_Managers().GetRTAFDataALL(data, 0, 0);
 
                 int row = list_data_all.Count;
@@ -118,6 +137,8 @@ namespace RTAFMailManagement.Form_Mail_Register
         protected void Cancel_Btn_Click(object sender, EventArgs e)
         {
             ClearText();
+
+            Response.Redirect("/Form_Mail_Register/Search_User_Accounts");
         }
 
         private void ClearText()

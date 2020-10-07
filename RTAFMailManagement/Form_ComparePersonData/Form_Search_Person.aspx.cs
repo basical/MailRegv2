@@ -21,9 +21,9 @@ namespace RTAFMailManagement.Form_ComparePersonData
             {
                 Session["Class_Active"] = 22;
 
-                LoadUnits();
-                LoadRanks();
-                LoadRTAFStatus();
+                //LoadUnits();
+                //LoadRanks();
+                //LoadRTAFStatus();
             }
         }
 

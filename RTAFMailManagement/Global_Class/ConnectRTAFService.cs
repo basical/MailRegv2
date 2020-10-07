@@ -386,6 +386,71 @@ namespace RTAFMailManagement.Global_Class
             }
         }
 
+        public static bool AddAccount2ADDS(Users data)
+        {
+            string domainController = ConfigurationManager.AppSettings["AD_SIP"];
+            string container = ConfigurationManager.AppSettings["AD_Container"];
+            string adminName = ConfigurationManager.AppSettings["UADService"];
+            string adminPassword = ConfigurationManager.AppSettings["PADService"];
+
+            container = string.IsNullOrEmpty(data.User_Unit.Unit_OUName) ? container : "OU=" + data.User_Unit.Unit_OUName + ",OU=RTAF," + container;
+
+            PrincipalContext pc = new PrincipalContext(ContextType.Domain, domainController, container, adminName, adminPassword);
+
+            string error;
+
+            try
+            {
+                UserPrincipal user = new UserPrincipal(pc, data.User_UserName, data.User_Password, true);
+
+                DirectoryEntry deUser = (DirectoryEntry)user.GetUnderlyingObject();
+                ActiveDs.IADsUser nativeDeUser = (ActiveDs.IADsUser)deUser.NativeObject;
+
+                nativeDeUser.AccountDisabled = false;
+                nativeDeUser.Department = data.User_Unit.Unit_FullName;
+                nativeDeUser.Description = data.User_FirstNameEn + " " + data.User_LastNameEn;
+                nativeDeUser.EmailAddress = data.User_Email;
+                nativeDeUser.FirstName = data.User_FirstName;
+                nativeDeUser.FullName = data.User_Rank.Rank_Name + data.User_FirstName + " " + data.User_LastName;
+                nativeDeUser.IsAccountLocked = false;
+                nativeDeUser.LastName = data.User_LastName;
+                nativeDeUser.SetPassword(data.User_Password);
+                nativeDeUser.TelephoneMobile = data.User_Tel;
+                nativeDeUser.Title = data.User_Position;
+
+                deUser.Close();
+
+                user.SamAccountName = data.User_UserName;
+                user.GivenName = data.User_FirstName;
+                user.EmailAddress = data.User_Email;
+                user.Name = data.User_UserName;
+                user.Surname = data.User_LastName;
+                user.UserPrincipalName = data.User_Email;
+                user.Enabled = true;
+                user.Save();
+
+                return true;
+            }
+            catch (PrincipalException ex)
+            {
+                error = "PrincipalException ==> Global_Class --> ConnectRTAFService --> AddAccount2ADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                error = "Exception ==> Global_Class --> ConnectRTAFService --> AddAccount2ADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return false;
+            }
+            finally
+            {
+                pc.Dispose();
+            }
+        }
+
         public static bool AccountDisabledWithADDS(string userName, bool disable)
         {
             string domainController = ConfigurationManager.AppSettings["AD_SIP"];

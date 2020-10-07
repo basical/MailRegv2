@@ -8,11 +8,34 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark"><i class="fas fa-user-plus"></i>&nbsp; :: เพิ่มข้อมูลผู้ใช้งาน :: </h1>
+                        <h1 class="m-0 text-dark"><i class="fas fa-user-plus"></i>&nbsp; :: เพิ่มข้อมูลผู้ใช้งาน <asp:Label ID="header_page_Lbl" runat="server"> </asp:Label> :: </h1>
 
                     </div>
                 </div>
                 <!-- /.row -->
+
+                <div class="row">
+                    <div class="card-body">
+                        <div class="col-sm-6">
+                            <asp:Panel ID="success_panel" runat="server" Visible="false">
+                                <div class="alert alert-success alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <h5><i class="icon fas fa-check"></i>แจ้งเตือน!</h5>
+                                    <asp:Label ID="success_Lbl" runat="server"></asp:Label>
+                                </div>
+                            </asp:Panel>
+
+                            <asp:Panel ID="bad_panel" runat="server" Visible="false">
+                                <div class="alert alert-danger alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <h5><i class="icon fas fa-ban"></i>แจ้งเตือน!</h5>
+                                    <asp:Label ID="bad_Lbl" runat="server"></asp:Label>
+                                </div>
+                            </asp:Panel>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <!-- /.container-fluid -->
         </div>
@@ -25,7 +48,7 @@
                 <!-- Horizontal Form -->
                 <div class="card card-warning">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-user-plus"></i>&nbsp; :: เพิ่มข้อมูลผู้ใช้งาน :: </h3>
+                        <h3 class="card-title"><i class="fas fa-user-plus"></i>&nbsp; :: เพิ่มข้อมูลผู้ใช้งาน <asp:Label ID="sub_header_page_Lbl" runat="server"> </asp:Label>  :: </h3>
                         <div class="card-tools">
                             <asp:LinkButton ID="Close_Btn" runat="server" CssClass="btn btn-tool" OnClick="Close_Btn_Click"> <i class="fas fa-times"></i> </asp:LinkButton>
                         </div>
@@ -46,37 +69,37 @@
                                         <div class="form-group row">
                                             <div class="col-sm-3">
                                                 <asp:Label ID="IdCard_Lbl" runat="server"> เลขบัตรประจำตัวประชาชน </asp:Label>
-                                                <asp:TextBox ID="IdCard_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="IdCard_TBx" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="Rank_Lbl" runat="server"> ยศ </asp:Label>
-                                                <asp:DropDownList ID="Rank_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
+                                                <asp:DropDownList ID="Rank_DDL" runat="server" CssClass="form-control select2" Enabled="false"></asp:DropDownList>
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="FName_Lbl" runat="server"> ชื่อ </asp:Label>
-                                                <asp:TextBox ID="FName_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="FName_TBx" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="LName_Lbl" runat="server"> นามสกุล </asp:Label>
-                                                <asp:TextBox ID="LName_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="LName_TBx" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-3">
                                                 <asp:Label ID="IdGvm_Lbl" runat="server"> เลขบัตรข้าราชการ 10 หลัก </asp:Label>
-                                                <asp:TextBox ID="IdGvm_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="IdGvm_TBx" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="Rank_Eng_Lbl" runat="server"> ยศ (ENG) </asp:Label>
-                                                <asp:TextBox ID="Rank_Eng_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="Rank_Eng_TBx" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="FName_Eng_Lbl" runat="server"> ชื่อ (ENG) </asp:Label>
-                                                <asp:TextBox ID="FName_Eng_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="FName_Eng_TBx" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="LName_Eng_Lbl" runat="server"> นามสกุล (ENG) </asp:Label>
-                                                <asp:TextBox ID="LName_Eng_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="LName_Eng_TBx" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -84,7 +107,7 @@
                                             <div class="col-sm-3">
                                                 <asp:Label ID="Birthday_Date_Lbl" runat="server"> วันเดือนปีเกิด </asp:Label>
                                                 <div class="input-group" id="Birthday_Date">
-                                                    <asp:TextBox ID="Birthday_Date_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    <asp:TextBox ID="Birthday_Date_TBx" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text"><i class="fa fa-calendar fa-fw"></i></span>
                                                     </div>
@@ -130,17 +153,17 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="Person_Status_Lbl" runat="server"> สถานะกำลังพล </asp:Label>
-                                                <asp:DropDownList ID="Person_Status_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
+                                                <asp:DropDownList ID="Person_Status_DDL" runat="server" CssClass="form-control select2" Enabled="false"></asp:DropDownList>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-3">
                                                 <asp:Label ID="Units_Lbl" runat="server">สังกัด</asp:Label>
-                                                <asp:DropDownList ID="Units_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
+                                                <asp:DropDownList ID="Units_DDL" runat="server" CssClass="form-control select2" Enabled="false"></asp:DropDownList>
                                             </div>
                                             <div class="col-sm-6">
                                                 <asp:Label ID="Position_Lbl" runat="server"> ตำแหน่ง </asp:Label>
-                                                <asp:TextBox ID="Position_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="Position_TBx" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="Tel_Lbl" runat="server"> เบอร์โทรศัพท์ </asp:Label>
@@ -163,11 +186,12 @@
                                         <div class="form-group row">
                                             <div class="col-sm-3">
                                                 <asp:Label ID="Acc_Type_Lbl" runat="server"> ประเภทบัญชีผู้ใช้งาน </asp:Label>
-                                                <asp:DropDownList ID="Acc_Type_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
+                                                <asp:DropDownList ID="Acc_Type_DDL" runat="server" CssClass="form-control select2" Enabled="false"></asp:DropDownList>
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="List_Username_Lbl" runat="server"> เลือก Username และ E-mail </asp:Label>
-                                                <asp:DropDownList ID="List_Username_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
+                                                <asp:DropDownList ID="List_Username_DDL" runat="server" CssClass="form-control select2" Visible="true"></asp:DropDownList>
+                                                <asp:TextBox ID="Username_UG_TBx" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="newPassword_Lbl" runat="server"> รหัสผ่าน </asp:Label>

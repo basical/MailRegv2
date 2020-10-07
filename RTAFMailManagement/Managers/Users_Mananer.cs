@@ -227,13 +227,152 @@ namespace RTAFMailManagement.Managers
             }
             catch (SqlException ex)
             {
-                error = "SqlException ==> Managers --> RTAFData_Managers --> GetUserById() ";
+                error = "SqlException ==> Managers --> Users_Mananer --> GetUserById() ";
                 Log_Error._writeErrorFile(error, ex);
                 return null;
             }
             catch (Exception ex)
             {
-                error = "Exception ==> Managers --> RTAFData_Managers --> GetUserById() ";
+                error = "Exception ==> Managers --> Users_Mananer --> GetUserById() ";
+                Log_Error._writeErrorFile(error, ex);
+                return null;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public Users GetUserAccountByUsername(string i_username)
+        {
+            SqlConnection con = MSSQLConnection.connectionMSSQL();
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[new_g_UserAccByUsername]", con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@i_username", i_username);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                Users data = new Users();
+
+                if (reader.Read())
+                {
+                    data.User_id = reader.IsDBNull(0) ? defaultNum : (int)reader.GetInt64(0);
+                    data.User_Email = reader.IsDBNull(1) ? defaultString : reader.GetString(1);
+                    data.User_IdCard = reader.IsDBNull(2) ? defaultString : reader.GetString(2);
+                    data.User_IdGvm = reader.IsDBNull(3) ? defaultString : reader.GetString(3);
+                    data.User_BirthDate = reader.IsDBNull(4) ? defaultString : reader.GetDateTime(4).ToString();
+                    data.User_FirstName = reader.IsDBNull(5) ? defaultString : reader.GetString(5);
+                    data.User_LastName = reader.IsDBNull(6) ? defaultString : reader.GetString(6);
+                    data.User_FirstNameEn = reader.IsDBNull(7) ? defaultString : reader.GetString(7);
+                    data.User_LastNameEn = reader.IsDBNull(8) ? defaultString : reader.GetString(8);
+
+                    data.User_Rank = new Ranks()
+                    {
+                        Rank_id = reader.IsDBNull(9) ? defaultNum : reader.GetInt64(9),
+                        Rank_Code = reader.IsDBNull(10) ? defaultNum : reader.GetInt32(10),
+                        Rank_Name = reader.IsDBNull(11) ? defaultString : reader.GetString(11),
+                        Rank_FullName = reader.IsDBNull(12) ? defaultString : reader.GetString(12),
+                        Rank_NameEng = reader.IsDBNull(13) ? defaultString : reader.GetString(13),
+                        Rank_FullNameEng = reader.IsDBNull(14) ? defaultString : reader.GetString(14),
+                        Rank_GroupName = reader.IsDBNull(15) ? defaultString : reader.GetString(15),
+                        Rank_Remark = reader.IsDBNull(16) ? defaultString : reader.GetString(16),
+                        Rank_Sort = reader.IsDBNull(17) ? defaultNum : reader.GetInt32(17),
+                        Rank_Mailbox = reader.IsDBNull(18) ? defaultString : reader.GetString(18),
+                        Rank_sortrank = reader.IsDBNull(19) ? defaultNum : reader.GetInt32(19),
+                        Rank_rankgroup = reader.IsDBNull(20) ? defaultString : reader.GetString(20),
+                        Rank_ranktype = reader.IsDBNull(21) ? defaultNum : reader.GetInt32(21)
+                    };
+
+                    data.User_Unit = new Units()
+                    {
+                        Unit_id = reader.IsDBNull(22) ? defaultNum : reader.GetInt64(22),
+                        Unit_Code = reader.IsDBNull(23) ? defaultNum : reader.GetInt64(23),
+                        Unit_Name = reader.IsDBNull(24) ? defaultString : reader.GetString(24),
+                        Unit_FullName = reader.IsDBNull(25) ? defaultString : reader.GetString(25),
+                        Unit_SubCode = reader.IsDBNull(26) ? defaultNum : reader.GetInt64(26),
+                        Unit_Sort = reader.IsDBNull(27) ? defaultNum : reader.GetInt32(27),
+                        Unit_Level = reader.IsDBNull(28) ? defaultNum : reader.GetInt32(28),
+                        Unit_OUName = reader.IsDBNull(29) ? defaultString : reader.GetString(29),
+                        Unit_GroupName = reader.IsDBNull(30) ? defaultString : reader.GetString(30),
+                        Unit_Remark = reader.IsDBNull(31) ? defaultString : reader.GetString(31)
+                    };
+
+                    data.User_Password = reader.IsDBNull(32) ? defaultString : reader.GetString(32);
+                    data.User_Format = reader.IsDBNull(33) ? defaultNum : reader.GetInt32(33);
+
+                    data.User_Question = new Questions()
+                    {
+                        Questions_id = reader.IsDBNull(34) ? defaultNum : reader.GetInt32(34)
+                    };
+
+                    data.User_Answer = reader.IsDBNull(35) ? defaultString : reader.GetString(35);
+                    data.User_Position = reader.IsDBNull(36) ? defaultString : reader.GetString(36);
+                    data.User_UserName = reader.IsDBNull(37) ? defaultString : reader.GetString(37);
+                    data.User_Name = reader.IsDBNull(38) ? defaultString : reader.GetString(38);
+
+                    data.User_ADStatus = new AD_Status()
+                    {
+                        AD_Status_Code = reader.IsDBNull(39) ? defaultNum : reader.GetInt32(39),
+                        AD_Status_Name = reader.IsDBNull(40) ? defaultString : reader.GetString(40),
+                        AD_Status_Sort = reader.IsDBNull(41) ? defaultNum : reader.GetInt32(41),
+                        AD_Status_Remark = reader.IsDBNull(42) ? defaultString : reader.GetString(42)
+                    };
+
+                    data.User_MailStatus = new Mail_Status()
+                    {
+                        Mail_Status_Code = reader.IsDBNull(43) ? defaultNum : reader.GetInt32(43),
+                        Mail_Status_Name = reader.IsDBNull(44) ? defaultString : reader.GetString(44),
+                        Mail_Status_Sort = reader.IsDBNull(45) ? defaultNum : reader.GetInt32(45),
+                        Mail_Status_Remark = reader.IsDBNull(46) ? defaultString : reader.GetString(46)
+                    };
+
+                    data.User_Type = new Users_Type()
+                    {
+                        User_Type_Code = reader.IsDBNull(47) ? defaultNum : reader.GetInt32(47),
+                        User_Type_Name = reader.IsDBNull(48) ? defaultString : reader.GetString(48),
+                        User_Type_Sort = reader.IsDBNull(49) ? defaultNum : reader.GetInt32(49),
+                        User_Type_Remark = reader.IsDBNull(50) ? defaultString : reader.GetString(50)
+                    };
+
+                    data.User_Tel = reader.IsDBNull(51) ? defaultString : reader.GetString(51);
+                    data.User_Type_Rank = reader.IsDBNull(52) ? defaultNum : reader.GetInt32(52);
+                    data.User_UpdateDate = reader.IsDBNull(53) ? defaultString : reader.GetDateTime(53).ToString();
+                    data.User_CreateDate = reader.IsDBNull(54) ? defaultString : reader.GetDateTime(54).ToString();
+                    data.User_Remark = reader.IsDBNull(55) ? defaultString : reader.GetString(55);
+                    data.User_PasswordOld = reader.IsDBNull(56) ? defaultString : reader.GetString(56);
+                    data.User_Permission = reader.IsDBNull(57) ? defaultNum : reader.GetInt32(57);
+                    data.User_Division = reader.IsDBNull(58) ? defaultNum : reader.GetInt32(58);
+                    data.User_WorkingYear = reader.IsDBNull(59) ? defaultNum : reader.GetInt32(59);
+                    data.User_WorkingRank = reader.IsDBNull(60) ? defaultNum : reader.GetInt32(60);
+                    data.User_PosAction = reader.IsDBNull(61) ? defaultNum : reader.GetInt32(61);
+                    data.User_SecEmail = reader.IsDBNull(62) ? defaultString : reader.GetString(62);
+                    data.User_status_msg = reader.IsDBNull(63) ? defaultString : reader.GetString(63);
+
+                    data.User_status = new RTAF_Status()
+                    {
+                        RTAF_status_Code = reader.IsDBNull(64) ? defaultNum : reader.GetInt32(64),
+                        RTAF_status_Name = reader.IsDBNull(65) ? defaultString : reader.GetString(65),
+                        RTAF_status_Sort = reader.IsDBNull(66) ? defaultNum : reader.GetInt32(66),
+                        RTAF_status_Remark = reader.IsDBNull(67) ? defaultString : reader.GetString(67)
+                    };
+                }
+
+                return data;
+            }
+            catch (SqlException ex)
+            {
+                error = "SqlException ==> Managers --> Users_Mananer --> GetUserAccountByUsername() ";
+                Log_Error._writeErrorFile(error, ex);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                error = "Exception ==> Managers --> Users_Mananer --> GetUserAccountByUsername() ";
                 Log_Error._writeErrorFile(error, ex);
                 return null;
             }
@@ -384,13 +523,13 @@ namespace RTAFMailManagement.Managers
             }
             catch (SqlException ex)
             {
-                error = "SqlException ==> Managers --> RTAFData_Managers --> GetListUsers() ";
+                error = "SqlException ==> Managers --> Users_Mananer --> GetListUsers() ";
                 Log_Error._writeErrorFile(error, ex);
                 return null;
             }
             catch (Exception ex)
             {
-                error = "Exception ==> Managers --> RTAFData_Managers --> GetListUsers() ";
+                error = "Exception ==> Managers --> Users_Mananer --> GetListUsers() ";
                 Log_Error._writeErrorFile(error, ex);
                 return null;
             }
@@ -399,6 +538,63 @@ namespace RTAFMailManagement.Managers
                 con.Close();
             }
         }
+
+        public bool AddUserAccount(Users i_data)
+        {
+            SqlConnection con = MSSQLConnection.connectionMSSQL();
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[new_i_User_Account]", con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@i_Email", i_data.User_Email);
+                cmd.Parameters.AddWithValue("@i_IdCard", i_data.User_IdCard);
+                cmd.Parameters.AddWithValue("@i_IdGvm", i_data.User_IdGvm);
+                cmd.Parameters.AddWithValue("@i_BirthDate", i_data.User_BirthDate);
+                cmd.Parameters.AddWithValue("@i_FName", i_data.User_FirstName);
+                cmd.Parameters.AddWithValue("@i_LName", i_data.User_LastName);
+                cmd.Parameters.AddWithValue("@i_FName_Eng", i_data.User_FirstNameEn);
+                cmd.Parameters.AddWithValue("@i_LName_Eng", i_data.User_LastNameEn);
+                cmd.Parameters.AddWithValue("@i_Rank", i_data.User_Rank.Rank_Code);
+                cmd.Parameters.AddWithValue("@i_Unit", i_data.User_Unit.Unit_Code);
+                cmd.Parameters.AddWithValue("@i_Question", i_data.User_Question.Questions_id);
+                cmd.Parameters.AddWithValue("@i_Answer", i_data.User_Answer);
+                cmd.Parameters.AddWithValue("@i_Position", i_data.User_Position);
+                cmd.Parameters.AddWithValue("@i_UserName", i_data.User_UserName);
+                cmd.Parameters.AddWithValue("@i_ADStatus", i_data.User_ADStatus.AD_Status_Code);
+                cmd.Parameters.AddWithValue("@i_MailStatus", i_data.User_MailStatus.Mail_Status_Code);
+                cmd.Parameters.AddWithValue("@i_Tel", i_data.User_Tel);
+                cmd.Parameters.AddWithValue("@i_Type", i_data.User_Type.User_Type_Code);
+                cmd.Parameters.AddWithValue("@i_Type_Rank", i_data.User_Type_Rank);
+                cmd.Parameters.AddWithValue("@i_SecEmail", i_data.User_SecEmail);
+                cmd.Parameters.AddWithValue("@i_status_msg", i_data.User_status_msg);
+                cmd.Parameters.AddWithValue("@i_status_code", i_data.User_status.RTAF_status_Code);
+                cmd.Parameters.AddWithValue("@i_person_uid", i_data.person_data.RTAF_person_Uid);
+
+                cmd.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                error = "SqlException ==> Managers --> Users_Mananer --> AddUserAccount() ";
+                Log_Error._writeErrorFile(error, ex);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                error = "Exception ==> Managers --> Users_Mananer --> AddUserAccount() ";
+                Log_Error._writeErrorFile(error, ex);
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
         public bool UpdateUserAccountWithRTAFDATA(Users i_data)
         {
             SqlConnection con = MSSQLConnection.connectionMSSQL();

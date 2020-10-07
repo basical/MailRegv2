@@ -168,15 +168,6 @@ namespace RTAFMailManagement.Form_Mail_Register
         protected global::System.Web.UI.WebControls.LinkButton Search_Btn;
 
         /// <summary>
-        /// Add_Btn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Add_Btn;
-
-        /// <summary>
         /// link_Previous control.
         /// </summary>
         /// <remarks>

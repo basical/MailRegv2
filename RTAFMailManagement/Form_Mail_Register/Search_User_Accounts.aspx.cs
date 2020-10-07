@@ -21,9 +21,9 @@ namespace RTAFMailManagement.Form_Mail_Register
             {
                 Session["Class_Active"] = 12;
 
-                LoadUnits();
-                LoadRanks();
-                LoadRTAFStatus();
+                //LoadUnits();
+                //LoadRanks();
+                //LoadRTAFStatus();
             }
         }
 
@@ -116,13 +116,6 @@ namespace RTAFMailManagement.Form_Mail_Register
             }
 
             ClearText();
-        }
-
-        protected void Add_Btn_Click(object sender, EventArgs e)
-        {
-            Session.Remove("List_User_Acc");
-
-            Response.Redirect("/Form_Mail_Register/Add_Users_Account");
         }
 
         private void ClearText()

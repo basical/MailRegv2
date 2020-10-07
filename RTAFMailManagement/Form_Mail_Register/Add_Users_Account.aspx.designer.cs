@@ -15,6 +15,60 @@ namespace RTAFMailManagement.Form_Mail_Register
     {
 
         /// <summary>
+        /// header_page_Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label header_page_Lbl;
+
+        /// <summary>
+        /// success_panel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel success_panel;
+
+        /// <summary>
+        /// success_Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label success_Lbl;
+
+        /// <summary>
+        /// bad_panel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel bad_panel;
+
+        /// <summary>
+        /// bad_Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label bad_Lbl;
+
+        /// <summary>
+        /// sub_header_page_Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label sub_header_page_Lbl;
+
+        /// <summary>
         /// Close_Btn control.
         /// </summary>
         /// <remarks>
@@ -292,6 +346,15 @@ namespace RTAFMailManagement.Form_Mail_Register
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList List_Username_DDL;
+
+        /// <summary>
+        /// Username_UG_TBx control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Username_UG_TBx;
 
         /// <summary>
         /// newPassword_Lbl control.

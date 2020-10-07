@@ -30,7 +30,6 @@ namespace RTAFMailManagement.Form_Mail_Register
                 string User_IdCard = code[2];
                 string User_Id = code[3];
 
-
                 if (Request.Params["mode"] == "e")
                 {
                     Users data = new Users_Mananer().GetUserById(User_Id);

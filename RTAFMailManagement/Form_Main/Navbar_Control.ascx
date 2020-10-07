@@ -143,19 +143,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link <%= act == 13 ? "active" : "" %>">
+                                    <a href="/Form_Mail_Register/Search_Prepare_Create_Account?mode=p" class="nav-link <%= act == 13 ? "active" : "" %>">
                                         <i class="fas fa-user-plus nav-icon"></i>
                                         <p>Add Account Person *</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link <%= act == 14 ? "active" : "" %>">
+                                    <a href="/Form_Mail_Register/Search_Prepare_Create_Account?mode=u" class="nav-link <%= act == 14 ? "active" : "" %>">
                                         <i class="far fa-building nav-icon"></i>
                                         <p>Add Account Unit *</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link <%= act == 15 ? "active" : "" %>">
+                                    <a href="/Form_Mail_Register/Search_Prepare_Create_Account?mode=g" class="nav-link <%= act == 15 ? "active" : "" %>">
                                         <i class="fas fa-users nav-icon"></i>
                                         <p>Add Account Group *</p>
                                     </a>

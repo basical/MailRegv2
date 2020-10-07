@@ -11,7 +11,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark"><i class="fas fa-search-plus fa-fw"></i>&nbsp; :: ค้นหาข้อมูลกำลังพล ::</h1>
+                        <h1 class="m-0 text-dark"><i class="fas fa-search-plus fa-fw"></i>&nbsp; :: ค้นหาข้อมูล <asp:Label ID="header_page_Lbl" runat="server"> </asp:Label> ::</h1>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -27,20 +27,21 @@
                 <!-- Horizontal Form -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-search-plus fa-fw"></i>&nbsp; :: ค้นหาข้อมูล ::</h3>
+                        <h3 class="card-title"><i class="fas fa-search-plus fa-fw"></i>&nbsp; :: ค้นหาข้อมูล <asp:Label ID="sub_header_page_Lbl" runat="server"> </asp:Label> ::</h3>
                     </div>
                     <!-- /.card-header -->
+
                     <!-- form start -->
                     <div class="form-horizontal">
                         <div class="card-body">
                             <div class="form-group row">
                                 <div class="col-sm-3">
                                     <asp:Label ID="IdCard_Lbl" runat="server"> เลขบัตรประจำตัวประชาชน </asp:Label>
-                                    <asp:TextBox ID="IdCard_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="IdCard_TBx" runat="server" CssClass="form-control" onkeypress="return SearchEnterEvent(event)"></asp:TextBox>
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:Label ID="IdGvm_Lbl" runat="server"> เลขบัตรข้าราชการ 10 หลัก </asp:Label>
-                                    <asp:TextBox ID="IdGvm_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="IdGvm_TBx" runat="server" CssClass="form-control" onkeypress="return SearchEnterEvent(event)"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -50,11 +51,11 @@
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:Label ID="FName_Lbl" runat="server"> ชื่อ </asp:Label>
-                                    <asp:TextBox ID="FName_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="FName_TBx" runat="server" CssClass="form-control" onkeypress="return SearchEnterEvent(event)"></asp:TextBox>
                                 </div>
                                 <div class="col-sm-3">
                                     <asp:Label ID="LName_Lbl" runat="server"> นามสกุล </asp:Label>
-                                    <asp:TextBox ID="LName_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="LName_TBx" runat="server" CssClass="form-control" onkeypress="return SearchEnterEvent(event)"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -74,6 +75,15 @@
                             <asp:LinkButton ID="Cancel_Btn" runat="server" CssClass="btn bg-gradient-warning" OnClick="Cancel_Btn_Click"> <i class="fas fa-window-close"></i>&nbsp; ยกเลิก </asp:LinkButton>
                         </div>
                         <!-- /.card-footer -->
+
+                        <script type="text/javascript">
+                            function SearchEnterEvent(e) {
+                                if (e.keyCode == 13) {
+                                    __doPostBack('<%=Search_Btn.UniqueID%>', "");
+                                }
+                            }
+                        </script>
+
                     </div>
                 </div>
                 <!-- /.card -->
@@ -98,13 +108,13 @@
                                             <th style="width: 5%; text-align: center;">#</th>
                                             <th style="width: 10%; text-align: center;">รหัสบัตรประชาชน</th>
                                             <th style="width: 10%; text-align: center;">เลข 10 หลัก</th>
-                                            <th style="width: 10%; text-align: center;">ยศ</th>
-                                            <th style="width: 10%; text-align: center;">ชื่อ</th>
-                                            <th style="width: 10%; text-align: center;">นามสกุล</th>
+                                            <th style="width: 10%; text-align: center;">ยศ ชื่อ - นามสกุล </th>
                                             <th style="width: 5%; text-align: center;">วันเกิด</th>
                                             <th style="width: 10%; text-align: center;">สังกัด</th>
                                             <th style="width: 20%; text-align: center;">ตำแหน่ง</th>
                                             <th style="width: 15%; text-align: center;">สถานะ</th>
+                                            <th style="width: 5%; text-align: center;"></th>
+                                            <th style="width: 5%; text-align: center;"></th>
                                             <th style="width: 5%; text-align: center;"></th>
                                         </tr>
                                     </thead>
@@ -122,16 +132,19 @@
                                             <td style="text-align: center;"><%= i+1 %></td>
                                             <td><%= data.RTAF_person_IdCard %></td>
                                             <td><%= data.RTAF_person_IdGvm %></td>
-                                            <td><%= data.RTAF_person_Rank.Rank_Name %></td>
-                                            <td><%= data.RTAF_person_FirstName %></td>
-                                            <td><%= data.RTAF_person_LastName %></td>
+                                            <td><%= data.RTAF_person_Rank.Rank_Name + " " + data.RTAF_person_FirstName + " " + data.RTAF_person_LastName %></td>
                                             <td><%= DateTimeUtility.convertDateToPageRealServer(data.RTAF_person_BirthDate) %></td>
                                             <td><%= data.RTAF_person_Unit.Unit_Name %></td>
                                             <td><%= data.RTAF_person_Position %></td>
                                             <td><%= data.RTAF_person_Status %></td>
                                             <td>
-                                                <a class="btn bg-gradient-warning" href="Form_Edit_PersonData?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.RTAF_person_IdGvm, data.RTAF_person_IdCard, data.RTAF_person_Uid) %>&mode=e" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล"><i class="fa fa-edit fa-fw"></i></a>
-
+                                                <a class="btn bg-gradient-warning" href="Add_Users_Account?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.RTAF_person_IdGvm, data.RTAF_person_IdCard, data.RTAF_person_Uid) %>&gnrd=ad" data-toggle="tooltip" data-placement="top" title="สร้าง AD Account"><i class="far fa-address-card fa-fw"></i></a>
+                                            </td>
+                                            <td>
+                                                <a class="btn bg-gradient-warning" href="Add_Users_Account?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.RTAF_person_IdGvm, data.RTAF_person_IdCard, data.RTAF_person_Uid) %>&gnrd=ma" data-toggle="tooltip" data-placement="top" title="สร้าง Mail Account"><i class="far fa-address-card fa-fw"></i></a>
+                                            </td>
+                                            <td>
+                                                <a class="btn bg-gradient-warning" href="Add_Users_Account?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.RTAF_person_IdGvm, data.RTAF_person_IdCard, data.RTAF_person_Uid) %>&gnrd=adma" data-toggle="tooltip" data-placement="top" title="สร้าง AD และ Mail Account"><i class="far fa-address-card fa-fw"></i></a>
                                             </td>
                                         </tr>
                                         <%

@@ -15,6 +15,24 @@ namespace RTAFMailManagement.Form_Mail_Register
     {
 
         /// <summary>
+        /// header_page_Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label header_page_Lbl;
+
+        /// <summary>
+        /// sub_header_page_Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label sub_header_page_Lbl;
+
+        /// <summary>
         /// IdCard_Lbl control.
         /// </summary>
         /// <remarks>

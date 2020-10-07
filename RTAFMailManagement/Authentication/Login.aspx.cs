@@ -24,82 +24,82 @@ namespace RTAFMailManagement.Authentication
             string password = Password_TBx.Text;
             string ipAdd = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables["REMOTE_ADDR"];
 
-            if (ConnectRTAFService.AuthenUserWithADDS(username, password))
-            {
-                Admin_Users au = new Admin_User_Manager().GetCheckAdministratorLevel(username);
+            //if (ConnectRTAFService.AuthenUserWithADDS(username, password))
+            //{
+            //    Admin_Users au = new Admin_User_Manager().GetCheckAdministratorLevel(username);
 
-                if (au.Admin_User_Type.Admin_Users_Type_id == 1)
-                {
-                    Activity_Log log = new Activity_Log()
-                    {
-                        Act_log_user = au.Admin_Users_Name,
-                        Act_log_ip = ipAdd,
-                        Act_log_details = "LGN_ADM : Admin Authenicated and Sign-in Success"
-                    };
+            //    if (au.Admin_User_Type.Admin_Users_Type_id == 1)
+            //    {
+            //        Activity_Log log = new Activity_Log()
+            //        {
+            //            Act_log_user = au.Admin_Users_Name,
+            //            Act_log_ip = ipAdd,
+            //            Act_log_details = "LGN_ADM : Admin Authenicated and Sign-in Success"
+            //        };
 
-                    new Activity_Log_Manager().AddActivityLogs(log);
+            //        new Activity_Log_Manager().AddActivityLogs(log);
 
-                    Session["admin_user"] = au;
+            //        Session["admin_user"] = au;
 
-                    Response.Redirect("/Form_Main/Form_MainPage");
-                }
-                else if (au.Admin_User_Type.Admin_Users_Type_id == 2)
-                {
-                    Activity_Log log = new Activity_Log()
-                    {
-                        Act_log_user = au.Admin_Users_Name,
-                        Act_log_ip = ipAdd,
-                        Act_log_details = "LGN_UADM : Unit Admin Authenicated and Sign-in Success"
-                    };
+            //        Response.Redirect("/Form_Main/Form_MainPage");
+            //    }
+            //    else if (au.Admin_User_Type.Admin_Users_Type_id == 2)
+            //    {
+            //        Activity_Log log = new Activity_Log()
+            //        {
+            //            Act_log_user = au.Admin_Users_Name,
+            //            Act_log_ip = ipAdd,
+            //            Act_log_details = "LGN_UADM : Unit Admin Authenicated and Sign-in Success"
+            //        };
 
-                    new Activity_Log_Manager().AddActivityLogs(log);
+            //        new Activity_Log_Manager().AddActivityLogs(log);
 
-                    Session["admin_user"] = au;
+            //        Session["admin_user"] = au;
 
-                    Response.Redirect("/Form_Main/Form_MainPage");
-                }
-                else if (au.Admin_User_Type.Admin_Users_Type_id == 3)
-                {
-                    Activity_Log log = new Activity_Log()
-                    {
-                        Act_log_user = au.Admin_Users_Name,
-                        Act_log_ip = ipAdd,
-                        Act_log_details = "LGN_SADM : Super Admin Authenicated and Sign-in Success"
-                    };
+            //        Response.Redirect("/Form_Main/Form_MainPage");
+            //    }
+            //    else if (au.Admin_User_Type.Admin_Users_Type_id == 3)
+            //    {
+            //        Activity_Log log = new Activity_Log()
+            //        {
+            //            Act_log_user = au.Admin_Users_Name,
+            //            Act_log_ip = ipAdd,
+            //            Act_log_details = "LGN_SADM : Super Admin Authenicated and Sign-in Success"
+            //        };
 
-                    new Activity_Log_Manager().AddActivityLogs(log);
+            //        new Activity_Log_Manager().AddActivityLogs(log);
 
-                    Session["admin_user"] = au;
+            //        Session["admin_user"] = au;
 
-                    Response.Redirect("/Form_Main/Form_MainPage");
-                }
-                else
-                {
-                    Activity_Log log = new Activity_Log()
-                    {
-                        Act_log_user = username,
-                        Act_log_ip = ipAdd,
-                        Act_log_details = "LGN_NMU : Normal User Authenicated and Sign-in Success"
-                    };
+            //        Response.Redirect("/Form_Main/Form_MainPage");
+            //    }
+            //    else
+            //    {
+            //        Activity_Log log = new Activity_Log()
+            //        {
+            //            Act_log_user = username,
+            //            Act_log_ip = ipAdd,
+            //            Act_log_details = "LGN_NMU : Normal User Authenicated and Sign-in Success"
+            //        };
 
-                    new Activity_Log_Manager().AddActivityLogs(log);
+            //        new Activity_Log_Manager().AddActivityLogs(log);
 
-                    Response.Redirect("/Form_Main/Form_MainPage");
-                }
-            }
-            else
-            {
-                Activity_Log log = new Activity_Log()
-                {
-                    Act_log_user = username,
-                    Act_log_ip = ipAdd,
-                    Act_log_details = "LGN_WAR : Unknown User Attempting Sign in System With Authenticate"
-                };
+            //        Response.Redirect("/Form_Main/Form_MainPage");
+            //    }
+            //}
+            //else
+            //{
+            //    Activity_Log log = new Activity_Log()
+            //    {
+            //        Act_log_user = username,
+            //        Act_log_ip = ipAdd,
+            //        Act_log_details = "LGN_WAR : Unknown User Attempting Sign in System With Authenticate"
+            //    };
 
-                new Activity_Log_Manager().AddActivityLogs(log);
-            }
+            //    new Activity_Log_Manager().AddActivityLogs(log);
+            //}
 
-            /*Admin_Users au = new Admin_Users()
+            Admin_Users au = new Admin_Users()
             {
                 Admin_User_Type = new Admin_Users_Type()
                 {
@@ -109,7 +109,7 @@ namespace RTAFMailManagement.Authentication
             };
 
             Session["admin_user"] = au;
-            Response.Redirect("/Form_Main/Form_MainPage");*/
+            Response.Redirect("/Form_Main/Form_MainPage");
         }
     }
 }
