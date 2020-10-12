@@ -2169,11 +2169,17 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Web References\IDG_MailService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\IDG_MailService\Service.wsdl" />
     <None Include="Web References\newRTAFMails\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\newRTAFMails\RTAFMail.wsdl" />
+    <None Include="Web References\IDG_MailService\Service.disco" />
     <Content Include="Web References\newRTAFMails\RTAFMailData1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
@@ -2528,6 +2534,11 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Web References\IDG_MailService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\newRTAFMails\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2697,6 +2708,17 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>RTAFMailManagement_newRTAFMail_RTAFMail</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://mailservice.rtaf.mi.th:8083/Service.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\IDG_MailService\</RelPath>
+      <UpdateFromURL>http://mailservice.rtaf.mi.th:8083/Service.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>RTAFMailManagement_IDG_MailService_Service</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="https://person-service2.rtaf.mi.th/RTAFService_1/RTAFMail.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>

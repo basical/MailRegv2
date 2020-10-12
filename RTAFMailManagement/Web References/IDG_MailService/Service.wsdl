@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CreateUserExistsMailbox">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pidentity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pdatabase" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="palias" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateUserExistsMailboxResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateUserExistsMailboxResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DisableMailbox">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pidentity" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DisableMailboxResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DisableMailboxResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MoveMailbox">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pidentity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pTargetdatabase" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MoveMailboxResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MoveMailboxResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSizeMailbox">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="psize" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSizeMailboxResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSizeMailboxResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckNumberOfMailbox">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pDatabase" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pNumberOfMailbox" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckNumberOfMailboxResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckNumberOfMailboxResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNumberOfMailbox">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pDatabase" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNumberOfMailboxResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNumberOfMailboxResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetSizeMailbox">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pSize" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetSizeMailboxResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetSizeMailboxResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLastLoginMailbox">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pDatabase" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastloginmonths" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="order" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLastLoginMailboxResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLastLoginMailboxResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckMailbox">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckMailboxResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckMailboxResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDistributionGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OrganizationalUnit" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDistributionGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateDistributionGroupResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddMembertoDistributionGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Member" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddMembertoDistributionGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddMembertoDistributionGroupResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveDistributionGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identity" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveDistributionGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RemoveDistributionGroupResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckDistributionGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckDistributionGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckDistributionGroupResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeStatusDistributionGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Identity" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="status" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeStatusDistributionGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ChangeStatusDistributionGroupResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateUserExistsMailboxSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateUserExistsMailbox" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserExistsMailboxSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateUserExistsMailboxResponse" />
+  </wsdl:message>
+  <wsdl:message name="DisableMailboxSoapIn">
+    <wsdl:part name="parameters" element="tns:DisableMailbox" />
+  </wsdl:message>
+  <wsdl:message name="DisableMailboxSoapOut">
+    <wsdl:part name="parameters" element="tns:DisableMailboxResponse" />
+  </wsdl:message>
+  <wsdl:message name="MoveMailboxSoapIn">
+    <wsdl:part name="parameters" element="tns:MoveMailbox" />
+  </wsdl:message>
+  <wsdl:message name="MoveMailboxSoapOut">
+    <wsdl:part name="parameters" element="tns:MoveMailboxResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSizeMailboxSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSizeMailbox" />
+  </wsdl:message>
+  <wsdl:message name="GetSizeMailboxSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSizeMailboxResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckNumberOfMailboxSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckNumberOfMailbox" />
+  </wsdl:message>
+  <wsdl:message name="CheckNumberOfMailboxSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckNumberOfMailboxResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNumberOfMailboxSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNumberOfMailbox" />
+  </wsdl:message>
+  <wsdl:message name="GetNumberOfMailboxSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNumberOfMailboxResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetSizeMailboxSoapIn">
+    <wsdl:part name="parameters" element="tns:SetSizeMailbox" />
+  </wsdl:message>
+  <wsdl:message name="SetSizeMailboxSoapOut">
+    <wsdl:part name="parameters" element="tns:SetSizeMailboxResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLastLoginMailboxSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLastLoginMailbox" />
+  </wsdl:message>
+  <wsdl:message name="GetLastLoginMailboxSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLastLoginMailboxResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckMailboxSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckMailbox" />
+  </wsdl:message>
+  <wsdl:message name="CheckMailboxSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckMailboxResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateDistributionGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateDistributionGroup" />
+  </wsdl:message>
+  <wsdl:message name="CreateDistributionGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateDistributionGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddMembertoDistributionGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:AddMembertoDistributionGroup" />
+  </wsdl:message>
+  <wsdl:message name="AddMembertoDistributionGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:AddMembertoDistributionGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveDistributionGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveDistributionGroup" />
+  </wsdl:message>
+  <wsdl:message name="RemoveDistributionGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveDistributionGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckDistributionGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckDistributionGroup" />
+  </wsdl:message>
+  <wsdl:message name="CheckDistributionGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckDistributionGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeStatusDistributionGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeStatusDistributionGroup" />
+  </wsdl:message>
+  <wsdl:message name="ChangeStatusDistributionGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeStatusDistributionGroupResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSoap">
+    <wsdl:operation name="CreateUserExistsMailbox">
+      <wsdl:input message="tns:CreateUserExistsMailboxSoapIn" />
+      <wsdl:output message="tns:CreateUserExistsMailboxSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DisableMailbox">
+      <wsdl:input message="tns:DisableMailboxSoapIn" />
+      <wsdl:output message="tns:DisableMailboxSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MoveMailbox">
+      <wsdl:input message="tns:MoveMailboxSoapIn" />
+      <wsdl:output message="tns:MoveMailboxSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSizeMailbox">
+      <wsdl:input message="tns:GetSizeMailboxSoapIn" />
+      <wsdl:output message="tns:GetSizeMailboxSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckNumberOfMailbox">
+      <wsdl:input message="tns:CheckNumberOfMailboxSoapIn" />
+      <wsdl:output message="tns:CheckNumberOfMailboxSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNumberOfMailbox">
+      <wsdl:input message="tns:GetNumberOfMailboxSoapIn" />
+      <wsdl:output message="tns:GetNumberOfMailboxSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetSizeMailbox">
+      <wsdl:input message="tns:SetSizeMailboxSoapIn" />
+      <wsdl:output message="tns:SetSizeMailboxSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastLoginMailbox">
+      <wsdl:input message="tns:GetLastLoginMailboxSoapIn" />
+      <wsdl:output message="tns:GetLastLoginMailboxSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckMailbox">
+      <wsdl:input message="tns:CheckMailboxSoapIn" />
+      <wsdl:output message="tns:CheckMailboxSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDistributionGroup">
+      <wsdl:input message="tns:CreateDistributionGroupSoapIn" />
+      <wsdl:output message="tns:CreateDistributionGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMembertoDistributionGroup">
+      <wsdl:input message="tns:AddMembertoDistributionGroupSoapIn" />
+      <wsdl:output message="tns:AddMembertoDistributionGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDistributionGroup">
+      <wsdl:input message="tns:RemoveDistributionGroupSoapIn" />
+      <wsdl:output message="tns:RemoveDistributionGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckDistributionGroup">
+      <wsdl:input message="tns:CheckDistributionGroupSoapIn" />
+      <wsdl:output message="tns:CheckDistributionGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeStatusDistributionGroup">
+      <wsdl:input message="tns:ChangeStatusDistributionGroupSoapIn" />
+      <wsdl:output message="tns:ChangeStatusDistributionGroupSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateUserExistsMailbox">
+      <soap:operation soapAction="http://tempuri.org/CreateUserExistsMailbox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableMailbox">
+      <soap:operation soapAction="http://tempuri.org/DisableMailbox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveMailbox">
+      <soap:operation soapAction="http://tempuri.org/MoveMailbox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSizeMailbox">
+      <soap:operation soapAction="http://tempuri.org/GetSizeMailbox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNumberOfMailbox">
+      <soap:operation soapAction="http://tempuri.org/CheckNumberOfMailbox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNumberOfMailbox">
+      <soap:operation soapAction="http://tempuri.org/GetNumberOfMailbox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSizeMailbox">
+      <soap:operation soapAction="http://tempuri.org/SetSizeMailbox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastLoginMailbox">
+      <soap:operation soapAction="http://tempuri.org/GetLastLoginMailbox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckMailbox">
+      <soap:operation soapAction="http://tempuri.org/CheckMailbox" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDistributionGroup">
+      <soap:operation soapAction="http://tempuri.org/CreateDistributionGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMembertoDistributionGroup">
+      <soap:operation soapAction="http://tempuri.org/AddMembertoDistributionGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDistributionGroup">
+      <soap:operation soapAction="http://tempuri.org/RemoveDistributionGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDistributionGroup">
+      <soap:operation soapAction="http://tempuri.org/CheckDistributionGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeStatusDistributionGroup">
+      <soap:operation soapAction="http://tempuri.org/ChangeStatusDistributionGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateUserExistsMailbox">
+      <soap12:operation soapAction="http://tempuri.org/CreateUserExistsMailbox" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableMailbox">
+      <soap12:operation soapAction="http://tempuri.org/DisableMailbox" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveMailbox">
+      <soap12:operation soapAction="http://tempuri.org/MoveMailbox" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSizeMailbox">
+      <soap12:operation soapAction="http://tempuri.org/GetSizeMailbox" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckNumberOfMailbox">
+      <soap12:operation soapAction="http://tempuri.org/CheckNumberOfMailbox" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNumberOfMailbox">
+      <soap12:operation soapAction="http://tempuri.org/GetNumberOfMailbox" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSizeMailbox">
+      <soap12:operation soapAction="http://tempuri.org/SetSizeMailbox" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastLoginMailbox">
+      <soap12:operation soapAction="http://tempuri.org/GetLastLoginMailbox" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckMailbox">
+      <soap12:operation soapAction="http://tempuri.org/CheckMailbox" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDistributionGroup">
+      <soap12:operation soapAction="http://tempuri.org/CreateDistributionGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMembertoDistributionGroup">
+      <soap12:operation soapAction="http://tempuri.org/AddMembertoDistributionGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveDistributionGroup">
+      <soap12:operation soapAction="http://tempuri.org/RemoveDistributionGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDistributionGroup">
+      <soap12:operation soapAction="http://tempuri.org/CheckDistributionGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeStatusDistributionGroup">
+      <soap12:operation soapAction="http://tempuri.org/ChangeStatusDistributionGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+      <soap:address location="http://mailservice.rtaf.mi.th:8083/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
+      <soap12:address location="http://mailservice.rtaf.mi.th:8083/Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

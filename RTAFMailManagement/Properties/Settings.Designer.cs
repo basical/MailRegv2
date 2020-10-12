@@ -52,5 +52,15 @@ namespace RTAFMailManagement.Properties {
                 return ((string)(this["RTAFMailManagement_newRTAFMail1_RTAFMail"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://mailservice.rtaf.mi.th:8083/Service.asmx")]
+        public string RTAFMailManagement_IDG_MailService_Service {
+            get {
+                return ((string)(this["RTAFMailManagement_IDG_MailService_Service"]));
+            }
+        }
     }
 }

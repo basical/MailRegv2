@@ -11,5 +11,8 @@
     <Setting Name="RTAFMailManagement_newRTAFMail1_RTAFMail" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">https://person-service2.rtaf.mi.th/RTAFService_1/RTAFMail.asmx</Value>
     </Setting>
+    <Setting Name="RTAFMailManagement_IDG_MailService_Service" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://mailservice.rtaf.mi.th:8083/Service.asmx</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
