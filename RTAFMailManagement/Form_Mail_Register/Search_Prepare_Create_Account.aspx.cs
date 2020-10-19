@@ -48,6 +48,8 @@ namespace RTAFMailManagement.Form_Mail_Register
                     sub_header_page_Lbl.Text = "ผู้รับผิดชอบ คณะทำงาน";
                 }
 
+                Session["mode"] = Request.Params["mode"] ?? Request.Params["mode"];
+
                 LoadUnits();
                 LoadRanks();
                 LoadRTAFStatus();

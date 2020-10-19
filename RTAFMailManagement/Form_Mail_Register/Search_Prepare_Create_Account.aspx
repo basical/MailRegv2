@@ -96,6 +96,7 @@
                         <%
                             if (Session["Person_Data_DB"] != null)
                             {
+                                string md = (string)Session["mode"] ?? (string)Session["mode"];
                         %>
                         <div class="card">
                             <div class="card-header">
@@ -137,9 +138,21 @@
                                             <td><%= data.RTAF_person_Position %></td>
                                             <td><%= data.RTAF_person_Status.RTAF_status_Name %></td>
                                             <td>
-                                            <% if(new Users_Mananer().CheckDuplicateUser(data.RTAF_person_IdCard, data.RTAF_person_IdGvm)) { %>
+                                            <% 
+                                                if (new Users_Mananer().CheckDuplicateUser(data.RTAF_person_IdCard, data.RTAF_person_IdGvm)) 
+                                                { 
+                                            %>
                                                 <a class="btn bg-gradient-info" href="Add_Users_Account?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.RTAF_person_IdGvm, data.RTAF_person_IdCard, data.RTAF_person_Uid) %>&gnrd=ad" data-toggle="tooltip" data-placement="top" title="สร้าง User Account"><i class="fas fa-server fa-fw"></i></a>
-                                            <% } %>
+                                            <%  }
+                                                else
+                                                {
+                                                    if(md != "p")
+                                                    {   
+                                            %>
+                                                <a class="btn bg-gradient-info" href="Add_Users_Account?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.RTAF_person_IdGvm, data.RTAF_person_IdCard, data.RTAF_person_Uid) %>&gnrd=ad" data-toggle="tooltip" data-placement="top" title="สร้าง User Account"><i class="fas fa-server fa-fw"></i></a>
+                                            <%      } 
+                                                }
+                                            %>
                                             </td>
                                         </tr>
                                         <%
