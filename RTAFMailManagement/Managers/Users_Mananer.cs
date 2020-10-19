@@ -94,6 +94,51 @@ namespace RTAFMailManagement.Managers
             }
         }
 
+        public bool CheckDuplicateUser(string i_IdCard, string i_IdGvm)
+        {
+            SqlConnection con = MSSQLConnection.connectionMSSQL();
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[new_g_chkDuplicateUser]", con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@i_IdCard", i_IdCard);
+                cmd.Parameters.AddWithValue("@i_IdGvm", i_IdGvm);
+
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                Users data = new Users();
+
+                if (reader.Read())
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                error = "SqlException ==> Managers --> Users_Mananer --> CheckDuolicateUser() ";
+                Log_Error._writeErrorFile(error, ex);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                error = "Exception ==> Managers --> Users_Mananer --> CheckDuolicateUser() ";
+                Log_Error._writeErrorFile(error, ex);
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
         public Users GetUserById(string user_id)
         {
             SqlConnection con = MSSQLConnection.connectionMSSQL();
