@@ -25,7 +25,6 @@ namespace RTAFMailManagement.Form_Mail_Register
 
                     Session["Class_Active"] = 13;
 
-
                     header_page_Lbl.Text = "ผู้ใช้งาน";
                     sub_header_page_Lbl.Text = "ผู้ใช้งาน";
                 }

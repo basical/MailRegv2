@@ -1929,7 +1929,9 @@
     <Content Include="Form_Configuration\Units_Management.aspx" />
     <Content Include="Form_Configuration\Users_Type_Edit.aspx" />
     <Content Include="Form_Configuration\Users_Type_Management.aspx" />
-    <Content Include="Form_Mail_Register\Add_Users_Account.aspx" />
+    <Content Include="Form_Mail_Register\Add_Users_Account_Group.aspx" />
+    <Content Include="Form_Mail_Register\Add_Users_Account_Unit.aspx" />
+    <Content Include="Form_Mail_Register\Add_Users_Account_Person.aspx" />
     <Content Include="Form_Mail_Register\AD_Account_information.aspx" />
     <Content Include="Form_Mail_Register\ChangeADStatus.aspx" />
     <Content Include="Form_Mail_Register\Reset_Password_User_Fast.aspx" />
@@ -2169,7 +2171,13 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
+    <None Include="Web References\IDG_ADSv\ADService.disco" />
     <Content Include="Web References\IDG_MailService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\IDG_ADSv\ADService.wsdl" />
+    <Content Include="Web References\IDG_ADSv\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
@@ -2410,12 +2418,26 @@
     <Compile Include="Form_Configuration\Users_Type_Management.aspx.designer.cs">
       <DependentUpon>Users_Type_Management.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Form_Mail_Register\Add_Users_Account.aspx.cs">
-      <DependentUpon>Add_Users_Account.aspx</DependentUpon>
+    <Compile Include="Form_Mail_Register\Add_Users_Account_Group.aspx.cs">
+      <DependentUpon>Add_Users_Account_Group.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Form_Mail_Register\Add_Users_Account.aspx.designer.cs">
-      <DependentUpon>Add_Users_Account.aspx</DependentUpon>
+    <Compile Include="Form_Mail_Register\Add_Users_Account_Group.aspx.designer.cs">
+      <DependentUpon>Add_Users_Account_Group.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Mail_Register\Add_Users_Account_Unit.aspx.cs">
+      <DependentUpon>Add_Users_Account_Unit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Mail_Register\Add_Users_Account_Unit.aspx.designer.cs">
+      <DependentUpon>Add_Users_Account_Unit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Mail_Register\Add_Users_Account_Person.aspx.cs">
+      <DependentUpon>Add_Users_Account_Person.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Form_Mail_Register\Add_Users_Account_Person.aspx.designer.cs">
+      <DependentUpon>Add_Users_Account_Person.aspx</DependentUpon>
     </Compile>
     <Compile Include="Form_Mail_Register\AD_Account_information.aspx.cs">
       <DependentUpon>AD_Account_information.aspx</DependentUpon>
@@ -2533,6 +2555,11 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\IDG_ADSv\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="Web References\IDG_MailService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -2687,6 +2714,17 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
+    <WebReferenceUrl Include="http://10.107.1.148:44890/">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\IDG_ADSv\</RelPath>
+      <UpdateFromURL>http://10.107.1.148:44890/</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>RTAFMailManagement_IDG_ADSv_ADService</CachedSettingsPropName>
+    </WebReferenceUrl>
     <WebReferenceUrl Include="http://10.107.6.5/RTAFService/RTAFMail.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\RTAFService\</RelPath>

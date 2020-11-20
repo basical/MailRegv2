@@ -1,4 +1,4 @@
-﻿<%@ Page Title=" RTAF E-Mail Registration Management System " Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Add_Users_Account.aspx.cs" Inherits="RTAFMailManagement.Form_Mail_Register.Add_Users_Account" %>
+﻿<%@ Page Title=" RTAF E-Mail Registration Management System " Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Add_Users_Account_Group.aspx.cs" Inherits="RTAFMailManagement.Form_Mail_Register.Add_Users_Account_Group" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <!-- Content Wrapper. Contains page content -->
@@ -8,8 +8,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark"><i class="fas fa-user-plus"></i>&nbsp; :: เพิ่มข้อมูลผู้ใช้งาน
-                            <asp:Label ID="header_page_Lbl" runat="server"> </asp:Label>
+                        <h1 class="m-0 text-dark"><i class="fas fa-user-plus"></i>&nbsp; :: เพิ่มข้อมูลผู้ใช้งาน ประเภทกลุ่มงาน
                             :: </h1>
 
                     </div>
@@ -50,8 +49,7 @@
                 <!-- Horizontal Form -->
                 <div class="card card-warning">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-user-plus"></i>&nbsp; :: เพิ่มข้อมูลผู้ใช้งาน
-                            <asp:Label ID="sub_header_page_Lbl" runat="server"> </asp:Label>
+                        <h3 class="card-title"><i class="fas fa-user-plus"></i>&nbsp; :: เพิ่มข้อมูลผู้ใช้งาน ประเภทกลุ่มงาน
                             :: </h3>
                         <div class="card-tools">
                             <asp:LinkButton ID="Close_Btn" runat="server" CssClass="btn btn-tool" OnClick="Close_Btn_Click"> <i class="fas fa-times"></i> </asp:LinkButton>
@@ -64,7 +62,7 @@
 
                             <div class="card card-info">
                                 <div class="card-header">
-                                    <h3 class="card-title"><i class="fas fa-user-tag"></i>&nbsp; :: ข้อมูลส่วนตัว :: </h3>
+                                    <h3 class="card-title"><i class="fas fa-user-tag"></i>&nbsp; :: ข้อมูล ผู้รับผิดชอบ :: </h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <!-- form start -->
@@ -194,8 +192,7 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="List_Username_Lbl" runat="server"> เลือก Username ** ไม่ต้องระบุ @rtaf.mi.th ** </asp:Label>
-                                                <asp:DropDownList ID="List_Username_DDL" runat="server" CssClass="form-control select2" Visible="true"></asp:DropDownList>
-                                                <asp:TextBox ID="Username_UG_TBx" runat="server" CssClass="form-control" Visible="false"></asp:TextBox>
+                                                <asp:TextBox ID="Username_UG_TBx" runat="server" CssClass="form-control"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="newPassword_Lbl" runat="server"> รหัสผ่าน </asp:Label>

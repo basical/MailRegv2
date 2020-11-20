@@ -120,6 +120,7 @@
                                             <th></th>
                                             <th></th>
                                             <th></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -172,6 +173,9 @@
                                             </td>
                                             <td style="text-align: center;">
                                                 <a class="btn bg-gradient-warning btn-sm" href="Update_Users_Profile?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard, data.User_id.ToString()) %>&mode=e" data-toggle="tooltip" data-placement="top" title="แก้ไขข้อมูล"><i class="fas fa-edit fa-fw"></i></a>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <a class="btn bg-gradient-danger btn-sm" href="Update_Users_Profile?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.User_IdGvm, data.User_IdCard, data.User_id.ToString()) %>&mode=d" data-toggle="tooltip" data-placement="top" title="ลบข้อมูล"><i class="fas fa-trash-alt fa-fw"></i></a>
                                             </td>
                                         </tr>
                                         <%

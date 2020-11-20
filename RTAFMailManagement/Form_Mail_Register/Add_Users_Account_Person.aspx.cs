@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 
 namespace RTAFMailManagement.Form_Mail_Register
 {
-    public partial class Add_Users_Account : Page
+    public partial class Add_Users_Account_Person : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,41 +34,8 @@ namespace RTAFMailManagement.Form_Mail_Register
                     string User_IdCard = code[2];
                     string User_Id = code[3];
 
-                    int act = Convert.ToInt32(Session["Class_Active"].ToString());
+                    LoadPersonData(new RTAFData_Managers().GetRTAFData(User_IdCard, User_IdGvm));
 
-                    if (act == 13)
-                    {
-                        header_page_Lbl.Text = "ผู้ใช้งาน";
-                        sub_header_page_Lbl.Text = "ผู้ใช้งาน";
-
-                        List_Username_DDL.Visible = true;
-                        Username_UG_TBx.Visible = false;
-                        Group_panel.Visible = false;
-
-                        LoadPersonData(new RTAFData_Managers().GetRTAFData(User_IdCard, User_IdGvm), 1);
-                    }
-                    else if (act == 14)
-                    {
-                        header_page_Lbl.Text = "ผู้รับผิดชอบ หน่วยงาน";
-                        sub_header_page_Lbl.Text = "ผู้รับผิดชอบ หน่วยงาน";
-
-                        List_Username_DDL.Visible = false;
-                        Username_UG_TBx.Visible = true;
-                        Group_panel.Visible = false;
-
-                        LoadPersonData(new RTAFData_Managers().GetRTAFData(User_IdCard, User_IdGvm), 2);
-                    }
-                    else if (act == 15)
-                    {
-                        header_page_Lbl.Text = "ผู้รับผิดชอบ คณะทำงาน";
-                        sub_header_page_Lbl.Text = "ผู้รับผิดชอบ คณะทำงาน";
-
-                        List_Username_DDL.Visible = false;
-                        Username_UG_TBx.Visible = true;
-                        Group_panel.Visible = true;
-
-                        LoadPersonData(new RTAFData_Managers().GetRTAFData(User_IdCard, User_IdGvm), 3);
-                    }
                 }
             }
         }
@@ -145,7 +112,7 @@ namespace RTAFMailManagement.Form_Mail_Register
             }
         }
 
-        private void LoadPersonData(RTAF_DATA data, int mode)
+        private void LoadPersonData(RTAF_DATA data)
         {
             IdCard_TBx.Text = data.RTAF_person_IdCard;
             Rank_DDL.SelectedValue = data.RTAF_person_Rank.Rank_Code.ToString();
@@ -160,43 +127,40 @@ namespace RTAFMailManagement.Form_Mail_Register
             Units_DDL.SelectedValue = data.RTAF_person_Unit.Unit_Code.ToString();
             Position_TBx.Text = data.RTAF_person_Position;
 
-            if (mode == 1)
+            /// สร้าง User Account ไว้ให้เลือก ** เฉพาะบุคคลากรของ ทอ. **
+            string[] c_username = new string[data.RTAF_person_LastName_Eng.Length + 1];
+
+            for (int u = 0; u <= data.RTAF_person_LastName_Eng.Length; u++)
             {
-                /// สร้าง User Account ไว้ให้เลือก ** เฉพาะบุคคลากรของ ทอ. **
-                string[] c_username = new string[data.RTAF_person_LastName_Eng.Length + 1];
-
-                for (int u = 0; u <= data.RTAF_person_LastName_Eng.Length; u++)
+                if (u == 0)
                 {
-                    if (u == 0)
-                    {
-                        c_username[u] = data.RTAF_person_FirstName_Eng;
-                    }
-                    else
-                    {
-                        c_username[u] = data.RTAF_person_FirstName_Eng + "_" + data.RTAF_person_LastName_Eng.Substring(0, u);
-                    }
+                    c_username[u] = data.RTAF_person_FirstName_Eng;
                 }
-
-                /// เช็ค User Account ที่สร้างไว้ โดยนำไปตรวจสอบกับ AD Server หากไม่มีข้อมูลให้เก็บไว้ใน list เพื่อเป็นตัวเลือกสำหรับสร้าง Account ใน AD
-                string[] list_username = new string[5];
-
-                for (int i = 0; i <= c_username.Length; i++)
+                else
                 {
-                    if (ConnectRTAFService.GetInfomationsAccountWithADDS(c_username[i], "") == null)
-                    {
-                        list_username[i] = c_username[i];
-                    }
-
-                    if (list_username.Length == 5) { i = 999; }
-                }
-
-                for (int i = 0; i < list_username.Length; i++)
-                {
-                    List_Username_DDL.Items.Add(new ListItem(list_username[i], list_username[i]));
+                    c_username[u] = data.RTAF_person_FirstName_Eng + "_" + data.RTAF_person_LastName_Eng.Substring(0, u);
                 }
             }
 
-            Acc_Type_DDL.SelectedValue = mode.ToString();
+            /// เช็ค User Account ที่สร้างไว้ โดยนำไปตรวจสอบกับ AD Server หากไม่มีข้อมูลให้เก็บไว้ใน list เพื่อเป็นตัวเลือกสำหรับสร้าง Account ใน AD
+            string[] list_username = new string[5];
+
+            for (int i = 0; i <= c_username.Length; i++)
+            {
+                if (ConnectRTAFService.GetInfomationsAccountWithADDS(c_username[i], "") == null)
+                {
+                    list_username[i] = c_username[i];
+                }
+
+                if (list_username.Length == 5) { i = 999; }
+            }
+
+            for (int i = 0; i < list_username.Length; i++)
+            {
+                List_Username_DDL.Items.Add(new ListItem(list_username[i], list_username[i]));
+            }
+
+            Acc_Type_DDL.SelectedValue = "1";
 
             Session["person_uid"] = data.RTAF_person_Uid;
             Session["type_rank"] = data.RTAF_person_type.Person_Type_Id;
@@ -228,7 +192,8 @@ namespace RTAFMailManagement.Form_Mail_Register
 
                 User_Unit = new Units()
                 {
-                    Unit_Code = int.Parse(Units_DDL.SelectedValue)
+                    Unit_Code = int.Parse(Units_DDL.SelectedValue),
+                    Unit_Name = Units_DDL.SelectedItem.Text
                 },
 
                 User_Position = Position_TBx.Text,
@@ -253,7 +218,7 @@ namespace RTAFMailManagement.Form_Mail_Register
 
                 User_ADStatus = new AD_Status()
                 {
-                    AD_Status_Code = int.Parse(AD_Status_DDL.SelectedValue) == 0? 1 : int.Parse(AD_Status_DDL.SelectedValue)
+                    AD_Status_Code = int.Parse(AD_Status_DDL.SelectedValue) == 0 ? 1 : int.Parse(AD_Status_DDL.SelectedValue)
                 },
 
                 User_MailStatus = new Mail_Status()
@@ -269,21 +234,6 @@ namespace RTAFMailManagement.Form_Mail_Register
                 User_Type_Rank = (int)Session["type_rank"]
             };
 
-            int act = Convert.ToInt32(Session["Class_Active"].ToString());
-
-            if (act == 14)
-            {
-                user_data.User_UserName = Username_UG_TBx.Text;
-                user_data.User_Email = Username_UG_TBx.Text + "@rtaf.mi.th";
-            }
-            else if (act == 15)
-            {
-                user_data.User_UserName = Username_UG_TBx.Text;
-                user_data.User_Email = Username_UG_TBx.Text + "@rtaf.mi.th";
-                user_data.Employee_name = Employee_Name_TBx.Text;
-                user_data.Company_name = Company_Name_TBx.Text;
-            }
-
             Admin_Users au = (Admin_Users)Session["admin_user"];
             string ipAdd = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables["REMOTE_ADDR"];
 
@@ -291,13 +241,13 @@ namespace RTAFMailManagement.Form_Mail_Register
             if (new Users_Mananer().AddUserAccount(user_data))
             {
                 /// เพิ่มข้อมูล User Account ใน AD Server
-                if (ConnectRTAFService.AddAccount2ADDS(new Users_Mananer().GetUserAccountByUsername(user_data.User_UserName), act))
+                if (ConnectRTAFService.AddAccount2ADDS(new Users_Mananer().GetUserAccountByUsername(user_data.User_UserName), 1))
                 {
                     Activity_Log log = new Activity_Log()
                     {
                         Act_log_user = au.Admin_Users_Name,
                         Act_log_ip = ipAdd,
-                        Act_log_details = "AddUser_SUCF : Add User Account : " + user_data.User_UserName + " : in DB and AD Server Success"
+                        Act_log_details = "AddUser_P_SUCF : Add User Account : " + user_data.User_UserName + " : in DB and AD Server Success"
                     };
 
                     new Activity_Log_Manager().AddActivityLogs(log);
@@ -312,7 +262,7 @@ namespace RTAFMailManagement.Form_Mail_Register
                     {
                         Act_log_user = au.Admin_Users_Name,
                         Act_log_ip = ipAdd,
-                        Act_log_details = "AddUser_SUCC : Add User Account : " + user_data.User_UserName + " : in DB Success but AD Server Fail"
+                        Act_log_details = "AddUser_P_SUCC : Add User Account : " + user_data.User_UserName + " : in DB Success but AD Server Fail"
                     };
 
                     new Activity_Log_Manager().AddActivityLogs(log);
@@ -328,7 +278,7 @@ namespace RTAFMailManagement.Form_Mail_Register
                 {
                     Act_log_user = au.Admin_Users_Name,
                     Act_log_ip = ipAdd,
-                    Act_log_details = "AddUser_FAIL : Add User Account : " + user_data.User_UserName + " : Fail"
+                    Act_log_details = "AddUser_P_FAIL : Add User Account : " + user_data.User_UserName + " : Fail"
                 };
 
                 new Activity_Log_Manager().AddActivityLogs(log);

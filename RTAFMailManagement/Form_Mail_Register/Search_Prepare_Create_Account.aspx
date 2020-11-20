@@ -12,7 +12,9 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark"><i class="fas fa-search-plus fa-fw"></i>&nbsp; :: ค้นหาข้อมูล <asp:Label ID="header_page_Lbl" runat="server"> </asp:Label> ::</h1>
+                        <h1 class="m-0 text-dark"><i class="fas fa-search-plus fa-fw"></i>&nbsp; :: ค้นหาข้อมูล
+                            <asp:Label ID="header_page_Lbl" runat="server"> </asp:Label>
+                            ::</h1>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -28,7 +30,9 @@
                 <!-- Horizontal Form -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-search-plus fa-fw"></i>&nbsp; :: ค้นหาข้อมูล <asp:Label ID="sub_header_page_Lbl" runat="server"> </asp:Label> ::</h3>
+                        <h3 class="card-title"><i class="fas fa-search-plus fa-fw"></i>&nbsp; :: ค้นหาข้อมูล
+                            <asp:Label ID="sub_header_page_Lbl" runat="server"> </asp:Label>
+                            ::</h3>
                     </div>
                     <!-- /.card-header -->
 
@@ -96,7 +100,7 @@
                         <%
                             if (Session["Person_Data_DB"] != null)
                             {
-                                string md = (string)Session["mode"] ?? (string)Session["mode"];
+                                int act = (int)Session["Class_Active"];
                         %>
                         <div class="card">
                             <div class="card-header">
@@ -138,21 +142,25 @@
                                             <td><%= data.RTAF_person_Position %></td>
                                             <td><%= data.RTAF_person_Status.RTAF_status_Name %></td>
                                             <td>
-                                            <% 
-                                                if (new Users_Mananer().CheckDuplicateUser(data.RTAF_person_IdCard, data.RTAF_person_IdGvm)) 
-                                                { 
-                                            %>
-                                                <a class="btn bg-gradient-info" href="Add_Users_Account?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.RTAF_person_IdGvm, data.RTAF_person_IdCard, data.RTAF_person_Uid) %>&gnrd=ad" data-toggle="tooltip" data-placement="top" title="สร้าง User Account"><i class="fas fa-server fa-fw"></i></a>
-                                            <%  }
-                                                else
-                                                {
-                                                    if(md != "p")
-                                                    {   
-                                            %>
-                                                <a class="btn bg-gradient-info" href="Add_Users_Account?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.RTAF_person_IdGvm, data.RTAF_person_IdCard, data.RTAF_person_Uid) %>&gnrd=ad" data-toggle="tooltip" data-placement="top" title="สร้าง User Account"><i class="fas fa-server fa-fw"></i></a>
-                                            <%      } 
-                                                }
-                                            %>
+                                                <% 
+                                                    if (act == 13 && new Users_Mananer().CheckDuplicateUser(data.RTAF_person_IdCard, data.RTAF_person_IdGvm))
+                                                    {
+                                                %>
+                                                <a class="btn bg-gradient-info" href="Add_Users_Account_Person?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.RTAF_person_IdGvm, data.RTAF_person_IdCard, data.RTAF_person_Uid) %>&gnrd=ad" data-toggle="tooltip" data-placement="top" title="สร้าง User Account"><i class="fas fa-server fa-fw"></i></a>
+                                                <%  }
+                                                    else if (act == 14)
+                                                    {
+                                                %>
+                                                <a class="btn bg-gradient-info" href="Add_Users_Account_Unit?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.RTAF_person_IdGvm, data.RTAF_person_IdCard, data.RTAF_person_Uid) %>&gnrd=ad" data-toggle="tooltip" data-placement="top" title="สร้าง User Account"><i class="fas fa-server fa-fw"></i></a>
+                                                <%
+                                                    }
+                                                    else if (act == 15)
+                                                    {
+                                                %>
+                                                <a class="btn bg-gradient-info" href="Add_Users_Account_Group?code=<%= CryptographyCode.EncodeTOAddressBar(ogn_code, data.RTAF_person_IdGvm, data.RTAF_person_IdCard, data.RTAF_person_Uid) %>&gnrd=ad" data-toggle="tooltip" data-placement="top" title="สร้าง User Account"><i class="fas fa-server fa-fw"></i></a>
+                                                <%
+                                                    }
+                                                %>
                                             </td>
                                         </tr>
                                         <%

@@ -11,17 +11,8 @@ namespace RTAFMailManagement.Form_Mail_Register
 {
 
 
-    public partial class Add_Users_Account
+    public partial class Add_Users_Account_Person
     {
-
-        /// <summary>
-        /// header_page_Lbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label header_page_Lbl;
 
         /// <summary>
         /// success_panel control.
@@ -58,15 +49,6 @@ namespace RTAFMailManagement.Form_Mail_Register
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label bad_Lbl;
-
-        /// <summary>
-        /// sub_header_page_Lbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label sub_header_page_Lbl;
 
         /// <summary>
         /// Close_Btn control.
@@ -348,15 +330,6 @@ namespace RTAFMailManagement.Form_Mail_Register
         protected global::System.Web.UI.WebControls.DropDownList List_Username_DDL;
 
         /// <summary>
-        /// Username_UG_TBx control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Username_UG_TBx;
-
-        /// <summary>
         /// newPassword_Lbl control.
         /// </summary>
         /// <remarks>
@@ -454,51 +427,6 @@ namespace RTAFMailManagement.Form_Mail_Register
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList AD_Status_DDL;
-
-        /// <summary>
-        /// Group_panel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Group_panel;
-
-        /// <summary>
-        /// Employee_Name_Lbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Employee_Name_Lbl;
-
-        /// <summary>
-        /// Employee_Name_TBx control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Employee_Name_TBx;
-
-        /// <summary>
-        /// Company_Name_Lbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Company_Name_Lbl;
-
-        /// <summary>
-        /// Company_Name_TBx control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Company_Name_TBx;
 
         /// <summary>
         /// Save_Btn control.

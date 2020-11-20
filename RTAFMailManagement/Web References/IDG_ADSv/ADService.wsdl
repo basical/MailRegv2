@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="svCreateADUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Domain" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsAccountActive" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OUName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Company" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tel" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="St" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svCreateADUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="svCreateADUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svADDUserToGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GroupName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svADDUserToGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="svADDUserToGroupResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svRemoveUserToGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GroupName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svRemoveUserToGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="svRemoveUserToGroupResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svCheck_User">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svCheck_UserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="svCheck_UserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svCheck_UserLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svCheck_UserLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="svCheck_UserLoginResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svEnableUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svEnableUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="svEnableUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svDisableUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svDisableUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="svDisableUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svDeleteUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svDeleteUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="svDeleteUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svResetPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svResetPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="svResetPasswordResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svUpdateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Company" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tel" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="St" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svUpdateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="svUpdateUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SvIdgMoveUserFromOU">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OUFrom" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OUTo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SvIdgMoveUserFromOUResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SvIdgMoveUserFromOUResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svCreateADGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GroupName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Desc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OUName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svCreateADGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="svCreateADGroupResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svCheck_Group">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GroupName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="svCheck_GroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="svCheck_GroupResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SvIdgCreateGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nameGroup" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SvIdgCreateGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SvIdgCreateGroupResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SvIdgRenameGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oldnameGroup" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newnameGroup" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SvIdgRenameGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SvIdgRenameGroupResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SvIdgDelectGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Groupname" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SvIdgDelectGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SvIdgDelectGroupResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SvIdgCreateOU">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NameOU" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SvIdgCreateOUResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SvIdgCreateOUResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SvIdgRenameOU">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OldOU" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewOU" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SvIdgRenameOUResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SvIdgRenameOUResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SvIdgDelectOU">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OUName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SvIdgDelectOUResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SvIdgDelectOUResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SvGetGroupUserArr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SvGetGroupUserArrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SvGetGroupUserArrResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="svCreateADUserSoapIn">
+    <wsdl:part name="parameters" element="tns:svCreateADUser" />
+  </wsdl:message>
+  <wsdl:message name="svCreateADUserSoapOut">
+    <wsdl:part name="parameters" element="tns:svCreateADUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="svADDUserToGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:svADDUserToGroup" />
+  </wsdl:message>
+  <wsdl:message name="svADDUserToGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:svADDUserToGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="svRemoveUserToGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:svRemoveUserToGroup" />
+  </wsdl:message>
+  <wsdl:message name="svRemoveUserToGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:svRemoveUserToGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="svCheck_UserSoapIn">
+    <wsdl:part name="parameters" element="tns:svCheck_User" />
+  </wsdl:message>
+  <wsdl:message name="svCheck_UserSoapOut">
+    <wsdl:part name="parameters" element="tns:svCheck_UserResponse" />
+  </wsdl:message>
+  <wsdl:message name="svCheck_UserLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:svCheck_UserLogin" />
+  </wsdl:message>
+  <wsdl:message name="svCheck_UserLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:svCheck_UserLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="svEnableUserSoapIn">
+    <wsdl:part name="parameters" element="tns:svEnableUser" />
+  </wsdl:message>
+  <wsdl:message name="svEnableUserSoapOut">
+    <wsdl:part name="parameters" element="tns:svEnableUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="svDisableUserSoapIn">
+    <wsdl:part name="parameters" element="tns:svDisableUser" />
+  </wsdl:message>
+  <wsdl:message name="svDisableUserSoapOut">
+    <wsdl:part name="parameters" element="tns:svDisableUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="svDeleteUserSoapIn">
+    <wsdl:part name="parameters" element="tns:svDeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="svDeleteUserSoapOut">
+    <wsdl:part name="parameters" element="tns:svDeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="svResetPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:svResetPassword" />
+  </wsdl:message>
+  <wsdl:message name="svResetPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:svResetPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="svUpdateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:svUpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="svUpdateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:svUpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="SvIdgMoveUserFromOUSoapIn">
+    <wsdl:part name="parameters" element="tns:SvIdgMoveUserFromOU" />
+  </wsdl:message>
+  <wsdl:message name="SvIdgMoveUserFromOUSoapOut">
+    <wsdl:part name="parameters" element="tns:SvIdgMoveUserFromOUResponse" />
+  </wsdl:message>
+  <wsdl:message name="svCreateADGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:svCreateADGroup" />
+  </wsdl:message>
+  <wsdl:message name="svCreateADGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:svCreateADGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="svCheck_GroupSoapIn">
+    <wsdl:part name="parameters" element="tns:svCheck_Group" />
+  </wsdl:message>
+  <wsdl:message name="svCheck_GroupSoapOut">
+    <wsdl:part name="parameters" element="tns:svCheck_GroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="SvIdgCreateGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:SvIdgCreateGroup" />
+  </wsdl:message>
+  <wsdl:message name="SvIdgCreateGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:SvIdgCreateGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="SvIdgRenameGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:SvIdgRenameGroup" />
+  </wsdl:message>
+  <wsdl:message name="SvIdgRenameGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:SvIdgRenameGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="SvIdgDelectGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:SvIdgDelectGroup" />
+  </wsdl:message>
+  <wsdl:message name="SvIdgDelectGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:SvIdgDelectGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="SvIdgCreateOUSoapIn">
+    <wsdl:part name="parameters" element="tns:SvIdgCreateOU" />
+  </wsdl:message>
+  <wsdl:message name="SvIdgCreateOUSoapOut">
+    <wsdl:part name="parameters" element="tns:SvIdgCreateOUResponse" />
+  </wsdl:message>
+  <wsdl:message name="SvIdgRenameOUSoapIn">
+    <wsdl:part name="parameters" element="tns:SvIdgRenameOU" />
+  </wsdl:message>
+  <wsdl:message name="SvIdgRenameOUSoapOut">
+    <wsdl:part name="parameters" element="tns:SvIdgRenameOUResponse" />
+  </wsdl:message>
+  <wsdl:message name="SvIdgDelectOUSoapIn">
+    <wsdl:part name="parameters" element="tns:SvIdgDelectOU" />
+  </wsdl:message>
+  <wsdl:message name="SvIdgDelectOUSoapOut">
+    <wsdl:part name="parameters" element="tns:SvIdgDelectOUResponse" />
+  </wsdl:message>
+  <wsdl:message name="SvGetGroupUserArrSoapIn">
+    <wsdl:part name="parameters" element="tns:SvGetGroupUserArr" />
+  </wsdl:message>
+  <wsdl:message name="SvGetGroupUserArrSoapOut">
+    <wsdl:part name="parameters" element="tns:SvGetGroupUserArrResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ADServiceSoap">
+    <wsdl:operation name="svCreateADUser">
+      <wsdl:input message="tns:svCreateADUserSoapIn" />
+      <wsdl:output message="tns:svCreateADUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="svADDUserToGroup">
+      <wsdl:input message="tns:svADDUserToGroupSoapIn" />
+      <wsdl:output message="tns:svADDUserToGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="svRemoveUserToGroup">
+      <wsdl:input message="tns:svRemoveUserToGroupSoapIn" />
+      <wsdl:output message="tns:svRemoveUserToGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="svCheck_User">
+      <wsdl:input message="tns:svCheck_UserSoapIn" />
+      <wsdl:output message="tns:svCheck_UserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="svCheck_UserLogin">
+      <wsdl:input message="tns:svCheck_UserLoginSoapIn" />
+      <wsdl:output message="tns:svCheck_UserLoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="svEnableUser">
+      <wsdl:input message="tns:svEnableUserSoapIn" />
+      <wsdl:output message="tns:svEnableUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="svDisableUser">
+      <wsdl:input message="tns:svDisableUserSoapIn" />
+      <wsdl:output message="tns:svDisableUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="svDeleteUser">
+      <wsdl:input message="tns:svDeleteUserSoapIn" />
+      <wsdl:output message="tns:svDeleteUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="svResetPassword">
+      <wsdl:input message="tns:svResetPasswordSoapIn" />
+      <wsdl:output message="tns:svResetPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="svUpdateUser">
+      <wsdl:input message="tns:svUpdateUserSoapIn" />
+      <wsdl:output message="tns:svUpdateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgMoveUserFromOU">
+      <wsdl:input message="tns:SvIdgMoveUserFromOUSoapIn" />
+      <wsdl:output message="tns:SvIdgMoveUserFromOUSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="svCreateADGroup">
+      <wsdl:input message="tns:svCreateADGroupSoapIn" />
+      <wsdl:output message="tns:svCreateADGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="svCheck_Group">
+      <wsdl:input message="tns:svCheck_GroupSoapIn" />
+      <wsdl:output message="tns:svCheck_GroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgCreateGroup">
+      <wsdl:input message="tns:SvIdgCreateGroupSoapIn" />
+      <wsdl:output message="tns:SvIdgCreateGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgRenameGroup">
+      <wsdl:input message="tns:SvIdgRenameGroupSoapIn" />
+      <wsdl:output message="tns:SvIdgRenameGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgDelectGroup">
+      <wsdl:input message="tns:SvIdgDelectGroupSoapIn" />
+      <wsdl:output message="tns:SvIdgDelectGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgCreateOU">
+      <wsdl:input message="tns:SvIdgCreateOUSoapIn" />
+      <wsdl:output message="tns:SvIdgCreateOUSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgRenameOU">
+      <wsdl:input message="tns:SvIdgRenameOUSoapIn" />
+      <wsdl:output message="tns:SvIdgRenameOUSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgDelectOU">
+      <wsdl:input message="tns:SvIdgDelectOUSoapIn" />
+      <wsdl:output message="tns:SvIdgDelectOUSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SvGetGroupUserArr">
+      <wsdl:input message="tns:SvGetGroupUserArrSoapIn" />
+      <wsdl:output message="tns:SvGetGroupUserArrSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ADServiceSoap" type="tns:ADServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="svCreateADUser">
+      <soap:operation soapAction="http://tempuri.org/svCreateADUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svADDUserToGroup">
+      <soap:operation soapAction="http://tempuri.org/svADDUserToGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svRemoveUserToGroup">
+      <soap:operation soapAction="http://tempuri.org/svRemoveUserToGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svCheck_User">
+      <soap:operation soapAction="http://tempuri.org/svCheck_User" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svCheck_UserLogin">
+      <soap:operation soapAction="http://tempuri.org/svCheck_UserLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svEnableUser">
+      <soap:operation soapAction="http://tempuri.org/svEnableUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svDisableUser">
+      <soap:operation soapAction="http://tempuri.org/svDisableUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svDeleteUser">
+      <soap:operation soapAction="http://tempuri.org/svDeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svResetPassword">
+      <soap:operation soapAction="http://tempuri.org/svResetPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svUpdateUser">
+      <soap:operation soapAction="http://tempuri.org/svUpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgMoveUserFromOU">
+      <soap:operation soapAction="http://tempuri.org/SvIdgMoveUserFromOU" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svCreateADGroup">
+      <soap:operation soapAction="http://tempuri.org/svCreateADGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svCheck_Group">
+      <soap:operation soapAction="http://tempuri.org/svCheck_Group" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgCreateGroup">
+      <soap:operation soapAction="http://tempuri.org/SvIdgCreateGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgRenameGroup">
+      <soap:operation soapAction="http://tempuri.org/SvIdgRenameGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgDelectGroup">
+      <soap:operation soapAction="http://tempuri.org/SvIdgDelectGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgCreateOU">
+      <soap:operation soapAction="http://tempuri.org/SvIdgCreateOU" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgRenameOU">
+      <soap:operation soapAction="http://tempuri.org/SvIdgRenameOU" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgDelectOU">
+      <soap:operation soapAction="http://tempuri.org/SvIdgDelectOU" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SvGetGroupUserArr">
+      <soap:operation soapAction="http://tempuri.org/SvGetGroupUserArr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ADServiceSoap12" type="tns:ADServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="svCreateADUser">
+      <soap12:operation soapAction="http://tempuri.org/svCreateADUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svADDUserToGroup">
+      <soap12:operation soapAction="http://tempuri.org/svADDUserToGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svRemoveUserToGroup">
+      <soap12:operation soapAction="http://tempuri.org/svRemoveUserToGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svCheck_User">
+      <soap12:operation soapAction="http://tempuri.org/svCheck_User" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svCheck_UserLogin">
+      <soap12:operation soapAction="http://tempuri.org/svCheck_UserLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svEnableUser">
+      <soap12:operation soapAction="http://tempuri.org/svEnableUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svDisableUser">
+      <soap12:operation soapAction="http://tempuri.org/svDisableUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svDeleteUser">
+      <soap12:operation soapAction="http://tempuri.org/svDeleteUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svResetPassword">
+      <soap12:operation soapAction="http://tempuri.org/svResetPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svUpdateUser">
+      <soap12:operation soapAction="http://tempuri.org/svUpdateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgMoveUserFromOU">
+      <soap12:operation soapAction="http://tempuri.org/SvIdgMoveUserFromOU" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svCreateADGroup">
+      <soap12:operation soapAction="http://tempuri.org/svCreateADGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="svCheck_Group">
+      <soap12:operation soapAction="http://tempuri.org/svCheck_Group" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgCreateGroup">
+      <soap12:operation soapAction="http://tempuri.org/SvIdgCreateGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgRenameGroup">
+      <soap12:operation soapAction="http://tempuri.org/SvIdgRenameGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgDelectGroup">
+      <soap12:operation soapAction="http://tempuri.org/SvIdgDelectGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgCreateOU">
+      <soap12:operation soapAction="http://tempuri.org/SvIdgCreateOU" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgRenameOU">
+      <soap12:operation soapAction="http://tempuri.org/SvIdgRenameOU" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SvIdgDelectOU">
+      <soap12:operation soapAction="http://tempuri.org/SvIdgDelectOU" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SvGetGroupUserArr">
+      <soap12:operation soapAction="http://tempuri.org/SvGetGroupUserArr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ADService">
+    <wsdl:port name="ADServiceSoap" binding="tns:ADServiceSoap">
+      <soap:address location="http://10.107.1.148:44890/ADService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ADServiceSoap12" binding="tns:ADServiceSoap12">
+      <soap12:address location="http://10.107.1.148:44890/ADService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

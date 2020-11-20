@@ -8,7 +8,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.DirectoryServices.AccountManagement;
-using System.ServiceModel.Configuration;
 
 namespace RTAFMailManagement.Global_Class
 {
@@ -143,6 +142,8 @@ namespace RTAFMailManagement.Global_Class
             }
         }
 
+
+
         public static string ConvertUnitId2String(string unit_code)
         {
             if (unit_code.Length == 1)
@@ -250,8 +251,8 @@ namespace RTAFMailManagement.Global_Class
         {
             string domainController = ConfigurationManager.AppSettings["AD_SIP"];
             string container = ConfigurationManager.AppSettings["AD_Container"];
-            string adminName = ConfigurationManager.AppSettings["UADService"];
-            string adminPassword = ConfigurationManager.AppSettings["PADService"];
+            string adminName = ConfigurationManager.AppSettings["UADEnService"];
+            string adminPassword = ConfigurationManager.AppSettings["PADEnService"];
 
             container = string.IsNullOrEmpty(OUName) ? container : "OU=" + OUName + ",OU=RTAF," + container;
 
@@ -390,8 +391,81 @@ namespace RTAFMailManagement.Global_Class
         {
             string domainController = ConfigurationManager.AppSettings["AD_SIP"];
             string container = ConfigurationManager.AppSettings["AD_Container"];
-            string adminName = ConfigurationManager.AppSettings["UADService"];
-            string adminPassword = ConfigurationManager.AppSettings["PADService"];
+            string adminName = ConfigurationManager.AppSettings["UADEnService"];
+            string adminPassword = ConfigurationManager.AppSettings["PADEnService"];
+
+            container = string.IsNullOrEmpty(data.User_Unit.Unit_OUName) ? container : "OU=" + data.User_Unit.Unit_OUName + ",OU=RTAF," + container;
+
+            PrincipalContext pc = new PrincipalContext(ContextType.Domain, domainController, container, adminName, adminPassword);
+
+            string error;
+
+            try
+            {
+                UserPrincipal new_user = new UserPrincipal(pc, data.User_UserName, data.User_Password, true)
+                {
+                    SamAccountName = data.User_UserName,
+                    EmailAddress = data.User_Email,
+                    Name = data.User_UserName,
+                    UserPrincipalName = data.User_Email,
+                    Description = data.User_Position,
+                };
+
+                if (mode == 1)
+                {
+                    /// Person
+
+                    new_user.GivenName = data.User_FirstName;
+                    new_user.Surname = data.User_LastName;
+                    new_user.DisplayName = data.User_Rank.Rank_Name + data.User_FirstName + " " + data.User_LastName;
+                }
+                else if (mode == 2)
+                {
+                    /// Unit
+
+                    new_user.GivenName = data.Employee_name;
+                    new_user.Surname = data.Company_name;
+                    new_user.DisplayName = data.Employee_name + " " + data.Company_name;
+                }
+                else if (mode == 3)
+                {
+                    /// Group
+
+                    new_user.GivenName = data.Employee_name;
+                    new_user.Surname = data.Company_name;
+                    new_user.DisplayName = data.Employee_name + " " + data.Company_name;
+                }
+
+                new_user.Save();
+
+                return true;
+            }
+            catch (PrincipalException ex)
+            {
+                error = "PrincipalException ==> Global_Class --> ConnectRTAFService --> AddAccount2ADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                error = "Exception ==> Global_Class --> ConnectRTAFService --> AddAccount2ADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return false;
+            }
+            finally
+            {
+                pc.Dispose();
+            }
+        }
+
+        public static bool AddAccountUG2ADDS(Users data)
+        {
+            string domainController = ConfigurationManager.AppSettings["AD_SIP"];
+            string container = ConfigurationManager.AppSettings["AD_Container"];
+            string adminName = ConfigurationManager.AppSettings["UADEnService"];
+            string adminPassword = ConfigurationManager.AppSettings["PADEnService"];
 
             container = string.IsNullOrEmpty(data.User_Unit.Unit_OUName) ? container : "OU=" + data.User_Unit.Unit_OUName + ",OU=RTAF," + container;
 
@@ -408,40 +482,12 @@ namespace RTAFMailManagement.Global_Class
                     EmailAddress = data.User_Email,
                     Name = data.User_UserName,
                     Surname = data.User_LastName,
-                    UserPrincipalName = data.User_Email
+                    UserPrincipalName = data.User_Email,
+                    DisplayName = data.User_Rank.Rank_Name + data.User_FirstName + " " + data.User_LastName,
+                    Description = data.User_Position
                 };
 
                 new_user.Save();
-
-                UserPrincipal user = UserPrincipal.FindByIdentity(pc, data.User_UserName);
-
-                DirectoryEntry deUser = (DirectoryEntry)user.GetUnderlyingObject();
-                ActiveDs.IADsUser nativeDeUser = (ActiveDs.IADsUser)deUser.NativeObject;
-
-                nativeDeUser.AccountDisabled = false;
-
-                if (mode != 15)
-                {
-                    nativeDeUser.Department = data.User_Unit.Unit_FullName;
-                    nativeDeUser.Description = data.User_FirstNameEn + " " + data.User_LastNameEn;
-                }
-                else
-                {
-                    nativeDeUser.Department = data.Company_name;
-                    nativeDeUser.Description = data.Employee_name;
-                }
-
-                nativeDeUser.EmailAddress = data.User_Email;
-                nativeDeUser.FirstName = data.User_FirstName;
-                nativeDeUser.FullName = data.User_Rank.Rank_Name + data.User_FirstName + " " + data.User_LastName;
-                nativeDeUser.IsAccountLocked = false;
-                nativeDeUser.LastName = data.User_LastName;
-                nativeDeUser.TelephoneMobile = data.User_Tel;
-                nativeDeUser.Title = data.User_Position;
-
-                deUser.Close();
-
-                user.Save();
 
                 return true;
             }
@@ -469,8 +515,8 @@ namespace RTAFMailManagement.Global_Class
         {
             string domainController = ConfigurationManager.AppSettings["AD_SIP"];
             string container = ConfigurationManager.AppSettings["AD_Container"];
-            string adminName = ConfigurationManager.AppSettings["UADService"];
-            string adminPassword = ConfigurationManager.AppSettings["PADService"];
+            string adminName = ConfigurationManager.AppSettings["UADEnService"];
+            string adminPassword = ConfigurationManager.AppSettings["PADEnService"];
 
             PrincipalContext pc = new PrincipalContext(ContextType.Domain, domainController, container, adminName, adminPassword);
 
@@ -480,29 +526,16 @@ namespace RTAFMailManagement.Global_Class
             {
                 UserPrincipal user = UserPrincipal.FindByIdentity(pc, data.User_UserName);
 
+                user.GivenName = data.User_FirstName;
+                user.Name = data.User_UserName;
+                user.Surname = data.User_LastName;
+                user.DisplayName = data.User_Rank.Rank_Name + data.User_FirstName + " " + data.User_LastName;
+                user.MiddleName = (mode != 15) ? "" : data.Employee_name + " " + data.Company_name;
+                user.Description = data.User_Position;
+
+                user.Save();
+
                 DirectoryEntry deUser = (DirectoryEntry)user.GetUnderlyingObject();
-                ActiveDs.IADsUser nativeDeUser = (ActiveDs.IADsUser)deUser.NativeObject;
-
-                nativeDeUser.AccountDisabled = false;
-
-                if (mode != 15)
-                {
-                    nativeDeUser.Department = data.User_Unit.Unit_FullName;
-                    nativeDeUser.Description = data.User_FirstNameEn + " " + data.User_LastNameEn;
-                }
-                else
-                {
-                    nativeDeUser.Department = data.Company_name;
-                    nativeDeUser.Description = data.Employee_name;
-                }
-
-                nativeDeUser.EmailAddress = data.User_Email;
-                nativeDeUser.FirstName = data.User_FirstName;
-                nativeDeUser.FullName = data.User_Rank.Rank_Name + data.User_FirstName + " " + data.User_LastName;
-                nativeDeUser.IsAccountLocked = false;
-                nativeDeUser.LastName = data.User_LastName;
-                nativeDeUser.TelephoneMobile = data.User_Tel;
-                nativeDeUser.Title = data.User_Position;
 
                 string new_container = string.IsNullOrEmpty(data.User_Unit.Unit_OUName) ? container : "OU=" + data.User_Unit.Unit_OUName + ",OU=RTAF," + container;
 
@@ -538,12 +571,69 @@ namespace RTAFMailManagement.Global_Class
             }
         }
 
+        public static bool UpDateUserADwithIDGADService(Users data, int mode)
+        {
+            string error;
+
+            IDG_ADSv.ADService sv = new IDG_ADSv.ADService();
+
+            try
+            {
+                string first = string.Empty, last = string.Empty, display = string.Empty, comp = string.Empty, title = string.Empty, disciption = string.Empty, st = string.Empty;
+
+                if (mode == 1)
+                {
+                    /// Person
+
+                    first = data.User_FirstName;
+                    last = data.User_LastName;
+                    display = data.User_Rank.Rank_Name + data.User_FirstName + " " + data.User_LastName;
+                    comp = data.User_Unit.Unit_FullName;
+                    title = data.User_Position;
+                    disciption = data.User_Rank.Rank_NameEng + data.User_FirstNameEn + " " + data.User_LastNameEn;
+                    st = data.User_Rank.Rank_NameEng;
+                }
+                else if (mode == 2)
+                {
+                    /// Unit
+
+                    first = data.Employee_name;
+                    last = data.Company_name;
+                    display = data.Employee_name + " " + data.Company_name;
+                    comp = data.User_Unit.Unit_FullName;
+                    title = data.Employee_name + " " + data.User_Unit.Unit_FullName;
+                    disciption = data.User_Position;
+                }
+                else if (mode == 3)
+                {
+                    /// Group
+
+                    first = data.Employee_name;
+                    last = data.Company_name;
+                    display = data.Employee_name + " " + data.Company_name;
+                    comp = data.Company_name;
+                    title = data.Employee_name + " " + data.User_Unit.Unit_FullName;
+                    disciption = data.User_Position;
+                }
+
+                sv.svUpdateUser(data.User_UserName, first, last, display, comp, title, disciption, data.User_Tel, st);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                error = "Exception ==> Global_Class --> ConnectRTAFService --> UpDateUserADwithIDGADService()";
+                Log_Error._writeErrorFile(error, ex);
+                return false;
+            }
+        }
+
         public static bool AccountDisabledWithADDS(string userName, bool disable)
         {
             string domainController = ConfigurationManager.AppSettings["AD_SIP"];
             string container = ConfigurationManager.AppSettings["AD_Container"];
-            string adminName = ConfigurationManager.AppSettings["UADService"];
-            string adminPassword = ConfigurationManager.AppSettings["PADService"];
+            string adminName = ConfigurationManager.AppSettings["UADEnService"];
+            string adminPassword = ConfigurationManager.AppSettings["PADEnService"];
 
             PrincipalContext pc = new PrincipalContext(ContextType.Domain, domainController, container, adminName, adminPassword);
 
@@ -555,14 +645,8 @@ namespace RTAFMailManagement.Global_Class
 
                 if (user != null)
                 {
-                    DirectoryEntry deUser = (DirectoryEntry)user.GetUnderlyingObject();
-                    ActiveDs.IADsUser nativeDeUser = (ActiveDs.IADsUser)deUser.NativeObject;
-
-                    nativeDeUser.AccountDisabled = !disable;
-
-                    deUser.Close();
-
                     user.Enabled = disable;
+
                     user.Save();
 
                     return true;
@@ -604,8 +688,8 @@ namespace RTAFMailManagement.Global_Class
         {
             string domainController = ConfigurationManager.AppSettings["AD_SIP"];
             string container = ConfigurationManager.AppSettings["AD_Container"];
-            string adminName = ConfigurationManager.AppSettings["UADService"];
-            string adminPassword = ConfigurationManager.AppSettings["PADService"];
+            string adminName = ConfigurationManager.AppSettings["UADEnService"];
+            string adminPassword = ConfigurationManager.AppSettings["PADEnService"];
 
             PrincipalContext pc = new PrincipalContext(ContextType.Domain, domainController, container, adminName, adminPassword);
 
@@ -617,15 +701,9 @@ namespace RTAFMailManagement.Global_Class
 
                 if (user != null)
                 {
-                    DirectoryEntry deUser = (DirectoryEntry)user.GetUnderlyingObject();
-                    ActiveDs.IADsUser nativeDeUser = (ActiveDs.IADsUser)deUser.NativeObject;
-
-                    nativeDeUser.AccountDisabled = false;
-                    nativeDeUser.SetPassword(newPassword);
-
-                    deUser.Close();
-
+                    user.SetPassword(newPassword);
                     user.Enabled = true;
+
                     user.Save();
 
                     return true;
@@ -667,8 +745,8 @@ namespace RTAFMailManagement.Global_Class
         {
             string domainController = ConfigurationManager.AppSettings["AD_SIP"];
             string container = ConfigurationManager.AppSettings["AD_Container"];
-            string adminName = ConfigurationManager.AppSettings["UADService"];
-            string adminPassword = ConfigurationManager.AppSettings["PADService"];
+            string adminName = ConfigurationManager.AppSettings["UADEnService"];
+            string adminPassword = ConfigurationManager.AppSettings["PADEnService"];
 
             PrincipalContext pc = new PrincipalContext(ContextType.Domain, domainController, container, adminName, adminPassword);
 
@@ -680,14 +758,7 @@ namespace RTAFMailManagement.Global_Class
 
                 if (user != null)
                 {
-                    DirectoryEntry deUser = (DirectoryEntry)user.GetUnderlyingObject();
-                    ActiveDs.IADsUser nativeDeUser = (ActiveDs.IADsUser)deUser.NativeObject;
-
-                    nativeDeUser.AccountDisabled = false;
-                    nativeDeUser.ChangePassword(oldPassword, newPassword);
-
-                    deUser.Close();
-
+                    user.ChangePassword(oldPassword, newPassword);
                     user.Enabled = true;
 
                     user.Save();
@@ -727,12 +798,59 @@ namespace RTAFMailManagement.Global_Class
             }
         }
 
+        public static bool RemoveUserAccountWithADDS(string userName)
+        {
+            string domainController = ConfigurationManager.AppSettings["AD_SIP"];
+            string container = ConfigurationManager.AppSettings["AD_Container"];
+            string adminName = ConfigurationManager.AppSettings["UADEnService"];
+            string adminPassword = ConfigurationManager.AppSettings["PADEnService"];
+
+            PrincipalContext pc = new PrincipalContext(ContextType.Domain, domainController, container, adminName, adminPassword);
+
+            string error;
+
+            try
+            {
+                UserPrincipal user = UserPrincipal.FindByIdentity(pc, userName);
+
+                if (user != null)
+                {
+                    user.Delete();
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (PrincipalException ex)
+            {
+                error = "PrincipalException ==> Global_Class --> ConnectRTAFService --> RemoveUserAccountWithADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                error = "Exception ==> Global_Class --> ConnectRTAFService --> RemoveUserAccountWithADDS()";
+                Log_Error._writeErrorFile(error, ex);
+
+                return false;
+            }
+            finally
+            {
+                pc.Dispose();
+            }
+        }
+
         public static bool ChangeOUNameWithADDS(string userName, string OUName)
         {
             string domainController = ConfigurationManager.AppSettings["AD_SIP"];
             string container = ConfigurationManager.AppSettings["AD_Container"];
-            string adminName = ConfigurationManager.AppSettings["UADService"];
-            string adminPassword = ConfigurationManager.AppSettings["PADService"];
+            string adminName = ConfigurationManager.AppSettings["UADEnService"];
+            string adminPassword = ConfigurationManager.AppSettings["PADEnService"];
 
             container = string.IsNullOrEmpty(OUName) ? "OU=RTAF," + container : container;
 

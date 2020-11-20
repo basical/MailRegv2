@@ -32,16 +32,17 @@ namespace RTAFMailManagement.Form_Mail_Register
                 string User_IdCard = code[2];
                 string User_Id = code[3];
 
+                Session["User_Id"] = User_Id;
+
+                Users data = new Users_Mananer().GetUserById(User_Id);
+
                 if (Request.Params["mode"] == "e")
                 {
-                    Users data = new Users_Mananer().GetUserById(User_Id);
-
                     DisplayInfoProfile(data);
                 }
                 else if (Request.Params["mode"] == "d")
                 {
-                    Admin_Users au = (Admin_Users)Session["admin_user"];
-                    string ipAdd = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables["REMOTE_ADDR"];
+                    RemoveUserAccount(data);
                 }
             }
         }
@@ -69,7 +70,7 @@ namespace RTAFMailManagement.Form_Mail_Register
 
             Units_DDL.SelectedValue = data.User_Unit.Unit_Code.ToString();
             Position_TBx.Text = data.User_Position;
-            Tel_Tbx.Text = data.User_Tel;
+            Tel_TBx.Text = data.User_Tel;
 
             Username_TBx.Text = data.User_UserName;
             Username_TBx.ForeColor = Color.OrangeRed;
@@ -95,6 +96,56 @@ namespace RTAFMailManagement.Form_Mail_Register
                 AD_Status_Real_TBx.Text = "Disable";
                 AD_Status_Real_TBx.ForeColor = Color.Red;
             }
+
+            Group_panel.Visible = data.User_Type.User_Type_Code == 3? true : false;
+            
+            if(data.User_Type.User_Type_Code == 3)
+            {
+                Employee_Name_TBx.Text = data.Employee_name;
+                Company_Name_TBx.Text = data.Company_name;
+            }
+
+        }
+
+        private void RemoveUserAccount(Users data)
+        {
+            Admin_Users au = (Admin_Users)Session["admin_user"];
+            string ipAdd = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables["REMOTE_ADDR"];
+
+            if (ConnectRTAFService.RemoveUserAccountWithADDS(data.User_UserName))
+            {
+                new Users_Mananer().RemoveUserAccount(data);
+
+                Activity_Log log = new Activity_Log()
+                {
+                    Act_log_user = au.Admin_Users_Name,
+                    Act_log_ip = ipAdd,
+                    Act_log_details = "Revm_Acc_SCC : Remove User Account in AD Server : " + data.User_UserName + " Success"
+                };
+
+                new Activity_Log_Manager().AddActivityLogs(log);
+
+                success_panel.Visible = true;
+                bad_panel.Visible = false;
+                success_Lbl.Text = "ลบบัญชีผู้ใช้งาน : " + data.User_UserName + " สำเร็จ ";
+            }
+            else
+            {
+                Activity_Log log = new Activity_Log()
+                {
+                    Act_log_user = au.Admin_Users_Name,
+                    Act_log_ip = ipAdd,
+                    Act_log_details = "Revm_Acc_Fail : Remove User Account in AD Server : " + data.User_UserName + " Fail"
+                };
+
+                new Activity_Log_Manager().AddActivityLogs(log);
+
+                success_panel.Visible = false;
+                bad_panel.Visible = true;
+                bad_Lbl.Text = "ลบบัญชีผู้ใช้งาน : " + data.User_UserName + " ล้มเหลว ";
+            }
+
+            Save_Btn.Visible = false;
         }
 
         protected void Change_Password_Save_Btn_Click(object sender, EventArgs e)
@@ -139,7 +190,139 @@ namespace RTAFMailManagement.Form_Mail_Register
 
         protected void Save_Btn_Click(object sender, EventArgs e)
         {
+            Users user_data = new Users()
+            {
+                User_id = (int)Session["User_Id"],
+                User_IdCard = IdCard_TBx.Text,
+                User_IdGvm = IdGvm_TBx.Text,
 
+                User_Rank = new Ranks()
+                {
+                    Rank_Code = int.Parse(Rank_DDL.SelectedValue)
+                },
+
+                User_FirstName = FName_TBx.Text,
+                User_LastName = LName_TBx.Text,
+                User_FirstNameEn = FName_Eng_TBx.Text,
+                User_LastNameEn = LName_Eng_TBx.Text,
+                User_BirthDate = Birthday_Date_TBx.Text,
+
+                User_status = new RTAF_Status()
+                {
+                    RTAF_status_Code = int.Parse(Person_Status_DDL.SelectedValue)
+                },
+
+                User_Unit = new Units()
+                {
+                    Unit_Code = int.Parse(Units_DDL.SelectedValue)
+                },
+
+                User_Position = Position_TBx.Text,
+                User_Tel = Tel_TBx.Text,
+
+                User_Type = new Users_Type()
+                {
+                    User_Type_Code = int.Parse(Acc_Type_DDL.SelectedValue)
+                },
+
+                User_UserName = Username_TBx.Text,
+                User_Email = Email_TBx.Text,
+                User_Password = newPassword_TBx.Text,
+
+                User_Question = new Questions()
+                {
+                    Questions_id = int.Parse(Quastion_DDL.SelectedValue)
+                },
+
+                User_Answer = Answer_TBx.Text,
+                User_SecEmail = Email_Sec_TBx.Text,
+
+                User_ADStatus = new AD_Status()
+                {
+                    AD_Status_Code = int.Parse(AD_Status_DDL.SelectedValue) == 0 ? 1 : int.Parse(AD_Status_DDL.SelectedValue)
+                },
+
+                User_MailStatus = new Mail_Status()
+                {
+                    Mail_Status_Code = 1
+                },
+
+                person_data = new RTAF_DATA()
+                {
+                    RTAF_person_Uid = (string)Session["person_uid"]
+                },
+
+                User_Type_Rank = (int)Session["type_rank"]
+            };
+
+            int act = 0;
+
+            if (Acc_Type_DDL.SelectedValue == "1")
+            {
+                act = 1;
+            }
+            else if (Acc_Type_DDL.SelectedValue == "2")
+            {
+                act = 2;
+            }
+            else if (Acc_Type_DDL.SelectedValue == "3")
+            {
+                act = 3;
+            }
+
+            Admin_Users au = (Admin_Users)Session["admin_user"];
+            string ipAdd = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables["REMOTE_ADDR"];
+
+            /// ปรับปรุงข้อมูล User Account ลงในฐานข้อมูล
+            if (new Users_Mananer().UpdateUserAccount(user_data))
+            {
+                /// ปรับปรุงข้อมูล User Account ใน AD Server
+                if (ConnectRTAFService.UpDateUserADwithIDGADService(new Users_Mananer().GetUserAccountByUsername(user_data.User_UserName), act))
+                {
+                    Activity_Log log = new Activity_Log()
+                    {
+                        Act_log_user = au.Admin_Users_Name,
+                        Act_log_ip = ipAdd,
+                        Act_log_details = "UpdateUser_SUCF : Update User Account : " + user_data.User_UserName + " : in DB and AD Server Success"
+                    };
+
+                    new Activity_Log_Manager().AddActivityLogs(log);
+
+                    success_panel.Visible = true;
+                    bad_panel.Visible = false;
+                    success_Lbl.Text = "เพิ่มบัญชีผู้ใช้งาน : " + user_data.User_UserName + " ใน ฐานข้อมูล และ AD Server สำเร็จ ";
+                }
+                else
+                {
+                    Activity_Log log = new Activity_Log()
+                    {
+                        Act_log_user = au.Admin_Users_Name,
+                        Act_log_ip = ipAdd,
+                        Act_log_details = "UpdateUse_SUCC : Update User Account : " + user_data.User_UserName + " : in DB Success but AD Server Fail"
+                    };
+
+                    new Activity_Log_Manager().AddActivityLogs(log);
+
+                    success_panel.Visible = false;
+                    bad_panel.Visible = true;
+                    bad_Lbl.Text = "เพิ่มบัญชีผู้ใช้งาน : " + user_data.User_UserName + " ใน ฐานข้อมูล สำเร็จ แต่พบปัญหาในการเพิ่มลงใน AD Server ";
+                }
+            }
+            else
+            {
+                Activity_Log log = new Activity_Log()
+                {
+                    Act_log_user = au.Admin_Users_Name,
+                    Act_log_ip = ipAdd,
+                    Act_log_details = "UpdateUse_FAIL : Update User Account : " + user_data.User_UserName + " : Fail"
+                };
+
+                new Activity_Log_Manager().AddActivityLogs(log);
+
+                success_panel.Visible = false;
+                bad_panel.Visible = true;
+                bad_Lbl.Text = "ไม่สามารถเพิ่มบัญชีผู้ใช้งาน : " + user_data.User_UserName + " ได้ กรุณาตรวจสอบข้อมูล";
+            }
         }
 
         protected void Cancel_Btn_Click(object sender, EventArgs e)
@@ -160,7 +343,7 @@ namespace RTAFMailManagement.Form_Mail_Register
             for (int i = 0; i < list_data.Count; i++)
             {
                 Ranks data = list_data[i];
-                Rank_DDL.Items.Add(new ListItem(data.Rank_Name+ " ( " + data.Rank_FullName + " ) ", data.Rank_Code.ToString()));
+                Rank_DDL.Items.Add(new ListItem(data.Rank_Name + " ( " + data.Rank_FullName + " ) ", data.Rank_Code.ToString()));
             }
         }
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Title=" RTAF E-Mail Registration Management System " Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Update_Users_Profile.aspx.cs" Inherits="RTAFMailManagement.Form_Mail_Register.Update_Users_Profile" %>
+﻿<%@ Page Title=" RTAF E-Mail Registration Management System " Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Add_Users_Account_Person.aspx.cs" Inherits="RTAFMailManagement.Form_Mail_Register.Add_Users_Account_Person" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <!-- Content Wrapper. Contains page content -->
@@ -8,7 +8,9 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark"><i class="fas fa-user-edit"></i>&nbsp; :: แก้ไขข้อมูลผู้ใช้งาน :: </h1>
+                        <h1 class="m-0 text-dark"><i class="fas fa-user-plus"></i>&nbsp; :: เพิ่มข้อมูลผู้ใช้งาน
+                            :: </h1>
+
                     </div>
                 </div>
                 <!-- /.row -->
@@ -47,7 +49,8 @@
                 <!-- Horizontal Form -->
                 <div class="card card-warning">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-user-edit"></i>&nbsp; :: แก้ไขข้อมูลผู้ใช้งาน :: </h3>
+                        <h3 class="card-title"><i class="fas fa-user-plus"></i>&nbsp; :: เพิ่มข้อมูลผู้ใช้งาน
+                            :: </h3>
                         <div class="card-tools">
                             <asp:LinkButton ID="Close_Btn" runat="server" CssClass="btn btn-tool" OnClick="Close_Btn_Click"> <i class="fas fa-times"></i> </asp:LinkButton>
                         </div>
@@ -72,15 +75,15 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="Rank_Lbl" runat="server"> ยศ </asp:Label>
-                                                <asp:DropDownList ID="Rank_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
+                                                <asp:DropDownList ID="Rank_DDL" runat="server" CssClass="form-control select2" Enabled="false"></asp:DropDownList>
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="FName_Lbl" runat="server"> ชื่อ </asp:Label>
-                                                <asp:TextBox ID="FName_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="FName_TBx" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="LName_Lbl" runat="server"> นามสกุล </asp:Label>
-                                                <asp:TextBox ID="LName_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="LName_TBx" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -90,15 +93,15 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="Rank_Eng_Lbl" runat="server"> ยศ (ENG) </asp:Label>
-                                                <asp:TextBox ID="Rank_Eng_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="Rank_Eng_TBx" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="FName_Eng_Lbl" runat="server"> ชื่อ (ENG) </asp:Label>
-                                                <asp:TextBox ID="FName_Eng_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="FName_Eng_TBx" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="LName_Eng_Lbl" runat="server"> นามสกุล (ENG) </asp:Label>
-                                                <asp:TextBox ID="LName_Eng_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="LName_Eng_TBx" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -106,7 +109,7 @@
                                             <div class="col-sm-3">
                                                 <asp:Label ID="Birthday_Date_Lbl" runat="server"> วันเดือนปีเกิด </asp:Label>
                                                 <div class="input-group" id="Birthday_Date">
-                                                    <asp:TextBox ID="Birthday_Date_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    <asp:TextBox ID="Birthday_Date_TBx" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                                     <div class="input-group-append">
                                                         <span class="input-group-text"><i class="fa fa-calendar fa-fw"></i></span>
                                                     </div>
@@ -152,17 +155,17 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="Person_Status_Lbl" runat="server"> สถานะกำลังพล </asp:Label>
-                                                <asp:DropDownList ID="Person_Status_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
+                                                <asp:DropDownList ID="Person_Status_DDL" runat="server" CssClass="form-control select2" Enabled="false"></asp:DropDownList>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-3">
                                                 <asp:Label ID="Units_Lbl" runat="server">สังกัด</asp:Label>
-                                                <asp:DropDownList ID="Units_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
+                                                <asp:DropDownList ID="Units_DDL" runat="server" CssClass="form-control select2" Enabled="false"></asp:DropDownList>
                                             </div>
                                             <div class="col-sm-6">
                                                 <asp:Label ID="Position_Lbl" runat="server"> ตำแหน่ง </asp:Label>
-                                                <asp:TextBox ID="Position_TBx" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="Position_TBx" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-3">
                                                 <asp:Label ID="Tel_Lbl" runat="server"> เบอร์โทรศัพท์ </asp:Label>
@@ -184,29 +187,28 @@
                                     <div class="card-body">
                                         <div class="form-group row">
                                             <div class="col-sm-3">
-                                                <asp:Label ID="Username_Lbl" runat="server"> Username </asp:Label>
-                                                <asp:TextBox ID="Username_TBx" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                                <asp:Label ID="Acc_Type_Lbl" runat="server"> ประเภทบัญชีผู้ใช้งาน </asp:Label>
+                                                <asp:DropDownList ID="Acc_Type_DDL" runat="server" CssClass="form-control select2" Enabled="false"></asp:DropDownList>
                                             </div>
                                             <div class="col-sm-3">
-                                                <asp:Label ID="Email_Lbl" runat="server"> E-mail </asp:Label>
-                                                <asp:TextBox ID="Email_TBx" runat="server" CssClass="form-control" TextMode="Email" Enabled="false"></asp:TextBox>
+                                                <asp:Label ID="List_Username_Lbl" runat="server"> เลือก Username ** ไม่ต้องระบุ @rtaf.mi.th ** </asp:Label>
+                                                <asp:DropDownList ID="List_Username_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
                                             </div>
                                             <div class="col-sm-3">
-                                                <asp:Label ID="AD_Status_Lbl" runat="server"> AD Status (DB) </asp:Label>
-                                                <asp:DropDownList ID="AD_Status_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
+                                                <asp:Label ID="newPassword_Lbl" runat="server"> รหัสผ่าน </asp:Label>
+                                                <asp:TextBox ID="newPassword_TBx" runat="server" CssClass="form-control"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-3">
-                                                <asp:Label ID="AD_Status_Real_Lbl" runat="server"> AD Status (Server) </asp:Label>
-                                                <asp:TextBox ID="AD_Status_Real_TBx" runat="server" CssClass="form-control" Enabled="false" Font-Bold="true"></asp:TextBox>
+                                                <asp:Label ID="remark_password" runat="server" CssClass="text-danger"> *** รหัสผ่าน ต้องประกอบด้วย อักษรภาษาอังกฤษตัวใหญ่, อักษรภาษาอังกฤษตัวเล็ก, ตัวเลข และอักษรพิเศษ ( อักษรพิเศษ ได้แก่ !, @, #, $ , %, ^, &, *, +, - ) โดยมีความยาวไม่ต่ำกว่า 8 ตัวอักษร เช่น p@ss#2020 เป็นต้น *** </asp:Label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-3">
-                                                <asp:Label ID="Quastion_Lbl" runat="server"> คำถาม </asp:Label>
+                                                <asp:Label ID="Quastion_Lbl" runat="server"> คำถาม (กรณีลืมรหัสผ่าน) </asp:Label>
                                                 <asp:DropDownList ID="Quastion_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
                                             </div>
                                             <div class="col-sm-3">
-                                                <asp:Label ID="Answer_Lbl" runat="server"> คำตอบ </asp:Label>
+                                                <asp:Label ID="LaAnswer_Lbl" runat="server"> คำตอบ (กรณีลืมรหัสผ่าน) </asp:Label>
                                                 <asp:TextBox ID="Answer_TBx" runat="server" CssClass="form-control"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-3">
@@ -214,22 +216,10 @@
                                                 <asp:TextBox ID="Email_Sec_TBx" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-3">
-                                                <asp:Label ID="Acc_Type_Lbl" runat="server"> ประเภทบัญชีผู้ใช้งาน </asp:Label>
-                                                <asp:DropDownList ID="Acc_Type_DDL" runat="server" CssClass="form-control select2" Enabled="false"></asp:DropDownList>
+                                                <asp:Label ID="AD_Status_Lbl" runat="server"> AD Status (DB) </asp:Label>
+                                                <asp:DropDownList ID="AD_Status_DDL" runat="server" CssClass="form-control select2"></asp:DropDownList>
                                             </div>
                                         </div>
-                                        <asp:Panel ID="Group_panel" runat="server">
-                                            <div class="form-group row">
-                                                <div class="col-sm-3">
-                                                    <asp:Label ID="Employee_Name_Lbl" runat="server"> ชื่อ - นามสกุล พนง. </asp:Label>
-                                                    <asp:TextBox ID="Employee_Name_TBx" runat="server" CssClass="form-control"></asp:TextBox>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <asp:Label ID="Company_Name_Lbl" runat="server"> บริษัท </asp:Label>
-                                                    <asp:TextBox ID="Company_Name_TBx" runat="server" CssClass="form-control"></asp:TextBox>
-                                                </div>
-                                            </div>
-                                        </asp:Panel>
                                     </div>
                                     <!-- /.card-body -->
                                 </div>
@@ -238,9 +228,9 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <asp:LinkButton ID="Save_Btn" runat="server" CssClass="btn bg-gradient-primary" OnClick="Save_Btn_Click" Enabled="false"> <i class="fas fa-save fa-fw"></i>&nbsp; บันทึกข้อมูล </asp:LinkButton>
-                            <asp:LinkButton ID="Cancel_Btn" runat="server" CssClass="btn bg-gradient-warning" OnClick="Cancel_Btn_Click"> <i class="fas fa-window-close"></i>&nbsp; ยกเลิก </asp:LinkButton>
-                            <asp:LinkButton ID="Reset_Password_Btn" runat="server" CssClass="btn bg-gradient-danger float-right" data-toggle="modal" data-target="#modal-lg"> <i class="fas fa-sync-alt fa-fw"></i>&nbsp; Reset Password </asp:LinkButton>
+                            <asp:LinkButton ID="Save_Btn" runat="server" CssClass="btn bg-gradient-info" OnClick="Save_Btn_Click"> <i class="far fa-address-card fa-fw"></i>&nbsp; สร้าง AD </asp:LinkButton>
+                            <asp:LinkButton ID="Create_ADnMail_Btn" runat="server" CssClass="btn bg-gradient-primary" OnClick="Create_ADnMail_Btn_Click"> <i class="fas fa-mail-bulk fa-fw"></i>&nbsp; สร้าง AD และ mail </asp:LinkButton>
+                            <asp:LinkButton ID="Cancel_Btn" runat="server" CssClass="btn bg-gradient-danger float-right" OnClick="Cancel_Btn_Click"> <i class="fas fa-window-close"></i>&nbsp; ยกเลิก </asp:LinkButton>
                         </div>
                         <!-- /.card-footer -->
                     </div>
@@ -249,52 +239,6 @@
 
             </div>
             <!-- /.container-fluid -->
-
-            <div class="modal fade" id="modal-lg">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header bg-danger">
-                            <h4 class="modal-title">:: Reset Password ::</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-horizontal">
-                                <div class="card-body">
-                                    <div class="form-group row">
-                                        <div class="col-sm-4">
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <asp:Label ID="Password_remark_Lbl" runat="server" CssClass="text-danger"> 
-                                                รหัสผ่าน ต้องประกอบด้วย อักษรภาษาอังกฤษตัวใหญ่, อักษรภาษาอังกฤษตัวเล็ก, ตัวเลข และอักษรพิเศษ ( อักษรพิเศษ ได้แก่ !, @, #, $ , %, ^, &, *, +, - ) โดยมีความยาวไม่ต่ำกว่า 8 ตัวอักษร เช่น p@ss#2020 เป็นต้น
-                                            </asp:Label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-4">
-                                            <asp:Label ID="newPassword_Lbl" runat="server"> รหัสผ่านใหม่ ( New Password ) </asp:Label>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <asp:TextBox ID="newPassword_TBx" runat="server" CssClass="form-control" ForeColor="#cc0000"></asp:TextBox>
-                                        </div>
-                                    </div>
-
-                                    <!-- /.card-body -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer justify-content-between">
-                            <asp:LinkButton ID="Change_Password_Save_Btn" runat="server" CssClass="btn btn-primary float-left" OnClick="Change_Password_Save_Btn_Click"> <i class="fas fa-save fa-fw"></i>&nbsp; บันทึกข้อมูล </asp:LinkButton>
-                            <button type="button" class="btn btn-warning float-right" data-dismiss="modal"><i class="fas fa-window-close"></i>&nbsp; ยกเลิก </button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <!-- /.modal -->
-
         </div>
         <!-- /.content -->
 

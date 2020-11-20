@@ -14,5 +14,8 @@
     <Setting Name="RTAFMailManagement_IDG_MailService_Service" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://mailservice.rtaf.mi.th:8083/Service.asmx</Value>
     </Setting>
+    <Setting Name="RTAFMailManagement_IDG_ADSv_ADService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://10.107.1.148:44890/ADService.asmx</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -266,6 +266,9 @@ namespace RTAFMailManagement.Managers
                         RTAF_status_Sort = reader.IsDBNull(66) ? defaultNum : reader.GetInt32(66),
                         RTAF_status_Remark = reader.IsDBNull(67) ? defaultString : reader.GetString(67)
                     };
+
+                    data.Employee_name = reader.IsDBNull(68) ? defaultString : reader.GetString(68);
+                    data.Company_name = reader.IsDBNull(69) ? defaultString : reader.GetString(69);
                 }
 
                 return data;
@@ -405,6 +408,9 @@ namespace RTAFMailManagement.Managers
                         RTAF_status_Sort = reader.IsDBNull(66) ? defaultNum : reader.GetInt32(66),
                         RTAF_status_Remark = reader.IsDBNull(67) ? defaultString : reader.GetString(67)
                     };
+
+                    data.Employee_name = reader.IsDBNull(68) ? defaultString : reader.GetString(68);
+                    data.Company_name = reader.IsDBNull(69) ? defaultString : reader.GetString(69);
                 }
 
                 return data;
@@ -557,6 +563,9 @@ namespace RTAFMailManagement.Managers
                             RTAF_status_Remark = reader.IsDBNull(67) ? defaultString : reader.GetString(67)
                         },
 
+                        Employee_name = reader.IsDBNull(68) ? defaultString : reader.GetString(68),
+                        Company_name = reader.IsDBNull(69) ? defaultString : reader.GetString(69),
+
                         User_Real_AD = ConnectRTAFService.GetInfomationsAccountWithADDS(reader.IsDBNull(37) ? defaultString : reader.GetString(37), ""),
 
                     };
@@ -617,6 +626,8 @@ namespace RTAFMailManagement.Managers
                 cmd.Parameters.AddWithValue("@i_status_msg", i_data.User_status_msg);
                 cmd.Parameters.AddWithValue("@i_status_code", i_data.User_status.RTAF_status_Code);
                 cmd.Parameters.AddWithValue("@i_person_uid", i_data.person_data.RTAF_person_Uid);
+                cmd.Parameters.AddWithValue("@i_emp_name", i_data.Employee_name);
+                cmd.Parameters.AddWithValue("@i_comp_name", i_data.Company_name);
 
                 cmd.ExecuteNonQuery();
 
@@ -631,6 +642,99 @@ namespace RTAFMailManagement.Managers
             catch (Exception ex)
             {
                 error = "Exception ==> Managers --> Users_Mananer --> AddUserAccount() ";
+                Log_Error._writeErrorFile(error, ex);
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public bool UpdateUserAccount(Users i_data)
+        {
+            SqlConnection con = MSSQLConnection.connectionMSSQL();
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[new_u_User_Account]", con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@i_User_Id", i_data.User_id);
+                cmd.Parameters.AddWithValue("@i_Email", i_data.User_Email);
+                cmd.Parameters.AddWithValue("@i_IdCard", i_data.User_IdCard);
+                cmd.Parameters.AddWithValue("@i_IdGvm", i_data.User_IdGvm);
+                cmd.Parameters.AddWithValue("@i_BirthDate", DateTimeUtility.CDate4Service2MSSQL(i_data.User_BirthDate));
+                cmd.Parameters.AddWithValue("@i_FName", i_data.User_FirstName);
+                cmd.Parameters.AddWithValue("@i_LName", i_data.User_LastName);
+                cmd.Parameters.AddWithValue("@i_FName_Eng", i_data.User_FirstNameEn);
+                cmd.Parameters.AddWithValue("@i_LName_Eng", i_data.User_LastNameEn);
+                cmd.Parameters.AddWithValue("@i_Rank", i_data.User_Rank.Rank_Code);
+                cmd.Parameters.AddWithValue("@i_Unit", i_data.User_Unit.Unit_Code);
+                cmd.Parameters.AddWithValue("@i_Question", i_data.User_Question.Questions_id);
+                cmd.Parameters.AddWithValue("@i_Answer", i_data.User_Answer);
+                cmd.Parameters.AddWithValue("@i_Position", i_data.User_Position);
+                cmd.Parameters.AddWithValue("@i_UserName", i_data.User_UserName);
+                cmd.Parameters.AddWithValue("@i_ADStatus", i_data.User_ADStatus.AD_Status_Code);
+                cmd.Parameters.AddWithValue("@i_MailStatus", i_data.User_MailStatus.Mail_Status_Code);
+                cmd.Parameters.AddWithValue("@i_Tel", i_data.User_Tel);
+                cmd.Parameters.AddWithValue("@i_Type", i_data.User_Type.User_Type_Code);
+                cmd.Parameters.AddWithValue("@i_Type_Rank", i_data.User_Type_Rank);
+                cmd.Parameters.AddWithValue("@i_SecEmail", i_data.User_SecEmail);
+                cmd.Parameters.AddWithValue("@i_status_msg", i_data.User_status_msg);
+                cmd.Parameters.AddWithValue("@i_status_code", i_data.User_status.RTAF_status_Code);
+                cmd.Parameters.AddWithValue("@i_person_uid", i_data.person_data.RTAF_person_Uid);
+                cmd.Parameters.AddWithValue("@i_emp_name", i_data.Employee_name);
+                cmd.Parameters.AddWithValue("@i_comp_name", i_data.Company_name);
+
+                cmd.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                error = "SqlException ==> Managers --> Users_Mananer --> UpdateUserAccount() ";
+                Log_Error._writeErrorFile(error, ex);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                error = "Exception ==> Managers --> Users_Mananer --> UpdateUserAccount() ";
+                Log_Error._writeErrorFile(error, ex);
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public bool RemoveUserAccount(Users i_data)
+        {
+            SqlConnection con = MSSQLConnection.connectionMSSQL();
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("[dbo].[new_d_User_Account]", con)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@i_User_Id", i_data.User_id);
+
+                cmd.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                error = "SqlException ==> Managers --> Users_Mananer --> RemoveUserAccount() ";
+                Log_Error._writeErrorFile(error, ex);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                error = "Exception ==> Managers --> Users_Mananer --> RemoveUserAccount() ";
                 Log_Error._writeErrorFile(error, ex);
                 return false;
             }
